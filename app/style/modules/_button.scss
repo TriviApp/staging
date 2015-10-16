@@ -1,0 +1,48 @@
+// syntax: set font 
+  // ( text color optional,
+  // font optional
+  // font size optional
+  // uppercase optional (any value at all makes it uppercase)
+  // )
+
+@mixin set-font ($text-color: $text-color-dark, $font: $main-font-regular, $font-size: $font-size-regular, $uppercase: "auto") {
+
+  color: $text-color;
+  font-family: $font;
+  font-size: $font-size;
+  @if $uppercase != "auto" {
+    text-transform: uppercase;
+  }
+}
+
+//syntax: button 
+// (text color, 
+  // background color,
+  // border color optional, 
+  // font optional,
+  // font size optional, 
+  // hover text color optional,
+  // hover background color optional,
+  // uppercase optional (any value at all makes it uppercase) )
+
+@mixin button($text-color, $background-color, $border-color: $border-color-med, $font: $main-font-regular, $font-size: $font-size-regular, $hover-text: $background-color, $hover-background: $text-color, $uppercase: "auto") {
+
+  @include set-font ($text-color, $font, $font-size, $uppercase);
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid $border-color;
+  border-radius: 5%/20%;
+  background-color: $background-color;
+  -webkit-transition: color 0.3s, background-color 0.3s;
+          transition: color 0.3s, background-color 0.3s;
+    outline: none;
+  &:hover {
+    color: $hover-text;
+    background-color: $hover-background;
+  }
+  &:active {
+    border: 1px solid $text-color;
+  }
+  // optional put media query mixin call to change button sizes later on.
+}
