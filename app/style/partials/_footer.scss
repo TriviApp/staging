@@ -1,0 +1,12 @@
+footer {
+  small {
+    @include set-font($text-color-dark, $main-font-regular, $font-size-small);
+  }
+  ul {
+    list-style-type: none;
+    text-align: center;
+    li {
+      display: inline-block;
+    }
+  }
+}
