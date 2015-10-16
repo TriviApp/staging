@@ -2,6 +2,19 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var webpack = require('webpack-stream');
 var Karma = require('karma').Server;
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var handleErrors = require('../util/handleErrors');
+var autoprefixer = require('gulp-autoprefixer');
+
+gulp.task('webpack:sass', function() {
+  return gulp.src('./app/style/**/*.{sass,scss}')
+    .pipe(sourcemaps.init())
+    .on('error', handleErrors)
+    .pipe(sourcemaps.write())
+    .pipe(autoprefixer({ browsers: ['last 2 version'] }))
+    .pipe(gulp.dest('build/style/'));
+});
 
 gulp.task('webpack:dev', function() {
 	return gulp.src('./app/js/client.js')
@@ -47,5 +60,5 @@ gulp.task('karmatests', ['webpack:test'], function(done) {
 	}, done).start();
 });
 
-gulp.task('build:dev', ['staticfiles:dev, webpack:dev']);
+gulp.task('build:dev', ['staticfiles:dev, webpack:dev, webpack:sass']);
 gulp.task('default', ['build:dev']);
