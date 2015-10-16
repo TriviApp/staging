@@ -4,13 +4,12 @@ var webpack = require('webpack-stream');
 var Karma = require('karma').Server;
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-var handleErrors = require('../util/handleErrors');
 var autoprefixer = require('gulp-autoprefixer');
 
-gulp.task('webpack:sass', function() {
-  return gulp.src('./app/style/**/*.{sass,scss}')
+gulp.task('build:css', function() {
+  gulp.src('./app/style/**/*.{sass,scss}')
+  .pipe(sass())
     .pipe(sourcemaps.init())
-    .on('error', handleErrors)
     .pipe(sourcemaps.write())
     .pipe(autoprefixer({ browsers: ['last 2 version'] }))
     .pipe(gulp.dest('build/style/'));
@@ -56,9 +55,12 @@ gulp.task('servertests', function() {
 
 gulp.task('karmatests', ['webpack:test'], function(done) {
 	new Karma({
-		configFile: __dirname + 'karma.conf.js';
+		configFile: __dirname + 'karma.conf.js'
 	}, done).start();
 });
 
-gulp.task('build:dev', ['staticfiles:dev, webpack:dev, webpack:sass']);
+gulp.task("watch:css", ["build:css"], function() {
+  gulp.watch(".app/style/**/*.scss", ["build:css"]);
+});
+gulp.task('build:dev', ['staticfiles:dev', 'webpack:dev', 'build:css']);
 gulp.task('default', ['build:dev']);
