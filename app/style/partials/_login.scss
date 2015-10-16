@@ -1,3 +1,21 @@
-.button {
-  @include button($text-color-dark, $background-color-light, red);
+
+.login {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  legend {
+    @include set-font ($text-color-dark, $main-font-light-italic, $font-size-jumbo);
+  }
+  .button {
+    @include button($text-color-dark, $background-color-light);
+    width: 25%;
+  }
+  input {
+    @include set-font;
+    display: block;
+    margin: 0.25em auto 0.25em auto;
+    padding: 1%;
+    border: none;
+    background-color: $background-color-med;
+  }
 }
