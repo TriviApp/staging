@@ -8,7 +8,7 @@
   }
   .button {
     @include button($text-color-dark, $background-color-light);
-    width: 25%;
+    width: 50%;
   }
   input {
     @include set-font;
