@@ -15,11 +15,6 @@
   src: local('Ubuntu'), url(https://fonts.gstatic.com/s/ubuntu/v8/zvCUQcxqeoKhyOlbifSAaevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
 }
 @font-face {
-  font-family: 'Ubuntu Medium';
-  font-weight: 500;
-  src: local('Ubuntu Medium'), local('Ubuntu-Medium'), url(https://fonts.gstatic.com/s/ubuntu/v8/OsJ2DjdpjqFRVUSto6IffJBw1xU1rKptJj_0jans920.woff2) format('woff2');
-}
-@font-face {
   font-family: 'Ubuntu Bold';
   font-weight: 700;
   src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(https://fonts.gstatic.com/s/ubuntu/v8/0ihfXUL2emPh0ROJezvraJBw1xU1rKptJj_0jans920.woff2) format('woff2');
@@ -28,7 +23,6 @@
 $main-font-light: 'Ubuntu Light', sans-serif;
 $main-font-light-italic: 'Ubuntu Light Italic', sans-serif;
 $main-font-regular: 'Ubuntu', sans-serif;
-$main-font-medium: 'Ubuntu Medium', sans-serif;
 $main-font-bold: 'Ubuntu Bold', sans-serif;
 
 @font-face {
@@ -45,3 +39,10 @@ $main-font-bold: 'Ubuntu Bold', sans-serif;
 
 $accent-font-light: 'Roboto Slab Light', serif;
 $accent-font-regular: 'Roboto Slab', serif;
+
+//small is for fine print, regular is body text, headings are large or jumbo
+$font-size-small: 50%;
+$font-size-regular: 100%;
+$font-size-large: 150%;
+$font-size-jumbo: 250%;
+
