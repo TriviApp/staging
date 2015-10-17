@@ -6,7 +6,7 @@
   width: 96%;
   background-color: $background-color-light;
   h1 {
-    @include set-font($text-color-theme, $main-font-regular, $font-size-jumbo, "auto");
+    @include set-font($text-color-dark, $main-font-regular, $font-size-jumbo, "auto");
     text-align: center;
     margin-bottom: 0.5em;
   }
