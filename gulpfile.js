@@ -60,7 +60,7 @@ gulp.task('karmatests', ['webpack:test'], function(done) {
 });
 
 gulp.task("watch:css", ["build:css"], function() {
-  gulp.watch("./app/*.html", ["build:css"]);
+  gulp.watch("./app/**/*.html", ["build:css"]);
   gulp.watch("./app/style/**/*.scss", ["build:css"]);
 });
 gulp.task('build:dev', ['staticfiles:dev', 'webpack:dev', 'build:css']);
