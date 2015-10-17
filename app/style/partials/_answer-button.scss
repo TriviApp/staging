@@ -1,0 +1,28 @@
+.answer-button {
+  @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark, uppercase);
+  @include flex-container(inline-flex,row,wrap,center,center,center);
+  position: relative;
+  width: 48%;
+  margin: 0.25em 1%;
+  min-height: 4.6em;
+  .letter {
+    font-size: $font-size-large;
+    width: 13%;
+    margin-right: 2%;
+  }
+  .text {
+    width: 85%;
+    line-height: 1.2;
+  }
+  &:nth-child(5) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    span {
+      @include flex-container(inline-flex,row,wrap,center,center,center);
+    }
+    .letter {
+      margin-top: 0.3em;
+    }
+  }
+}
