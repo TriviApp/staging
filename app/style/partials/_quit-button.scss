@@ -1,0 +1,7 @@
+.quit-button {
+  @include button($text-color-dark, $background-color-light, $border-color-med, $main-font-light-italic, $font-size-small, $background-color-light, $text-color-dark);
+  display: block;
+  margin: 0.25em auto;
+  padding: 0.5em;
+  width: 25%; 
+}
