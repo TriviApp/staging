@@ -1,0 +1,11 @@
+.q-card {
+  margin: 0 auto;
+  border: 3px solid $border-color-theme;
+  border-radius: 0.5em;
+  padding: 0.75em 5%;
+  width: 98%;
+  p {
+    @include set-font($text-color-dark, $main-font-regular, $font-size-regular, "auto");
+    line-height: 1.5;
+  }
+}
