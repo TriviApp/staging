@@ -1,4 +1,5 @@
 .rating-indicator {
+  @include set-font($text-color-dark, $main-font-bold, $font-size-regular, uppercase);
   padding: 1em;
   border: 1px solid $border-color-dark;
   border-radius: 0.5em;
@@ -8,3 +9,15 @@
   margin: 0;
   min-width: 25%;
 }
+  .category-1 p:nth-of-type(2)::before {
+    content: "\2605 \2605 \2605 \2606 \2606";
+  }
+  .category-2 p:nth-of-type(2)::before {
+    content: "\2605 \2605 \2605 \2605 \2605";
+  }
+  .category-3 p:nth-of-type(2)::before {
+    content: "\2605 \2606 \2606 \2606 \2606";
+  }
+  .category-4 p:nth-of-type(2)::before {
+    content: "\2606 \2606 \2606 \2606 \2606";
+  }
