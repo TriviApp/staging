@@ -2,9 +2,9 @@
 @import "modules/reset.scss";
 @import "modules/colors.scss";
 @import "modules/typography.scss";
+@import "modules/flexbox.scss";
 @import "modules/base.scss";
 @import "modules/breaks.scss";
-@import "modules/flexbox.scss";
 @import "modules/icon-fonts.scss";
 @import "modules/logo-icon.scss";
 @import "modules/button.scss";
@@ -23,7 +23,6 @@
 @import "partials/category-pick.scss";
 @import "partials/rating-indicator.scss";
 @import "partials/player-profile.scss";
-@import "partials/player-stat-indicator.scss";
   // buttons
   @import "partials/buttons/category-button.scss";
   @import "partials/buttons/play-button.scss";
