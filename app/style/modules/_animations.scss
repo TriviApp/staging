@@ -1,4 +1,4 @@
-.slideInDown {
+.slide-in-down {
   -webkit-animation-name: slideInDown;
   animation-name: slideInDown;
   -webkit-animation-duration: 1s;
@@ -25,16 +25,107 @@
   }
 }
 
+.slide-in-left {
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes slideInLeft {
+  0% {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+}
+@keyframes slideInLeft {
+  0% {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
+  }
+}
+
+.slide-in-up {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes slideInUp {
+  0% {
+  -webkit-transform: translateY(+100%);
+  transform: translateY(+100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+}
+@keyframes slideInUp {
+  0% {
+  -webkit-transform: translateY(+100%);
+  transform: translateY(+100%);
+  visibility: visible;
+  }
+}
+
+.slide-in-right {
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes slideInRight {
+  0% {
+  -webkit-transform: translateX(+100%);
+  transform: translateX(+100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  0% {
+  -webkit-transform: translateX(+100%);
+  transform: translateX(+100%);
+  visibility: visible;
+  }
+}
+
 .countdown-timer {
-  margin: 2em 0 2em 0; //temporary just for component display 
+ // margin: 2em 0 2em 0; //temporary just for component display 
+ margin: 0;
   width: 5%;
-  height: 2em;
+  height: 5em;
   background: $text-color-theme;
   -webkit-transition: width 15s;
   transition: background 15s, width 15s;
   margin-right: auto;
   &:hover { //temporary, not intended for hover effect. Give a class change, start a 15 second timer, and change the view approximately when the bar reaches the end
-    width: 100%;
+    width: 90%;
     background: red; // not sure if we want color. This whole function can be modified to be whatever kind of animation if we want to change it.
   }
+}
+
+.l-countdown-timer {
+  position: absolute;
+  opacity: 0.25
+}
+
+.q-card {
+  position: relative;
 }

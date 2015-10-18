@@ -33,7 +33,7 @@
     </ul>
 
     <form class="login" id="login">
-      <fieldset class="slideInDown">
+      <fieldset class="slide-in-down">
         <legend>Login</legend>
         <input name="username" type="text" placeholder="username"/>
         <input name="password" type="text" placeholder="password"/>
@@ -48,35 +48,78 @@
       </ul>         
     </footer>
    
-   <section class="player-profile">
-    <h1>{{player name}}</h1>
-    <div class="player-portrait">
-      <img>{{pic}}</img>
-    </div>
-    <p>{{other info}}</p>
-    <p>{{other info}}</p>
-    <p>{{other info}}</p>
-    <p>{{other info}}</p>
-    <aside class="player-stat-indicator category-1">
-      <p>{{category}}</p>
-      <p>{{icons}}</p>
+   <article class="player-profile">
+    <aside class="rating-indicator-container left">
+      <div class="rating-indicator category-1 slide-in-left">
+        <p>History</p>
+        <p></p>
+      </div>
+      <div class="rating-indicator category-2 slide-in-down">
+        <p>Sports</p>
+        <p></p>
+      </div>
+      <div class="rating-indicator category-3 slide-in-right">
+        <p>Sports</p>
+        <p></p>
+      </div>
     </aside>
-    <aside class="player-stat-indicator category-2">
-      <p>{{category}}</p>
-      <p>{{icons}}</p>
+    <header>
+      <h1>TriviApp</h1>
+      <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>      
+      <h3>{{other info}}</h3>
+      <h3>{{other info}}</h3>
+      <h3>{{other info}}</h3>
+    </header>
+    <aside class="rating-indicator-container right">
+      <div class="rating-indicator category-4 slide-in-left">
+        <p>Entertainment</p>
+        <p></p>
+      </div>
+      <div class="rating-indicator category-5 slide-in-up">
+        <p>Food</p>
+        <p></p>
+      </div>
+      <div class="rating-indicator category-6 slide-in-right">
+        <p>Sports</p>
+        <p></p>
+      </div>
     </aside>
-        <aside class="player-stat-indicator category-3">
-      <p>{{category}}</p>
-      <p>{{icons}}</p>
-    </aside>
-    <aside class="player-stat-indicator category-4">
-      <p>{{category}}</p>
-      <p>{{icons}}</p>
-    </aside>
-  </section>
+  </article>
 
-    <div class="countdown-timer"></div>
+    <aside class="rating-indicator-container left">
+      <div class="rating-indicator category">
+        <p>{{category}}</p>
+        <p>{{icons}}</p>
+      </div>
+      <div class="rating-indicator category">
+        <p>{{category}}</p>
+        <p>{{icons}}</p>
+      </div>
+    </aside>
 
+    <div class="countdown-timer l-countdown-timer"></div>
+
+<article class="game-round">
+      <header>
+        <h1>TriviApp</h1>
+        <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+        <h3>Choose Your Topic:</h3>
+      </header>
+      <section class="q-card">
+        <div class="countdown-timer l-countdown-timer"></div>
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persophone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+      <a class="quit-button">Quit</a>
+    </article>
 
     <h2>Views:</h2>
     <ul>
