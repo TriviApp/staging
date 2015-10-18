@@ -1,7 +1,7 @@
 header {
   h1 {
     @include set-font($text-color-theme, $main-font-regular, $font-size-jumbo, "auto");
-    text-align: center;
+    @include flex-container(flex,row,nowrap,center,center,center);
     margin-bottom: 0.25em;
   }
   figure {
