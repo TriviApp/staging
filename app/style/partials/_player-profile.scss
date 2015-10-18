@@ -15,6 +15,6 @@
   }
 }
   .rating-indicator-container {
-    @include flex-container(flex,row,nowrap,space-between,center,center);
+    @include flex-container(flex,row,wrap,space-around,center,center);
     padding: 2%;
   }    
