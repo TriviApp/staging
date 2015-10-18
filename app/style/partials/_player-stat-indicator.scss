@@ -1,31 +1,31 @@
 .player-profile {
-  display: relative;
+  position: relative;
   text-align: center;
-  width: 50%;
+  width: 80%;
+  border: 3px solid $border-color-dark;
+  border-radius: 0.5em;
+  background-color: $background-color-light;
+  margin: auto;
+  header {
+    @include flex-container(inline-flex, column, nowrap, stretch, stretch, center);
+    border: 3px solid $border-color-theme;
+    background-color: $background-color-dark;
+    border-radius: 0.5em;
+    margin: 1%;
+  }
+}
+  .rating-indicator-container {
+    @include flex-container(flex,row,nowrap,space-between,center,center);
+    padding: 2%;
+  }    
+
+.rating-indicator {
+  padding: 1em;
   border: 1px solid $border-color-dark;
   border-radius: 0.5em;
   background-color: $background-color-theme;
-  margin: auto;
-  .player-stat-indicator {
-    display: absolute;
-    width: 15%;
-    padding: 1em;
-    background-color: $background-color-light;
-    z-index: 100;
-    margin: 0;
-    .category-1 {
-      background-color: blue;
-
-    }
-  }
-}
-
-.player-portrait {
-  height: 8em;
-  width: 8em;
-  border-radius: 50%;
-  background-color: $background-color-dark;
-  border: 2px solid $border-color-med;
-  padding: auto;
-  // margin: auto;
+  border: 3px solid $border-color-dark;
+  border-radius: 0.5em;
+  margin: 0;
+  min-width: 25%;
 }
