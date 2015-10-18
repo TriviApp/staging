@@ -11,7 +11,7 @@
   </head>
   <body>
     <section class="notes">
-      <h1>TriviApp is awesome</h1>
+      <h1 class="icon-avatar-bw">TriviApp is awesome</h1>
       <h2>Component To-Do List:</h2>
       <ul>
         <li>Title bar</li>
@@ -23,9 +23,23 @@
         <li>Page Not Found text</li>
       </ul>
     </section>
-    <article class="cat-pick">
+    <article class="login-screen">
       <header>
         <h1>TriviApp</h1>
+      </header>
+      <form class="login" id="login">
+        <fieldset>
+          <legend>Login</legend>
+          <input name="username" type="text" placeholder="username"/>
+          <input name="password" type="text" placeholder="password"/>
+          <input class="button" type="submit" value="Let's play"/>
+        </fieldset>
+      </form>
+    </article>
+    <br />
+    <article class="cat-pick">
+      <header>
+        <h1 class="icon-avatar-bw">TriviApp</h1>
         <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
         <h3>Choose Your Topic:</h3>
       </header>
@@ -42,16 +56,16 @@
       </section>
       <a class="quit-button">Quit</a>
     </article>
-<br />
+    <br />
     <article class="game-round">
       <header>
-        <h1>TriviApp</h1>
-        <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+        <h1 class="icon-avatar-bw">TriviApp</h1>
+        <figure><img src="temp/yellow-avatar.svg"><figcaption>mollyfish</figcaption></figure>
         <h3>Choose Your Topic:</h3>
       </header>
       <section class="q-card">
         <h1>Mythology</h1>
-        <h2>Pomegranates are a major feature in the myth of Persophone, wife of _______.</h2>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
         <div class="answers">
           <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
           <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
@@ -59,6 +73,46 @@
           ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
           ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
           ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+      <a class="quit-button">Quit</a>
+    </article>
+    <br />
+    <article class="game-round">
+      <header>
+        <h1>TriviApp</h1>
+        <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+      </header>
+      <section class="a-card correct">
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button incorrect"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button correct chosen animated rubberBand"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button incorrect"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button incorrect"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button incorrect"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+      <a class="quit-button">Quit</a>
+    </article>
+    <br />
+    <article class="game-round">
+      <header>
+        <h1>TriviApp</h1>
+        <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+      </header>
+      <section class="a-card wrong">
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button incorrect"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button correct animated rubberBand"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button incorrect chosen animated hinge"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button incorrect"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button incorrect"><span class="letter">E</span><span class="text">1945</span></a>
         </div>
       </section>
       <a class="quit-button">Quit</a>
@@ -78,8 +132,8 @@
 
 
     <header>
-      <h1>TriviApp</h1>
-      <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+      <h1 class="icon-avatar-bw">TriviApp</h1>
+      <figure><img src="temp/green-avatar.svg"><figcaption>mollyfish</figcaption></figure>
       <h3>Sub text here:</h3>
     </header>
     
