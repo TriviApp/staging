@@ -1,0 +1,40 @@
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes slideInDown {
+  0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+}
+@keyframes slideInDown {
+  0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+}
+
+.countdown-timer {
+  margin: 2em 0 2em 0; //temporary just for component display 
+  width: 5%;
+  height: 2em;
+  background: $text-color-theme;
+  -webkit-transition: width 15s;
+  transition: background 15s, width 15s;
+  margin-right: auto;
+  &:hover { //temporary, not intended for hover effect. Give a class change, start a 15 second timer, and change the view approximately when the bar reaches the end
+    width: 100%;
+    background: red; // not sure if we want color. This whole function can be modified to be whatever kind of animation if we want to change it.
+  }
+}
