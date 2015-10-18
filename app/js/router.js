@@ -3,6 +3,8 @@ module.exports = function(app) {
     $route
       .when('/signup')
       .when('/signin')
-      .when('/user_home')
-  }])
-}
+      .otherwise({
+        redirectTo: '/signin'
+      });
+  }]);
+};

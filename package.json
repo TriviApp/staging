@@ -25,7 +25,9 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "mongoose": "^4.1.11"
+    "mongoose": "^4.1.11",
+    "passport": "^0.3.0",
+    "passport-http": "^0.3.0"
   },
   "devDependencies": {
     "angular": "^1.4.7",
