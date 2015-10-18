@@ -12,3 +12,6 @@ h2 {
   padding: 1em;
   margin: 1em;
 }
+.notes h1 {
+  @include flex-container(inline-flex,row,nowrap,center,center,center);
+}

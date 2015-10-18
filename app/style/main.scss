@@ -1,16 +1,19 @@
 // MODULES
 @import "modules/reset.scss";
+@import "modules/colors.scss";
 @import "modules/typography.scss";
 @import "modules/base.scss";
 @import "modules/breaks.scss";
-@import "modules/colors.scss";
 @import "modules/flexbox.scss";
 @import "modules/icon-fonts.scss";
+@import "modules/logo-icon.scss";
 @import "modules/button.scss";
 @import "modules/animations.scss";
 
+
 // PARTIALS
-@import "partials/login.scss";
+@import "partials/login-screen.scss";
+@import "partials/login-form.scss";
 @import "partials/answers.scss";
 @import "partials/header.scss";
 @import "partials/footer.scss";
@@ -18,6 +21,8 @@
 @import "partials/question-card.scss";
 @import "partials/answer-card.scss";
 @import "partials/category-pick.scss";
+@import "partials/rating-indicator.scss";
+@import "partials/player-profile.scss";
 @import "partials/player-stat-indicator.scss";
   // buttons
   @import "partials/buttons/category-button.scss";
