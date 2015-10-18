@@ -5,10 +5,12 @@
 @import "modules/breaks.scss";
 @import "modules/flexbox.scss";
 @import "modules/icon-fonts.scss";
+@import "modules/logo-icon.scss";
 @import "modules/button.scss";
 @import "modules/animations.scss";
 
-@import "partials/login.scss";
+@import "partials/login-screen.scss";
+@import "partials/login-form.scss";
 @import "partials/answers.scss";
 @import "partials/header.scss";
 @import "partials/footer.scss";
@@ -22,4 +24,5 @@
 @import "partials/quit-button.scss";
 @import "partials/to-profile-button.scss";
 @import "partials/answer-button.scss";
-@import "partials/player-stat-indicator.scss";
+@import "partials/rating-indicator.scss";
+@import "partials/player-profile.scss";
