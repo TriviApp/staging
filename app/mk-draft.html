@@ -10,41 +10,79 @@
     <link rel="stylesheet" href="../build/style/main.css">
   </head>
   <body>
-    <h1>TriviApp is awesome</h1>
-    <h2>Component To-Do List:</h2>
-    <ul>
-      <li>Title bar</li>
-      <li>Quit button</li>
-      <li>Logout button</li>
-      <li>Category button</li>
-      <li>Login form (input fields, labels, submit button</li>
-      <li>Footer (copyright, authors)</li>
-      <li>Username header</li>
-      <li>Avatar</li>
-      <li>Stats list</li>
-      <li>Play Now button</li>
-      <li>To Profile button</li>
-      <li>Question text</li>
-      <li>Answer choice buttons</li>
-      <li>Timer graphic</li>
-      <li>Response text</li>
-      <li>Play Again button</li>
-      <li>Page Not Found text</li>
-    </ul>
-    <a class="cat-button">Category Name</a>
-    <a class="logout-button">Log Out</a>
-    <a class="quit-button">Quit</a>
-    <a class="to-profile-button">To Profile</a>
-    <a class="play-button">Play Now</a>
-    <a class="play-button">Play Again</a>
-    <section class="answers">
-      <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
-      <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
-      ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
-      ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
-      ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
-      ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+    <section class="notes">
+      <h1>TriviApp is awesome</h1>
+      <h2>Component To-Do List:</h2>
+      <ul>
+        <li>Title bar</li>
+        <li>Username header</li>
+        <li>Avatar</li>
+        <li>Stats list</li>
+        <li>Timer graphic</li>
+        <li>Response text</li>
+        <li>Page Not Found text</li>
+      </ul>
     </section>
+    <article class="cat-pick">
+      <header>
+        <h1>TriviApp</h1>
+        <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+        <h3>Choose Your Topic:</h3>
+      </header>
+      <section class="cat-card">
+        <ul>
+          <li class="cat-button">History</li>
+          <li class="cat-button">Sports</li>
+          <li class="cat-button">Entertainment</li>
+          <li class="cat-button">Food</li>
+          <li class="cat-button">Science</li>
+          <li class="cat-button">Star Wars</li>
+          <li class="cat-button">Math</li>
+        </ul>
+      </section>
+      <a class="quit-button">Quit</a>
+    </article>
+<br />
+    <article class="game-round">
+      <header>
+        <h1>TriviApp</h1>
+        <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+        <h3>Choose Your Topic:</h3>
+      </header>
+      <section class="q-card">
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persophone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+      <a class="quit-button">Quit</a>
+    </article>
+
+    <a class="cat-button">Category Name</a>
+
+    <a class="logout-button">Log Out</a>
+
+    <a class="quit-button">Quit</a>
+
+    <a class="to-profile-button">To Profile</a>
+
+    <a class="play-button">Play Now</a>
+
+    <a class="play-button">Play Again</a>
+
+
+    <header>
+      <h1>TriviApp</h1>
+      <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>
+      <h3>Sub text here:</h3>
+    </header>
+    
     <form class="login" id="login">
       <fieldset>
         <legend>Login</legend>
@@ -54,88 +92,100 @@
       </fieldset>
     </form>
 
+    <section class="q-card">
+      <h1>History</h1>
+      <h2>When was Pearl Harbor attacked by the Japanese?</h2>
+      <div class="answers">
+        <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+        <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+        ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
+        ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+        ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+        ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+      </div>
+    </section>
+
     <footer>
       <ul>
         <li><small>&#64; Copyright 2015. All Rights Reserved.</small></li>
         <li><small>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</small></li>
       </ul>         
     </footer>
-
-    <h2>Views:</h2>
-    <ul>
-      <li>Login screen</li>
+    <section class="notes">
+      <h2>Views:</h2>
+      <ul>
+        <li>Login screen</li>
+          <ul>
+            <li>Title</li>
+            <li>Logo?</li>
+            <li>Login form</li>
+            <li>Copyright notice</li>
+            <li>Authors/Devs</li>
+          </ul>
+        <li>User profile</li>
+          <ul>
+            <li>Title</li>
+            <li>Username header</li>
+            <li>Avatar or photo?</li>
+            <li>Stats on right/wrong overall</li>
+            <li>Stats on right/wrong by category</li>
+            <li>Play Now button</li>
+            <li>Logout</li>
+          </ul>
+        <li>Category choices</li>
         <ul>
-          <li>Title</li>
-          <li>Logo?</li>
-          <li>Login form</li>
-          <li>Copyright notice</li>
-          <li>Authors/Devs</li>
-        </ul>
-      <li>User profile</li>
+            <li>Title</li>
+            <li>Clickable category list (w/ animated color schemes in time)</li>
+            <li>Choose how many questions vs continuous</li>
+            <li>Icons for categories?</li>
+            <li>Back to Profile Button</li>
+            <li>Quit</li>
+          </ul>
+        <li>Unanswered question</li>
         <ul>
-          <li>Title</li>
-          <li>Username header</li>
-          <li>Avatar or photo?</li>
-          <li>Stats on right/wrong overall</li>
-          <li>Stats on right/wrong by category</li>
-          <li>Play Now button</li>
-          <li>Logout</li>
-        </ul>
-      <li>Category choices</li>
-      <ul>
-          <li>Title</li>
-          <li>Clickable category list (w/ animated color schemes in time)</li>
-          <li>Choose how many questions vs continuous</li>
-          <li>Icons for categories?</li>
-          <li>Back to Profile Button</li>
-          <li>Quit</li>
-        </ul>
-      <li>Unanswered question</li>
-      <ul>
-          <li>Title</li>
-          <li>Question text</li>
-          <li>Clickable Answers</li>
-          <li>Timer bar/icon</li>
-          <li>Pass option?</li>
-          <li>Quit</li>
-        </ul>
-      <li>No answer response</li>
-      <ul>
-          <li>Title</li>
-          <li>Response message</li>
-          <li>Timed return to category choice?</li>
-          <li>Timed return to next question?</li>
-          <li>Quit</li>
-        </ul>
-      <li>Wrong answer response</li>
-      <ul>
-          <li>Title</li>
-          <li>Response message</li>
-          <li>Timed return to category choice?</li>
-          <li>Timed return to next question?</li>
-          <li>Quit</li>
-        </ul>
-      <li>Correct answer response</li>
-      <ul>
-          <li>Title</li>
-          <li>Response message</li>
-          <li>Timed return to category choice?</li>
-          <li>Timed return to next question?</li>
-          <li>Quit</li>
-        </ul>
-      <li>Session Results?</li>
-      <ul>
-          <li>Title</li>
-          <li>Username</li>
-          <li>Avatar or photo?</li>
-          <li>Stats on right/wrong for the session overall</li>
-          <li>Stats on right/wrong for the session by category</li>
-          <li>Play Again button</li>
-          <li>Quit</li>
-        </ul>
-      <li>404 page</li>
-    </ul>
-
-
+            <li>Title</li>
+            <li>Question text</li>
+            <li>Clickable Answers</li>
+            <li>Timer bar/icon</li>
+            <li>Pass option?</li>
+            <li>Quit</li>
+          </ul>
+        <li>No answer response</li>
+        <ul>
+            <li>Title</li>
+            <li>Response message</li>
+            <li>Timed return to category choice?</li>
+            <li>Timed return to next question?</li>
+            <li>Quit</li>
+          </ul>
+        <li>Wrong answer response</li>
+        <ul>
+            <li>Title</li>
+            <li>Response message</li>
+            <li>Timed return to category choice?</li>
+            <li>Timed return to next question?</li>
+            <li>Quit</li>
+          </ul>
+        <li>Correct answer response</li>
+        <ul>
+            <li>Title</li>
+            <li>Response message</li>
+            <li>Timed return to category choice?</li>
+            <li>Timed return to next question?</li>
+            <li>Quit</li>
+          </ul>
+        <li>Session Results?</li>
+        <ul>
+            <li>Title</li>
+            <li>Username</li>
+            <li>Avatar or photo?</li>
+            <li>Stats on right/wrong for the session overall</li>
+            <li>Stats on right/wrong for the session by category</li>
+            <li>Play Again button</li>
+            <li>Quit</li>
+          </ul>
+        <li>404 page</li>
+      </ul>
+    </section>
   </body>
 </html>
