@@ -18,14 +18,3 @@
     @include flex-container(flex,row,nowrap,space-between,center,center);
     padding: 2%;
   }    
-
-.rating-indicator {
-  padding: 1em;
-  border: 1px solid $border-color-dark;
-  border-radius: 0.5em;
-  background-color: $background-color-theme;
-  border: 3px solid $border-color-dark;
-  border-radius: 0.5em;
-  margin: 0;
-  min-width: 25%;
-}
