@@ -12,21 +12,21 @@ var gamePlayRoute = module.exports = exports = express.Router();
 
 //select random question from category (Get all then lodash to select random)
 gamePlayRoute.get('/category:id', jsonParser, function(req, res) {
-	Category.find({question: req.category.questions}, function(err, data) {
+	Category.count().exec(function(err, count) {
+		var random = Math.floor(Math.random() * count) }
+		({question: req.category.questions}, function(err, data) {
 		if (err) return err;
 		res.json(res.questions.question);
 	});
 });
+//there will need to be a getAll() on the app side to grab all 
 
+gamePlayRoute.get('/category:id', jsonParser, function(req, res) {
+	Category._sample/_shuffle({})
+})
+gamePlayRoute.post('/category:id', jsonParser, function(req, res) {
 
-
-var selectQuestion = function(data, err) {
-    if(err) handleError(err);
-    Category.questions.question.find({}, function(err, results) {
-        if(err) handleError(err);
-        else {callback(results)};
-    });
-}
+})
 
 //select answer and compare
 var checkAnswer = function(data, err) {
