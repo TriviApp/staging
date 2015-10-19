@@ -27,9 +27,7 @@ gamePlayRoute.get('/category:id', jsonParser, function(req, res) {
 });
 //there will need to be a getAll() on the app side to grab all 
 
-gamePlayRoute.get('/category:id', jsonParser, function(req, res) {
-	Category._sample/_shuffle({})
-})
+
 gamePlayRoute.post('/category:id', jsonParser, function(req, res) {
 
 })

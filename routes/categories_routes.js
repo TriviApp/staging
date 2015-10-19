@@ -9,7 +9,7 @@ var categoriesRoute = module.exports = exports = express.Router();
 categoriesRoute.get('/categories', jsonParser, function (req, res) {
   Category.find({category: req.category}, function (err, data) {
     if (err) return handleError(err, res);
-    var questions = _.sample(data, 5);
-    res.json(questions); //lodash sample
+    var questions = _.sample(req.questions, 5);
+    res.json(questions); //lodash sample of five questions
   });
 });
