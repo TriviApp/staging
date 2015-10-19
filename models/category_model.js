@@ -3,9 +3,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var categorySchema = new mongoose.Schema({
-	category: Number, 
+	category: String, 
 	questions: [{
-			id: Number, 
 			question: String,
 			answer_1: String,
 			answer_2: String,
@@ -14,7 +13,6 @@ var categorySchema = new mongoose.Schema({
 		}] 
 });
 
-// methods for tracking wrong or right per game
 
 module.exports = mongoose.model('Category', categorySchema);
 
