@@ -1,8 +1,10 @@
-.game-round {
+.game-play {
   padding: 1em 0 0.5em 0;
   width: 100%;
   background-color: $background-color-dark;
-  .quit-button {
-    margin-top: 1em;
+  .quit-button,
+  .logout-button,
+  .to-profile-button {
+    margin-top: 0;
   }
 }
