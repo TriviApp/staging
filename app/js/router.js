@@ -10,7 +10,7 @@ module.exports = function(app) {
         controller: 'HomeController'
       })
       .when('/newgame', {
-        templateUrl: '/templates/views/gameplay.html',
+        templateUrl: '/templates/views/gameplay_view.html',
         controller: 'GameController'
       })
       .otherwise({
