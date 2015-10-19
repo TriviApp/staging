@@ -25,6 +25,8 @@
 @import "partials/games-card.scss";
 @import "partials/rank-indicator.scss";
 @import "partials/player-profile.scss";
+@import "partials/opponents-card.scss";
+@import "partials/individual-opponent-console.scss";
   // buttons
   @import "partials/buttons/category-button.scss";
   @import "partials/buttons/play-button.scss";
@@ -32,6 +34,8 @@
   @import "partials/buttons/quit-button.scss";
   @import "partials/buttons/to-profile-button.scss";
   @import "partials/buttons/answer-button.scss";
+  @import "partials/buttons/opponent-profile-button.scss";
+  @import "partials/buttons/challenge-button.scss";
 
 // VENDOR
 @import "vendor/animate.scss";
