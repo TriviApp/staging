@@ -1,16 +1,34 @@
+// MODULES
 @import "modules/reset.scss";
+@import "modules/colors.scss";
 @import "modules/typography.scss";
+@import "modules/flexbox.scss";
 @import "modules/base.scss";
 @import "modules/breaks.scss";
-@import "modules/colors.scss";
-@import "modules/flexbox.scss";
-@import "modules/icon-fonts.scss";
+@import "modules/logo-icon.scss";
 @import "modules/button.scss";
+@import "modules/animations.scss";
 
-@import "partials/login.scss";
+
+// PARTIALS
+@import "partials/login-screen.scss";
+@import "partials/login-form.scss";
+@import "partials/answers.scss";
+@import "partials/header.scss";
 @import "partials/footer.scss";
-@import "partials/category-button.scss";
-@import "partials/play-button.scss";
-@import "partials/logout-button.scss";
-@import "partials/quit-button.scss";
-@import "partials/to-profile-button.scss";
+@import "partials/game-round.scss";
+@import "partials/question-card.scss";
+@import "partials/answer-card.scss";
+@import "partials/category-pick.scss";
+@import "partials/rating-indicator.scss";
+@import "partials/player-profile.scss";
+  // buttons
+  @import "partials/buttons/category-button.scss";
+  @import "partials/buttons/play-button.scss";
+  @import "partials/buttons/logout-button.scss";
+  @import "partials/buttons/quit-button.scss";
+  @import "partials/buttons/to-profile-button.scss";
+  @import "partials/buttons/answer-button.scss";
+
+// VENDOR
+@import "vendor/animate.scss";
