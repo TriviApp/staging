@@ -14,5 +14,7 @@ var categorySchema = new mongoose.Schema({
 		}] 
 });
 
+// methods for tracking wrong or right per game
+
 module.exports = mongoose.model('Category', categorySchema);
 
