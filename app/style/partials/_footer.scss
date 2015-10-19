@@ -1,6 +1,6 @@
 footer {
   small {
-    @include set-font($text-color-dark, $main-font-regular, $font-size-small);
+    @include set-font(rgba($text-color-theme, .5), $main-font-regular, $font-size-small);
   }
   ul {
     list-style-type: none;
