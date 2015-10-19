@@ -1,6 +1,6 @@
 .cat-button {
-  @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark, uppercase);
+  @extend %navigate-forward-button-uppercase;
+  width: 90%;
   display: block;
   margin: 0.25em auto;
-  width: 90%;
 }
