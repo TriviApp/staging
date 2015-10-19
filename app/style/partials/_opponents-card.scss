@@ -1,8 +1,8 @@
 .opponents-card {
   margin: 0 auto;
   padding: 0.75em 5%;
-  @include breaks(desktop) {
-    @include flex-container(inline-flex,row,wrap,space-around,center,center);
-    width: 48%;
+    @include breaks(desktop) {
+      @include flex-container(inline-flex,row,wrap,space-around,center,center);
   }
 }
+  

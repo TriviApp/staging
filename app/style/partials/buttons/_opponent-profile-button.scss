@@ -1,6 +1,7 @@
 .opponent-profile-button {
   @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark, uppercase);
   display: block;
-  margin: 0.25em auto;
-  width: 90%;
+  margin: 0.25em;
+  width: 90%;    
+  min-height: 4em;
 }
