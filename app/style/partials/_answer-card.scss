@@ -1,5 +1,4 @@
-.q-card {
-  position: relative;
+.a-card {
   margin: 1em auto 0 auto;
   border: 3px solid $border-color-theme;
   border-radius: 0.5em;
@@ -18,5 +17,21 @@
     padding-bottom: 0.35em;
     text-align: center;
     line-height: 1.5;   
+  }
+  &.correct {
+    border-color: $border-color-correct;
+    background-color: $background-color-correct;
+    h1, h2 {
+      color: $text-color-correct;
+      border-color: $border-color-correct;
+    }
+  }
+  &.wrong {
+    border-color: $border-color-wrong;
+    background-color: $background-color-wrong;
+    h1, h2 {
+      color: $text-color-wrong;
+      border-color: $border-color-wrong;
+    }
   }
 }

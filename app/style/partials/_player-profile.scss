@@ -1,0 +1,26 @@
+.player-profile {
+  position: relative;
+  text-align: center;
+  width: 80%;
+  border: 3px solid $border-color-theme;
+  border-radius: 0.5em;
+  background-color: $background-color-light;
+  margin: auto;
+  img {
+    width: 25%;
+  }
+  figcaption {
+    margin-bottom: 0.5em;
+  }
+  section {
+    @include flex-container(inline-flex, column, nowrap, stretch, stretch, center);
+    border: 3px solid $border-color-theme;
+    background-color: $background-color-dark;
+    border-radius: 0.5em;
+    margin: 1%;
+  }
+}
+  .rating-indicator-container {
+    @include flex-container(flex,row,wrap,space-around,center,center);
+    padding: 2%;
+  }    

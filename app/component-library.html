@@ -10,119 +10,196 @@
     <link rel="stylesheet" href="../build/style/main.css">
   </head>
   <body>
-    <h1>TriviApp is awesome</h1>
-    <h2>Component To-Do List:</h2>
-    <ul>
-      <li>Title bar</li>
-      <li>Quit button</li>
-      <li>Logout button</li>
-      <li>Category button</li>
-      <li>Login form (input fields, labels, submit button</li>
-      <li>Footer (copyright, authors)</li>
-      <li>Username header</li>
-      <li>Avatar</li>
-      <li>Stats list</li>
-      <li>Play Now button</li>
-      <li>To Profile button</li>
-      <li>Question text</li>
-      <li>Answer choice buttons</li>
-      <li>Timer graphic</li>
-      <li>Response text</li>
-      <li>Play Again button</li>
-      <li>Page Not Found text</li>
-    </ul>
+    
+    <section class="component">
+      <h1 class="notes">Header:</h1>
+      <header>
+        <h1 class="icon-avatar-bw">TriviApp</h1>
+        <figure><img src="temp/avatar2.svg"><figcaption>username</figcaption></figure>
+        <h3>Optional instructions:</h3>
+      </header>
+    </section>
+    
+    
 
-    <form class="login" id="login">
-      <fieldset>
-        <legend>Login</legend>
-        <input name="username" type="text" placeholder="username"/>
-        <input name="password" type="text" placeholder="password"/>
-        <input class="button" type="submit" value="Let's play"/>
-      </fieldset>
-    </form>
+    <section class="component">
+      <h1 class="notes">Login form:</h1>
+      <form class="login" id="login">
+        <fieldset class="slide-in-down">
+          <legend>Login</legend>
+          <input name="username" type="text" placeholder="username"/>
+          <input name="password" type="text" placeholder="password"/>
+          <input class="button" type="submit" value="Let's play"/>
+        </fieldset>
+      </form>
+    </section>
 
-    <footer>
-      <ul>
-        <li><small>&#64; Copyright 2015. All Rights Reserved.</small></li>
-        <li><small>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</small></li>
-      </ul>         
-    </footer>
+    
 
-    <h2>Views:</h2>
-    <ul>
-      <li>Login screen</li>
+    <section class="component">
+      <h1 class="notes">User profile card:</h1>
+      <section class="player-profile">
+        <h1>TriviApp</h1>
+        <figure><img src="temp/avatar5.svg"><figcaption>username</figcaption></figure>      
+        <h3>{{Ranking}}</h3>
+        <h3>{{Last login}}</h3>
+        <h3>{{etc}}</h3>
+      </section>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">User stat graphic (top):</h1>
+      <aside class="rating-indicator-container right">
+        <div class="rating-indicator category-4 slide-in-left">
+          <p>Entertainment</p>
+          <p></p>
+        </div>
+        <div class="rating-indicator category-5 slide-in-up">
+          <p>Food</p>
+          <p></p>
+        </div>
+        <div class="rating-indicator category-6 slide-in-right">
+          <p>Sports</p>
+          <p></p>
+        </div>
+      </aside>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">User stat graphic (bottom):</h1>
+      <aside class="rating-indicator-container left">
+        <div class="rating-indicator category-1 slide-in-left">
+          <p>History</p>
+          <p></p>
+        </div>
+        <div class="rating-indicator category-2 slide-in-down">
+          <p>Sports</p>
+          <p></p>
+        </div>
+        <div class="rating-indicator category-3 slide-in-right">
+          <p>Sports</p>
+          <p></p>
+        </div>
+      </aside>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">Countdown timer:</h1>
+      <div class="countdown-timer l-countdown-timer"></div>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">Category list:</h1>
+      <section class="cat-card">
         <ul>
-          <li>Title</li>
-          <li>Logo?</li>
-          <li>Login form</li>
-          <li>Copyright notice</li>
-          <li>Authors/Devs</li>
+          <li class="cat-button">History</li>
+          <li class="cat-button">Sports</li>
+          <li class="cat-button">Entertainment</li>
+          <li class="cat-button">Food</li>
+          <li class="cat-button">Science</li>
+          <li class="cat-button">Star Wars</li>
+          <li class="cat-button">Math</li>
         </ul>
-      <li>User profile</li>
-        <ul>
-          <li>Title</li>
-          <li>Username header</li>
-          <li>Avatar or photo?</li>
-          <li>Stats on right/wrong overall</li>
-          <li>Stats on right/wrong by category</li>
-          <li>Play Now button</li>
-          <li>Logout</li>
-        </ul>
-      <li>Category choices</li>
-      <ul>
-          <li>Title</li>
-          <li>Clickable category list (w/ animated color schemes in time)</li>
-          <li>Choose how many questions vs continuous</li>
-          <li>Icons for categories?</li>
-          <li>Back to Profile Button</li>
-          <li>Quit</li>
-        </ul>
-      <li>Unanswered question</li>
-      <ul>
-          <li>Title</li>
-          <li>Question text</li>
-          <li>Clickable Answers</li>
-          <li>Timer bar/icon</li>
-          <li>Pass option?</li>
-          <li>Quit</li>
-        </ul>
-      <li>No answer response</li>
-      <ul>
-          <li>Title</li>
-          <li>Response message</li>
-          <li>Timed return to category choice?</li>
-          <li>Timed return to next question?</li>
-          <li>Quit</li>
-        </ul>
-      <li>Wrong answer response</li>
-      <ul>
-          <li>Title</li>
-          <li>Response message</li>
-          <li>Timed return to category choice?</li>
-          <li>Timed return to next question?</li>
-          <li>Quit</li>
-        </ul>
-      <li>Correct answer response</li>
-      <ul>
-          <li>Title</li>
-          <li>Response message</li>
-          <li>Timed return to category choice?</li>
-          <li>Timed return to next question?</li>
-          <li>Quit</li>
-        </ul>
-      <li>Session Results?</li>
-      <ul>
-          <li>Title</li>
-          <li>Username</li>
-          <li>Avatar or photo?</li>
-          <li>Stats on right/wrong for the session overall</li>
-          <li>Stats on right/wrong for the session by category</li>
-          <li>Play Again button</li>
-          <li>Quit</li>
-        </ul>
-      <li>404 page</li>
-    </ul>
+      </section>
+    </section>
 
+    
+
+    <section class="component">
+      <h1 class="notes">Question Card:</h1>
+      <section class="q-card">
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">Answer Card (correct):</h1>
+      <section class="a-card correct">
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button incorrect"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button correct chosen animated rubberBand"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button incorrect"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button incorrect"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button incorrect"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">Answer Card (wrong):</h1>
+      <section class="a-card wrong">
+        <h1>Mythology</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <div class="answers">
+          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
+          <a class="answer-button incorrect"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
+          ><a class="answer-button correct animated rubberBand"><span class="letter">B</span><span class="text">Birds</span></a
+          ><a class="answer-button incorrect chosen animated hinge"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
+          ><a class="answer-button incorrect"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
+          ><a class="answer-button incorrect"><span class="letter">E</span><span class="text">1945</span></a>
+        </div>
+      </section>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">Buttons:</h1>
+      <a class="cat-button">Category Button</a>
+      <a class="play-button">Play Button</a>
+      <a class="logout-button">Log Out</a>
+      <a class="quit-button">Quit</a>
+      <a class="to-profile-button">To Profile</a>
+      <a class="challenge-button">Challenge</a>
+    </section>
+
+    
+
+    <section class="component">
+      <h1 class="notes">Default Avatars:</h1>
+      <img src="temp/avatar1.svg">
+      <img src="temp/avatar2.svg">
+      <img src="temp/avatar3.svg">
+      <img src="temp/avatar4.svg">
+      <img src="temp/avatar5.svg">
+      <img src="temp/avatar6.svg">
+      <img src="temp/avatar7.svg">
+    </section>
+
+    
+    <section class="component">
+      <h1 class="notes">Footer:</h1>
+      <footer>
+        <ul>
+          <li><small>&copy; Copyright 2015. All Rights Reserved.</small></li>
+          <li><small>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</small></li>
+        </ul>         
+      </footer>
+    </section>
 
   </body>
 </html>

@@ -1,0 +1,7 @@
+.to-profile-button {
+  @include button($text-color-light, $background-color-dark, $border-color-med, $main-font-light-italic, $font-size-regular, $background-color-dark, $text-color-light);
+  display: block;
+  margin: 0.25em auto;
+  padding: 0.5em;
+  width: 25%; 
+}
