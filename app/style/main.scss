@@ -28,6 +28,9 @@
 @import "partials/opponents-card.scss";
 @import "partials/individual-opponent-console.scss";
   // buttons
+  @import "partials/buttons/button-wrap.scss";
+  @import "partials/buttons/small-button.scss";
+  @import "partials/buttons/big-button.scss";
   @import "partials/buttons/category-button.scss";
   @import "partials/buttons/play-button.scss";
   @import "partials/buttons/logout-button.scss";
