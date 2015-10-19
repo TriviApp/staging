@@ -1,0 +1,10 @@
+.small-button {
+  @include button($text-color-dark, $background-color-light, $border-color-med, $main-font-light-italic, $font-size-regular, $background-color-light, $text-color-dark);
+  display: block;
+  margin: 0.25em auto;
+  padding: 0.5em;
+  width: 25%; 
+}
+.small-button.current {
+  background-color: $background-color-med;
+}
