@@ -6,7 +6,13 @@
   border-radius: 0.5em;
   background-color: $background-color-light;
   margin: auto;
-  header {
+  img {
+    width: 25%;
+  }
+  figcaption {
+    margin-bottom: 0.5em;
+  }
+  section {
     @include flex-container(inline-flex, column, nowrap, stretch, stretch, center);
     border: 3px solid $border-color-theme;
     background-color: $background-color-dark;

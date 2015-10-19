@@ -108,24 +108,23 @@
 
 .countdown-timer {
  // margin: 2em 0 2em 0; //temporary just for component display 
- margin: 0;
+  margin: 0;
   width: 5%;
-  height: 5em;
+  height: 6em;
   background: $text-color-theme;
   -webkit-transition: width 15s;
   transition: background 15s, width 15s;
   margin-right: auto;
   &:hover { //temporary, not intended for hover effect. Give a class change, start a 15 second timer, and change the view approximately when the bar reaches the end
-    width: 90%;
+    width: 100%;
     background: red; // not sure if we want color. This whole function can be modified to be whatever kind of animation if we want to change it.
   }
 }
 
 .l-countdown-timer {
   position: absolute;
-  opacity: 0.25
-}
-
-.q-card {
-  position: relative;
+  opacity: 0.25;
+  .component-wrapper & {
+    top: -6em;  
+  }
 }
