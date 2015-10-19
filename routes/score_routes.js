@@ -1,4 +1,4 @@
-var Score = require(__dirname + '/../models/score');
+var Score = require(__dirname + '/../models/score'); // will be tracked in categories
 var express = require('express');
 var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');

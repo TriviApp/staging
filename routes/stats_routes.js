@@ -1,4 +1,4 @@
-var Stats = require(__dirname + '/../models/stats');
+var Stats = require(__dirname + '/../models/stats'); // I think this will be in UserModel
 var express = require('express');
 var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
