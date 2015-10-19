@@ -1,4 +1,4 @@
-.rating-indicator {
+.rank-indicator {
   @include set-font($text-color-dark, $main-font-bold, $font-size-regular, uppercase);
   padding: 1em;
   border: 1px solid $border-color-dark;
