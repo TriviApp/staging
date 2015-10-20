@@ -6,9 +6,9 @@ process.env.APP_SECRET = process.env.APP_SECRET || 'changemechangemechangeme';
 
 app.use(express.static(__dirname + '/build'));
 
-var questionsRouter = require(__dirname + '/routes/questions_routes');
+var categoryRouter = require(__dirname + '/routes/categories_routes');
 var usersRouter = require(__dirname + '/routes/users_routes');
-app.use('/api', questionsRouter);
+app.use('/api', categoryRouter);
 app.use('/api', usersRouter);
 
 var port = process.env.PORT || 3000;
