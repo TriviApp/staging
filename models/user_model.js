@@ -25,11 +25,11 @@ var userSchema = new mongoose.UserSchema({
 	}
 });
 //user stats
-userSchema.methods.userCategoryStats = function(correct, total) {
+userSchema.methods.userCategoryStats = function(category) {
 	if(err) return err;
 	this.category = category;
-	this.correct = correct;
-	this.total = total;
+	var correct = this.correct;
+	var total = this.total;
 	var average = correct/total;
 	return average;
 };
