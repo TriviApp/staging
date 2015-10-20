@@ -32,14 +32,135 @@
       <li>Page Not Found text</li>
     </ul>
 
-    <form class="login" id="login">
-      <fieldset class="slide-in-down">
-        <legend>Login</legend>
-        <input name="username" type="text" placeholder="username"/>
-        <input name="password" type="text" placeholder="password"/>
-        <input class="button" type="submit" value="Let's play"/>
+    <section class="component">
+      <h1 class="notes">Opponent list:</h1>
+      <section>
+        <ul class="opponents-card">
+
+          <li class="individual-opponent-console">
+            <h1>Jose</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>
+
+          <li class="individual-opponent-console">
+            <h1>Hepzebiah</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>
+
+          <li class="individual-opponent-console">
+            <h1>Donald</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>  
+
+          <li class="individual-opponent-console">
+            <h1>Groober</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>
+
+          <li class="individual-opponent-console">
+            <h1>Diggity</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>
+
+          <li class="individual-opponent-console">
+            <h1>Susan</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>
+
+          <li class="individual-opponent-console">
+            <h1>MadEliteTriviaSkillz</h1>
+            <div class="controls">
+              <a class="opponent-profile-button">View Profile</a>
+              <a class="challenge-button">Challenge</a>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+    </section>
+
+    <section class="score-card">
+      <h1>Entertainment Score</h1>
+      <!-- <h2 class="star one"></h2> -->
+      <h2 class="star two"></h2>
+      <!-- <h2 class="star three"></h2> -->
+      <!-- <h2 class="star four"></h2> -->
+      <!-- <h2 class="star five"></h2> -->
+      <p class="score">2 correct of 5</p>
+      <ul>
+        <li>
+          <p class="question">What year did World War II end?</p>
+          <p class="guess">You guessed: 1941</p>
+          <p class="answer">Correct answer: 1945</p>
+        </li>
+        <!-- <li>
+          <p class="question">John, Paul, George, and Ringo were in a band called ______.</p>
+          <p class="guess">You guessed: The Who</p>
+          <p class="answer">Correct answer: The Beatles</p>
+        </li> -->
+        <li>
+          <p class="question">Who was the first man to walk on the moon?</p>
+          <p class="guess">You guessed: Louis Armstrong</p>
+          <p class="answer">Correct answer: Neil Armstrong</p>
+        </li>
+        <!-- <li>
+          <p class="question">A tomato is ______.</p>
+          <p class="guess">You guessed: a legume</p>
+          <p class="answer">Correct answer: a fruit</p>
+        </li> -->
+        <li>
+          <p class="question">Pomegranates are a major feature in the myth of Persephone, wife of _______.</p>
+          <p class="guess">You guessed: Zeus</p>
+          <p class="answer">Correct answer: Hades</p>
+        </li>
+      </ul>
+    </section>
+
+
+<section class="component">
+  <h1 class="notes">Login form:</h1>
+  <form class="login" id="login">
+    <fieldset class="slide-in-down">
+      <legend>Login</legend>
+      <input name="username" type="text" placeholder="username"/>
+      <input name="password" type="text" placeholder="password"/>
+      <input class="button" type="submit" value="Let's play"/>
+    </fieldset>
+  </form>
+  <form class="login" id="login">
+    <fieldset class="slide-in-up">
+      <legend>New User</legend>
+      <input name="username" type="text" placeholder="username"/>
+      <input name="password" type="text" placeholder="password"/>
+      <fieldset>
+        <input name="avatar" type="radio" value="Red"/>
+        <input name="avatar" type="radio" value="Orange"/>
+        <input name="avatar" type="radio" value="Yellow"/>
+        <input name="avatar" type="radio" value="Green"/>
+        <input name="avatar" type="radio" value="Purple"/>
       </fieldset>
-    </form>
+      <input class="button" type="submit" value="Let's play"/>
+    </fieldset>
+  </form>
+</section>
 
     <footer>
       <ul>
@@ -48,7 +169,7 @@
       </ul>         
     </footer>
    
-   <article class="player-profile">
+  <article class="player-profile">
     <aside class="rating-indicator-container left">
       <div class="rating-indicator category-1 slide-in-left">
         <p>History</p>
@@ -63,13 +184,13 @@
         <p></p>
       </div>
     </aside>
-    <header>
+    <section>
       <h1>TriviApp</h1>
       <figure><img src="temp/reduced.jpg"><figcaption>mollyfish</figcaption></figure>      
       <h3>{{other info}}</h3>
       <h3>{{other info}}</h3>
       <h3>{{other info}}</h3>
-    </header>
+    </section>
     <aside class="rating-indicator-container right">
       <div class="rating-indicator category-4 slide-in-left">
         <p>Entertainment</p>

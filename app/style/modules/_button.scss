@@ -46,3 +46,19 @@
   }
   // optional put media query mixin call to change button sizes later on.
 }
+
+%navigate-away-button {
+  @include button($text-color-light, $background-color-dark, $border-color-med, $main-font-light-italic, $font-size-regular, $background-color-dark, $text-color-light);
+  display: block;
+  margin: 0.25em auto;
+  padding: 0.5em;
+  width: 25%; 
+}
+
+%navigate-forward-button-uppercase {
+  @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark, uppercase);
+}
+
+%navigate-forward-button-lowercase {
+    @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark);
+}
