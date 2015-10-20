@@ -1,19 +1,20 @@
-<div ng-controller="SigninController"  ng-init="newuser=false">
-  <section class="component" ng-if="!newuser">
-
+<div>
+  <section  class="component" data-ng-if="!newUser">
+    <header><h1 class="icon-avatar-bw">TriviApp</h1></header>
     <form class="login" id="login">
       <fieldset class="slide-in-down">
         <legend>Login</legend>
         <input name="username" type="text" placeholder="username"/>
         <input name="password" type="text" placeholder="password"/>
-        <input class="button" type="submit" value="Let's play"/>
-        <input ng-click="newuser" class="button" type="submit" value="New Player"/>
+        <input class="button" type="submit" value="Let's play now!"/>
+        <input data-ng-click="newUserSignup()" class="away-button" type="submit" value="create new account"/>
       </fieldset>
     </form>
   </section>
 
-  <section class="component" ng-if="newuser">
-    <form class="login slide-in-up" id="new-user">
+  <section class="component" data-ng-if="newUser">
+    <header><h1 class="icon-avatar-bw">TriviApp</h1></header>
+    <form class="login slide-in-up" id="signup">
       <fieldset>
         <legend>New User</legend>
         <input name="username" type="text" placeholder="username"/>
@@ -60,8 +61,8 @@
             </li>
           </ul>
         </fieldset>
-        <input class="button" type="submit" value="New Player"/>
-        <input ng-click="newuser=false" class="button" type="submit" value="Login"/>
+        <input class="button" type="submit" value="Add New Player"/>
+        <input data-ng-click="oldUserSignin()" class="away-button" type="submit" value="return to login"/>
       </fieldset>
     </form>
   </section>

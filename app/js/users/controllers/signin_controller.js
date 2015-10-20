@@ -2,10 +2,18 @@ module.exports = function(app) {
   app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'AuthService', '$base64',
     function($rootScope, $scope, $location, $http, AuthService, $base64) {
 
+      $rootScope.newUser = false;
+
       if ($rootScope.user){
         $rootScope.user = null;
         AuthService.setToken();
       }
+
+      $scope.newUserSignup = function() {
+        $rootScope.newUser = true;
+        console.log("signin", $rootScope.newUser);
+        return $location.path('/signup');
+      };
 
       $scope.signin = function(user) {
         $http({
