@@ -21,3 +21,19 @@
   .category-science .rank::before {
     content: "\2606 \2606 \2606 \2606 \2606";
   }
+
+.star-one::before {
+  content: "\2605 \2606 \2606 \2606 \2606";
+}
+.star-two::before {
+  content: "\2605 \2605 \2606 \2606 \2606";
+}
+.star-three::before {
+  content: "\2605 \2605 \2605 \2606 \2606";
+}
+.star-four::before {
+  content: "\2605 \2605 \2605 \2605 \2606";
+}
+.star-five::before {
+  content: "\2605 \2605 \2605 \2605 \2605";
+}
