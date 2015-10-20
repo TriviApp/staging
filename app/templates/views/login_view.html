@@ -1,63 +1,67 @@
-<section class="component">
-  <h1 class="notes">Login form:</h1>
-  <form class="login" id="login">
-    <fieldset class="slide-in-down">
-      <legend>Login</legend>
-      <input name="username" type="text" placeholder="username"/>
-      <input name="password" type="text" placeholder="password"/>
-      <input class="button" type="submit" value="Let's play"/>
-    </fieldset>
-  </form>
-</section>
-<section class="component">
-  <form class="login slide-in-up" id="new-user">
-    <fieldset>
-      <legend>New User</legend>
-      <input name="username" type="text" placeholder="username"/>
-      <input name="password" type="text" placeholder="password"/>
-      <input name="password" type="text" placeholder="re-enter password"/>
-      <fieldset class="user-avatar-selector">
-        <legend>Select your avatar</legend>
-        <ul>
-          <li class="slide-in-right">
-            <input name="avatar" type="radio" value="red"/>
-            <label>
-              <img src="temp/avatar1.svg">
-            </label>
-          </li>
-          <li class="slide-in-left">
-            <input name="avatar" type="radio" value="orange"/>
-            <label>
-              <img src="temp/avatar2.svg">
-            </label>
-          </li>
-          <li class="slide-in-right">
-            <input name="avatar" type="radio" value="yellow"/>
-            <label>
-              <img src="temp/avatar3.svg">
-            </label>
-          </li>
-          <li class="slide-in-left">
-            <input name="avatar" type="radio" value="green"/>
-            <label>
-              <img src="temp/avatar4.svg">
-            </label>
-          </li>
-          <li class="slide-in-right">
-            <input name="avatar" type="radio" value="purple"/>
-            <label>
-              <img src="temp/avatar6.svg">
-            </label>
-          </li>
-          <li class="slide-in-left">
-            <input name="avatar" type="radio" value="pink"/>
-            <label>
-              <img src="temp/avatar7.svg">
-            </label>
-          </li>
-        </ul>
+<div ng-controller="SigninController">
+  <section class="component" ng-if="!newuser">
+    <h1 class="notes">Login form:</h1>
+    <form class="login" id="login">
+      <fieldset class="slide-in-down">
+        <legend>Login</legend>
+        <input name="username" type="text" placeholder="username"/>
+        <input name="password" type="text" placeholder="password"/>
+        <input class="button" type="submit" value="Let's play"/>
+        <input ng-click="newuser" ng-init="newuser=false" class="button" type="submit" value="New Player"/>
       </fieldset>
-      <input class="button" type="submit" value="New Player"/>
-    </fieldset>
-  </form>
-</section>
+    </form>
+  </section>
+
+  <section class="component" ng-if="newuser">
+    <form class="login slide-in-up" id="new-user">
+      <fieldset>
+        <legend>New User</legend>
+        <input name="username" type="text" placeholder="username"/>
+        <input name="password" type="text" placeholder="password"/>
+        <input name="password" type="text" placeholder="re-enter password"/>
+        <fieldset class="user-avatar-selector">
+          <legend>Select your avatar</legend>
+          <ul>
+            <li class="slide-in-right">
+              <input name="avatar" type="radio" value="red"/>
+              <label>
+                <img src="temp/avatar1.svg">
+              </label>
+            </li>
+            <li class="slide-in-left">
+              <input name="avatar" type="radio" value="orange"/>
+              <label>
+                <img src="temp/avatar2.svg">
+              </label>
+            </li>
+            <li class="slide-in-right">
+              <input name="avatar" type="radio" value="yellow"/>
+              <label>
+                <img src="temp/avatar3.svg">
+              </label>
+            </li>
+            <li class="slide-in-left">
+              <input name="avatar" type="radio" value="green"/>
+              <label>
+                <img src="temp/avatar4.svg">
+              </label>
+            </li>
+            <li class="slide-in-right">
+              <input name="avatar" type="radio" value="purple"/>
+              <label>
+                <img src="temp/avatar6.svg">
+              </label>
+            </li>
+            <li class="slide-in-left">
+              <input name="avatar" type="radio" value="pink"/>
+              <label>
+                <img src="temp/avatar7.svg">
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+        <input class="button" type="submit" value="New Player"/>
+      </fieldset>
+    </form>
+  </section>
+</div>
