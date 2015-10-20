@@ -1,4 +1,4 @@
-<div ng-controller="SigninController">
+<div ng-controller="SigninController"  ng-init="newuser=false">
   <section class="component" ng-if="!newuser">
     <h1 class="notes">Login form:</h1>
     <form class="login" id="login">
@@ -7,7 +7,7 @@
         <input name="username" type="text" placeholder="username"/>
         <input name="password" type="text" placeholder="password"/>
         <input class="button" type="submit" value="Let's play"/>
-        <input ng-click="newuser" ng-init="newuser=false" class="button" type="submit" value="New Player"/>
+        <input ng-click="newuser" class="button" type="submit" value="New Player"/>
       </fieldset>
     </form>
   </section>
@@ -61,6 +61,7 @@
           </ul>
         </fieldset>
         <input class="button" type="submit" value="New Player"/>
+        <input ng-click="newuser=false" class="button" type="submit" value="Login"/>
       </fieldset>
     </form>
   </section>

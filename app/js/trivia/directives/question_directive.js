@@ -3,12 +3,12 @@ module.exports = function(app) {
     return {
       restrict: 'AC',
       replace: true,
-      templateUrl: '/templates/directives/question_template.html'
-    },
-    scope: {
-      categoryHeader: '=',
-      question: '=',
-      quit: '&'
-    }
-  })
+      templateUrl: '/templates/directives/question_template.html',
+      scope: {
+        categoryHeader: '=',
+        question: '=',
+        quit: '&'
+      }
+    };
+  });
 };
