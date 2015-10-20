@@ -7,7 +7,6 @@ var angular = window.angular; //appease the jshint gods
 var triviApp = angular.module('triviApp', ['ngRoute', 'base64', 'ngCookies']); // injecting files from above
 
 require('./services/services')(triviApp);
-require('./directives/directives')(triviApp);
 require('./trivia/trivia')(triviApp);
 require('./users/users')(triviApp);
 require('./router')(triviApp);
