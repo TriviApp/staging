@@ -25,6 +25,12 @@
       margin-top: 0.3em;
     }
   }
+  &.chosen {
+    color: red;
+  }
+  &.incorrect {
+    color: #ddd;
+  }
   .correct & {
     color: $text-color-med;
     background-color: $background-color-correct;
