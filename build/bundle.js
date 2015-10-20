@@ -30371,11 +30371,12 @@
 
 	      // assign 'correct' and 'incorrect' classes to buttons in DOM
 	    };
-	    $scope.isChosen = function(answer) {
-	      return $scope.chosen === answer;
-	    }
+	    // $scope.isChosen = function(answer) {
+	    //   return $scope.chosen === answer;
+	    // }
 	    $scope.checkAnswer = function(answer) {
 	      $scope.chosen = answer;
+	      $scope.isIncorrect = true;
 	      console.log($scope.chosen);
 	      console.log($scope.correctAnswer);
 	      // if (answer === $rootScope
@@ -30385,8 +30386,11 @@
 	      if (answer === gameData
 	                     .questions[$scope.questionsArrIndex]
 	                     .correctAnswer) {
+	        this.isChosen = true;
+	        this.isCorrect = true;
 	        right += 1;
-	        $scope.isChosen($scope.chosen);
+	        // $scope.isChosen($scope.chosen);
+
 	        setTimeout(function() {
 	          $scope.questionsArrIndex += 1;
 	          console.log('right: ' + right + ', wrong: ' + wrong); 
@@ -30395,7 +30399,7 @@
 	        return true;
 	      } else {
 	        wrong += 1;
-	        $scope.isChosen($scope.chosen);
+	        // $scope.isChosen($scope.chosen);
 	        console.log($scope.correctAnswer);
 	        // assign 'correct' to the button with the correct answer and "hinge" to the chosen one, 'incorrect' to the others  MAY CHANGE if we want to simplify classes 
 	        setTimeout(function() {

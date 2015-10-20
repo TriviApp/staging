@@ -4,6 +4,6 @@
        data-question="question"
       ></div>
   <div id="answers" class="answers" >
-    <a data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="answer-button" data-ng-class="{'chosen' : isChosen(answer)}">{{answer}}</a>
+    <a data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="answer-button" data-ng-class="{'chosen': isChosen, 'correct': isCorrect, 'incorrect': isIncorrect}">{{answer}}</a>
   </div>
 </section>
