@@ -84,52 +84,55 @@
       </form>
     </section>
 
-    <section class="component">
-      <h1 class="notes">User profile card:</h1>
-      <section class="player-profile">
-        <h1>TriviApp</h1>
-        <figure><img src="temp/avatar5.svg"><figcaption>username</figcaption></figure>      
-        <h3>{{Ranking}}</h3>
-        <h3>{{Last login}}</h3>
-        <h3>{{etc}}</h3>
-      </section>
-    </section>   
+<article data-ng-controller="ProfileController">
+  <section class="component">
+    <h1 class="notes">User stat graphic (bottom):</h1>
+    <aside class="rating-indicator-container left">
+      <div class="rank-indicator category-sports slide-in-left">
+        <p>Sports</p>
+        <p>{{ rankings(category1) }}</p>
+      </div>
+<!--       <div class="rank-indicator category-2 slide-in-down">
+        <p></p>
+        <p></p>
+      </div> -->
+      <div class="rank-indicator category-entertainment slide-in-right">
+        <p>Entertainment</p>
+        <p>{{ rankings(category2) }}</p>
+      </div>
+    </aside>
+  </section>
 
-    <section class="component">
-      <h1 class="notes">User stat graphic (top):</h1>
-      <aside class="rating-indicator-container right">
-        <div class="rank-indicator category-4 slide-in-left">
-          <p>Entertainment</p>
-          <p></p>
-        </div>
-        <div class="rank-indicator category-5 slide-in-up">
-          <p>Food</p>
-          <p></p>
-        </div>
-        <div class="rank-indicator category-6 slide-in-right">
-          <p>Sports</p>
-          <p></p>
-        </div>
-      </aside>
+  <section class="component">
+    <h1 class="notes">User profile card:</h1>
+    <section class="player-profile">
+      <h1>TriviApp</h1>
+      <figure><img src="temp/avatar5.svg"><figcaption>{{user.username}}</figcaption></figure>      
+      <h3>{{"FIVE"}}</h3>
+      <h3>{{"TIMESTAMP"}}</h3>
     </section>
+    <a class="logout-button" href="/signin">Log Out</a>
+    <a class="play-button">Play Button</a>
+  </section>
 
-    <section class="component">
-      <h1 class="notes">User stat graphic (bottom):</h1>
-      <aside class="rating-indicator-container left">
-        <div class="rank-indicator category-1 slide-in-left">
-          <p>History</p>
-          <p></p>
-        </div>
-        <div class="rank-indicator category-2 slide-in-down">
-          <p>Sports</p>
-          <p></p>
-        </div>
-        <div class="rank-indicator category-3 slide-in-right">
-          <p>Sports</p>
-          <p></p>
-        </div>
-      </aside>
-    </section>
+  <section class="component">
+    <h1 class="notes">User stat graphic (top):</h1>
+    <aside class="rating-indicator-container right">
+      <div class="rank-indicator category-history slide-in-left">
+        <p>History</p>
+        <p>{{ rankings(category3) }}</p>
+      </div>
+<!--       <div class="rank-indicator category-5 slide-in-up">
+        <p></p>
+        <p></p>
+      </div> -->
+      <div class="rank-indicator category-science slide-in-right">
+        <p>Science</p>
+        <p>{{ rankings(category4) }}</p>
+      </div>
+    </aside>
+  </section>
+</article>
 
     <section class="component">
       <h1 class="notes">Countdown timer:</h1>
@@ -286,6 +289,106 @@
         </ul>         
       </footer>
     </section>
+
+<article data-ng-controller="ProfileController">
+  <section class="component">
+    <h1 class="notes">User stat graphic (bottom):</h1>
+    <aside class="rating-indicator-container left">
+      <div class="rank-indicator category-1 slide-in-left">
+        <p>Sports</p>
+        <p class="rank">{{ rankings(category1) }}</p>
+      </div>
+<!--       <div class="rank-indicator category-5 slide-in-down">
+        <p></p>
+        <p></p>
+      </div> -->
+      <div class="rank-indicator category-2 slide-in-right">
+        <p>Entertainment</p>
+        <p class="rank">{{ rankings(category2) }}</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="component">
+    <h1 class="notes">User profile card:</h1>
+    <section class="player-profile">
+      <h1>TriviApp</h1>
+      <figure><img src="temp/avatar5.svg"><figcaption>{{user.username}}</figcaption></figure>      
+      <h3>{{"FIVE"}}</h3>
+      <h3>{{"TIMESTAMP"}}</h3>
+    </section>
+    <a class="logout-button" href="/signin">Log Out</a>
+    <a class="play-button">Play Button</a>
+  </section>
+
+  <section class="component">
+    <h1 class="notes">User stat graphic (top):</h1>
+    <aside class="rating-indicator-container right">
+      <div class="rank-indicator category-3 slide-in-left">
+        <p>History</p>
+        <p class="rank">{{ rankings(category3) }}</p>
+      </div>
+<!--       <div class="rank-indicator category-6 slide-in-up">
+        <p></p>
+        <p class="rank"></p>
+      </div> -->
+      <div class="rank-indicator category-4 slide-in-right">
+        <p>Science</p>
+        <p class="rank">{{ rankings(category4) }}</p>
+      </div>
+    </aside>
+  </section>
+</article>
+
+<article data-ng-controller="ProfileController">
+  <section class="component">
+    <!-- <h1 class="notes">User stat graphic (bottom):</h1> -->
+    <aside class="rating-indicator-container left">
+      <div class="rank-indicator category-sports slide-in-left">
+        <p>Sports</p>
+        <p>{{ rankings }}</p>
+      </div>
+<!--       <div class="rank-indicator category-2 slide-in-down">
+        <p></p>
+        <p></p>
+      </div> -->
+      <div class="rank-indicator category-entertainment slide-in-right">
+        <p>Entertainment</p>
+        <p>{{ rankings }}</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="component">
+    <!-- <h1 class="notes">User profile card:</h1> -->
+    <section class="player-profile">
+      <h1>TriviApp</h1>
+      <figure><img src="temp/avatar5.svg"><figcaption>{{user.username}}</figcaption></figure>      
+      <h3>{{"FIVE"}}</h3>
+      <h3>{{"TIMESTAMP"}}</h3>
+    </section>
+    <a class="play-button">Play Button</a>
+    <a class="logout-button" href="/signin">Log Out</a>
+  </section>
+
+  <section class="component">
+    <!-- <h1 class="notes">User stat graphic (top):</h1> -->
+    <aside class="rating-indicator-container right">
+      <div class="rank-indicator category-history slide-in-left">
+        <p>History</p>
+        <p>{{ rankings }}</p>
+      </div>
+<!--       <div class="rank-indicator category-5 slide-in-up">
+        <p></p>
+        <p></p>
+      </div> -->
+      <div class="rank-indicator category-science slide-in-right">
+        <p>Science</p>
+        <p>{{ rankings }}</p>
+      </div>
+    </aside>
+  </section>
+</article>
 
   </body>
 </html>
