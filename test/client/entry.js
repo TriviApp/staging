@@ -1,0 +1,1 @@
+require(__dirname + 'categories_http_test');
