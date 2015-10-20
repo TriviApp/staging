@@ -7,9 +7,9 @@ module.exports = function(app) {
     var right = '';
     var wrong = '';
 
-    // get res obj, store as gameData
-    // pull category name off gameData
-    // pull array of {question} objects off gameData
+    // get res obj, store as gameData --done in home_controller?
+    // pull category name off gameData -- done in home_controller?
+    // pull array of {question} objects off gameData --done in category_model
     // will come in as an array of answer strings and a question:string key-value pair and correctAnswer key-value pair  
     // ng-repeat the answers to display on the buttons in the order they came in (they are shuffled on the back end)
     // display the question (duh)
