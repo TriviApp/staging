@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var categorySchema = new mongoose.Schema({
+var categorySchema = new Schema({
 	category: String, 
 	questions: [{
 			question: String,
@@ -11,7 +11,6 @@ var categorySchema = new mongoose.Schema({
 		}] 
 });
 
-cat.questions.question.answer.answer1
 
 module.exports = mongoose.model('Category', categorySchema);
 

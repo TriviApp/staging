@@ -1,14 +1,11 @@
 <section class="q-card">
-  <div>
-    <h1>Mythology</h1>
-    <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
-  </div>
-  <div class="answers">
-    <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
-    <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
-    ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
-    ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
-    ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
-    ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
+  <div data-question-header
+       data-category-header="categoryName"
+       data-question="currentQuestion"
+      ></div>
+  <div id="answers" class="answers" data-ng-repeat="answer in answers">
+
+    <a data-ng-click="designateAnswer()" data-ng-class="answer-button">{{answer}}</a>
+  
   </div>
 </section>
