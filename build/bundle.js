@@ -30240,7 +30240,16 @@
 	module.exports = function(app) {
 	  app.controller('SignupController', ['$rootScope', '$scope', '$location', 'AuthService', '$http',
 	    function($rootScope, $scope, $location, AuthService, $http) {
-	      $rootScope.user = {};
+
+	      if (!$rootScope.newUser) {
+	        $rootScope.newUser = true;
+	      };
+
+	      $scope.oldUserSignin = function() {
+	        !$rootScope.newUser;
+	        console.log("signup", $rootScope.newUser);
+	        return $location.path('/signin');
+	      };
 
 	      $scope.signup = function(user) {
 	        $http.post('/signup', {
@@ -30269,10 +30278,18 @@
 	  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'AuthService', '$base64',
 	    function($rootScope, $scope, $location, $http, AuthService, $base64) {
 
+	      $rootScope.newUser = false;
+
 	      if ($rootScope.user){
 	        $rootScope.user = null;
 	        AuthService.setToken();
 	      }
+
+	      $scope.newUserSignup = function() {
+	        $rootScope.newUser = true;
+	        console.log("signin", $rootScope.newUser);
+	        return $location.path('/signup');
+	      };
 
 	      $scope.signin = function(user) {
 	        $http({
@@ -30416,6 +30433,10 @@
 	    .when('/signin', {
 	      templateUrl: '/templates/views/login_view.html',
 	      controller: 'SigninController'
+	    })
+	    .when('/signup', {
+	      templateUrl: '/templates/views/login_view.html',
+	      controller: 'SignupController'      
 	    })
 	    .when('/home', {
 	      templateUrl: '/templates/views/home_view.html',
