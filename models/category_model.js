@@ -6,13 +6,12 @@ var categorySchema = new mongoose.Schema({
 	category: String, 
 	questions: [{
 			question: String,
-			answer_1: String,
-			answer_2: String,
-			answer_3: String,
-			correctAnswer = String
+			answers: [String],
+			correctAnswer: String,
 		}] 
 });
 
+cat.questions.question.answer.answer1
 
 module.exports = mongoose.model('Category', categorySchema);
 

@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('questionCard', function() {
+  app.directive('questionHeader', function() {
     return {
       restrict: 'AC',
       replace: true,
@@ -7,7 +7,7 @@ module.exports = function(app) {
     },
     scope: {
       categoryHeader: '=',
-      questions: '=',
+      question: '=',
       quit: '&'
     }
   })
