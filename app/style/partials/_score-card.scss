@@ -33,6 +33,9 @@
   p.score {
     @include set-font($text-color-dark, $main-font-bold, $font-size-regular, uppercase);
   }
+  .zero.star:before {
+    content: "\2606 \2606 \2606 \2606 \2606";
+  }
   .one.star:before {
     content: "\2605 \2606 \2606 \2606 \2606";
   }

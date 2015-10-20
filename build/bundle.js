@@ -50,30 +50,14 @@
 	__webpack_require__(5); // more encoding stuff
 	var angular = window.angular; //appease the jshint gods
 
-	var triviApp = angular.module('triviApp', ['ngRoute, base64, ngCookies']); // injecting files from above
+	var triviApp = angular.module('triviApp', ['ngRoute', 'base64', 'ngCookies']); // injecting files from above
 
 	__webpack_require__(7)(triviApp);
 	__webpack_require__(8)(triviApp);
 	__webpack_require__(9)(triviApp);
 	__webpack_require__(10)(triviApp);
+	__webpack_require__(13)(triviApp);
 
-	// triviApp.config(['$routeProvider', function($route) {
-	// 	$route
-	// 		.when('route      ', {
-	// 			templateUrl: '/templates/         '
-	// 		})
-	// 		.when(' ', {
-	// 			templateUrl:
-	// 			controller:
-	// 		})
-	// 		.when('  ', {
-	// 			templateUrl:
-	// 			controller:
-	// 		})
-	// 		.otherwise({
-	// 			redirectTo: ' '
-	// 		});
-	// }]);
 
 /***/ },
 /* 1 */
@@ -30526,22 +30510,83 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(app) {
-	  __webpack_require__(11)(app);
+	  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./controllers/signup_controller\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(app);
 	  __webpack_require__(12)(app);
 	};
 
 
 /***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	
-
-/***/ },
+/* 11 */,
 /* 12 */
 /***/ function(module, exports) {
 
-	
+	module.exports = function(app) {
+	  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'authService', '$base64',
+	    function($rootScope, $scope, $location, $http, authService, $base64) {
+
+	      if ($rootScope.user){
+	        $rootScope.user = null;
+	        authService.setToken();
+	      }
+
+	      $scope.signin = function(user) {
+	        $http({
+	          method: 'GET',
+	          url: '/signin',
+	          headers: {
+	            'Authorization': 'Basic ' + $base64.encode(user.username + ":" + user.password)
+	          }
+	        })
+	        .then(function(res) {
+	          authService.setToken(res.user.token);
+	          $rootScope.user = res.user;
+	          $location.path('/home');
+	        }, function(res) {
+	          authService.setToken();
+	          $scope.wrongPass = true;
+	        });
+	      };
+
+	    }
+	  ]);
+	};
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = function(app) {
+
+
+	  app.config(['$routeProvider', function($route) {
+	    $route
+	      .when('signin', {
+	        templateUrl: '/templates/views/signin_view.html',
+	        controller: 'SigninController'
+	      })
+	      .when('/home', {
+	        templateUrl: '/templates/views/home_view.html',
+	        controller: 'HomeController'
+	      })
+	      .when('/newgame', {
+	        templateUrl: '/templates/views/gameplay_view.html',
+	        controller: 'GameController'
+	      })
+	      .when('/profile', {
+	        templateUrl: '/templates/views/profile_view.html',
+	        controller: 'ProfileController'
+	      })
+	      .when('/endgame', {
+	        templateUrl: '/templates/views/endgame_view.html',
+	        controller: 'EndgameController'
+	      })
+	      .otherwise({
+	        redirectTo: '/signin'
+	      });
+	  }]);
+	};
+
 
 /***/ }
 /******/ ]);
