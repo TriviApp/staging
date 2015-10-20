@@ -52,9 +52,9 @@
 	var triviApp = angular.module('triviApp', ['ngRoute', 'base64']); // injecting files from above
 
 	__webpack_require__(5)(triviApp);
-	__webpack_require__(8)(triviApp);
-	__webpack_require__(11)(triviApp);
-	__webpack_require__(15)(triviApp);
+	__webpack_require__(7)(triviApp);
+	__webpack_require__(10)(triviApp);
+	__webpack_require__(14)(triviApp);
 
 
 /***/ },
@@ -30149,7 +30149,6 @@
 
 	module.exports = function(app) {
 		__webpack_require__(6)(app);
-	  __webpack_require__(7)(app);
 	};
 
 
@@ -30178,6 +30177,7 @@
 	        }
 	        setHeader(token);
 	      }
+	      return setToken;
 	    }
 	  ]);
 	};
@@ -30185,23 +30185,15 @@
 
 /***/ },
 /* 7 */
-/***/ function(module, exports) {
-
-	
-
-
-
-/***/ },
-/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(app) {
+	  __webpack_require__(8)(app);
 	  __webpack_require__(9)(app);
-	  __webpack_require__(10)(app);
 	};	
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
@@ -30212,7 +30204,7 @@
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
@@ -30231,18 +30223,18 @@
 	};
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(app) {
+	  __webpack_require__(11)(app);
 	  __webpack_require__(12)(app);
 	  __webpack_require__(13)(app);
-	  __webpack_require__(14)(app);
 	};
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
@@ -30270,16 +30262,16 @@
 
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-	  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'authService', '$base64',
-	    function($rootScope, $scope, $location, $http, authService, $base64) {
+	  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'AuthService', '$base64',
+	    function($rootScope, $scope, $location, $http, AuthService, $base64) {
 
 	      if ($rootScope.user){
 	        $rootScope.user = null;
-	        authService.setToken();
+	        AuthService.setToken();
 	      }
 
 	      $scope.signin = function(user) {
@@ -30291,11 +30283,11 @@
 	          }
 	        })
 	        .then(function(res) {
-	          authService.setToken(res.user.token);
+	          AuthService.setToken(res.user.token);
 	          $rootScope.user = res.user;
 	          $location.path('/home');
 	        }, function(res) {
-	          authService.setToken();
+	          AuthService.setToken();
 	          $scope.wrongPass = true;
 	        });
 	      };
@@ -30306,7 +30298,7 @@
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
@@ -30373,37 +30365,11 @@
 
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
 	  app.config(['$routeProvider', '$httpProvider',  function($route, $httpProvider) {
-	    $route
-	      .when('/signin', {
-	        templateUrl: '/templates/views/signin_view.html',
-	        controller: 'SigninController'
-	      })
-	      .when('/home', {
-	        templateUrl: '/templates/views/home_view.html',
-	        controller: 'HomeController'
-	      })
-	      .when('/newgame', {
-	        templateUrl: '/templates/views/gameplay_view.html',
-	        controller: 'GameController'
-	      })
-	      .when('/profile', {
-	        templateUrl: '/templates/views/profile_view.html',
-	        controller: 'ProfileController'
-	      })
-	      .when('/endgame', {
-	        templateUrl: '/templates/views/endgame_view.html',
-	        controller: 'EndgameController'
-	      })
-	      .otherwise({
-	        redirectTo: '/signin'
-	      });
-	  }]);
-
 	  $httpProvider.interceptors.push(function($q, $location) {
 	    return {
 	      response: function(response) {
@@ -30414,7 +30380,33 @@
 	        return $q.reject(response);
 	      }
 	    }
-	  })
+	  });
+	  $route
+	    .when('/signin', {
+	      templateUrl: '/templates/views/login_view.html',
+	      controller: 'SigninController'
+	    })
+	    .when('/home', {
+	      templateUrl: '/templates/views/home_view.html',
+	      controller: 'HomeController'
+	    })
+	    .when('/newgame', {
+	      templateUrl: '/templates/views/gameplay_view.html',
+	      controller: 'GameController'
+	    })
+	    .when('/profile', {
+	      templateUrl: '/templates/views/profile_view.html',
+	      controller: 'ProfileController'
+	    })
+	    .when('/endgame', {
+	      templateUrl: '/templates/views/endgame_view.html',
+	      controller: 'EndgameController'
+	    })
+	    .otherwise({
+	      redirectTo: '/signin'
+	    });
+	  }]);
+
 
 	};
 
