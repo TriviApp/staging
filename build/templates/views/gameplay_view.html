@@ -1,11 +1,9 @@
 <section class="q-card">
   <div data-question-header
        data-category-header="categoryName"
-       data-question="currentQuestion"
+       data-question="question"
       ></div>
-  <div id="answers" class="answers" data-ng-repeat="answer in answers">
-
-    <a data-ng-click="checkAnswer(answer)" data-ng-class="answer-button {chosen : isSelected(answer)}">{{answer}}</a>
-  
+  <div id="answers" class="answers" >
+    <a data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="answer-button" data-ng-class="{'chosen' : isSelected(answer)}">{{answer}}</a>
   </div>
 </section>
