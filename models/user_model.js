@@ -4,7 +4,7 @@ var eat = require('eat');
 
 var Schema = mongoose.Schema;
 
-var userSchema = new mongoose.UserSchema({
+var userSchema = new Schema({
 	username: String,
 	password: String,
 	category1: {
