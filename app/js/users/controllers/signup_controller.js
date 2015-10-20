@@ -1,7 +1,16 @@
 module.exports = function(app) {
   app.controller('SignupController', ['$rootScope', '$scope', '$location', 'AuthService', '$http',
     function($rootScope, $scope, $location, AuthService, $http) {
-      $rootScope.user = {};
+
+      if (!$rootScope.newUser) {
+        $rootScope.newUser = true;
+      };
+
+      $scope.oldUserSignin = function() {
+        !$rootScope.newUser;
+        console.log("signup", $rootScope.newUser);
+        return $location.path('/signin');
+      };
 
       $scope.signup = function(user) {
         $http.post('/signup', {
