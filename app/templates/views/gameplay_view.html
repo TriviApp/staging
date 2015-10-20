@@ -5,7 +5,7 @@
       ></div>
   <div id="answers" class="answers" data-ng-repeat="answer in answers">
 
-    <a data-ng-click="designateAnswer()" data-ng-class="answer-button">{{answer}}</a>
+    <a data-ng-click="checkAnswer(answer)" data-ng-class="answer-button {chosen : isSelected(answer)}">{{answer}}</a>
   
   </div>
 </section>

@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.factory('AuthService', ['$q', '$rootScope', '$http', '$window'
+  app.factory('AuthService', ['$q', '$rootScope', '$http', '$window',
     function($q, $rootScope, $http, $window) {
 
       var setHeader = function(token) {
@@ -19,6 +19,6 @@ module.exports = function(app) {
         }
         setHeader(token);
       }
-    };
+    }
   ]);
 };
