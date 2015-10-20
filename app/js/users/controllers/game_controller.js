@@ -35,14 +35,6 @@ module.exports = function(app) {
     var right = 0;
     var wrong = 0;
 
-    // get res obj, store as gameData -- DONE in home_controller
-    // pull category name off gameData -- DONE in line 3 
-    // pull array of {question} objects off gameData -- DONE in category_model, assigned here
-    // will come in as an array of answer strings and a question:string key-value pair and correctAnswer key-value pair  
-    // ng-repeat the answers to display on the buttons in the order they came in (they are shuffled on the back end)
-    // display the question (duh)
-
-    // on click (user choice), run checkAnswer()
     // CHECKANSWER should compare the chosen answer with the correctAnswer 
         // if true, run the counter, return true, AND add the classes "correct", "animated" and "rubberband" to the clicked button AND change the class for remaining answer-buttons to fade them out
         // if false, run the counter, return false, AND add the classes "incorrect", "animated", and "hinge" to the clicked button AND add the classes "correct", "animated" and "rubberband" to the button with the correct answer AND change the class for remaining answer-buttons to fade them out
@@ -51,7 +43,12 @@ module.exports = function(app) {
     $scope.nextQuestion = function() {
       console.log('nextQuestion fired');
       // put a delay in here to act as the question timeout - MATCH timer in Sass file
-      console.log($scope.question = $scope.questionsArr[$scope.questionsArrIndex]);
+      $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
+      $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
+      $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
+      $scope.$apply();
+      return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
+
       // assign 'correct' and 'incorrect' classes to buttons in DOM
     };
     $scope.isChosen = function(answer) {
@@ -60,6 +57,7 @@ module.exports = function(app) {
     $scope.checkAnswer = function(answer) {
       $scope.chosen = answer;
       console.log($scope.chosen);
+      console.log($scope.correctAnswer);
       // if (answer === $rootScope
       //                 .gameData
       //                 .questions[$scope.questionsArrIndex]
@@ -68,7 +66,7 @@ module.exports = function(app) {
                      .questions[$scope.questionsArrIndex]
                      .correctAnswer) {
         right += 1;
-        $scope.isChosen($scope.chosen); // assigns chosen class to clicked button
+        $scope.isChosen($scope.chosen);
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
           console.log('right: ' + right + ', wrong: ' + wrong); 
@@ -77,7 +75,8 @@ module.exports = function(app) {
         return true;
       } else {
         wrong += 1;
-        $scope.isChosen($scope.chosen); // assigns chosen class to clicked button
+        $scope.isChosen($scope.chosen);
+        console.log($scope.correctAnswer);
         // assign 'correct' to the button with the correct answer and "hinge" to the chosen one, 'incorrect' to the others  MAY CHANGE if we want to simplify classes 
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
