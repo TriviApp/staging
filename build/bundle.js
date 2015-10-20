@@ -53,10 +53,10 @@
 	var triviApp = angular.module('triviApp', ['ngRoute', 'base64', 'ngCookies']); // injecting files from above
 
 	__webpack_require__(7)(triviApp);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./directives/directives\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(triviApp);
 	__webpack_require__(8)(triviApp);
-	__webpack_require__(9)(triviApp);
-	__webpack_require__(10)(triviApp);
-	__webpack_require__(13)(triviApp);
+	__webpack_require__(11)(triviApp);
+	__webpack_require__(15)(triviApp);
 
 
 /***/ },
@@ -30482,86 +30482,114 @@
 
 /***/ },
 /* 7 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(app) {
-
+		__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"/Users/Clare/Desktop/triviApp_Group/app/js/services./auth_service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(app);
+	  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"/Users/Clare/Desktop/triviApp_Group/app/js/services./game_service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(app);
 	};
 
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(app) {
-
-	};
+	  __webpack_require__(9)(app);
+	  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./directives/question_directive\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(app);
+	};	
 
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
+		app.controller('triviAppController', ['$scope', '$http', function($scope, $http) {
+			// authenticatting
+		}])
+	}
 
-	};	
 
 /***/ },
-/* 10 */
+/* 10 */,
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(app) {
 	  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./controllers/signup_controller\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(app);
-	  __webpack_require__(12)(app);
+	  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./controllers/signin_controller\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))(app);
+	  __webpack_require__(14)(app);
 	};
 
 
 /***/ },
-/* 11 */,
-/* 12 */
+/* 12 */,
+/* 13 */,
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-	  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'authService', '$base64',
-	    function($rootScope, $scope, $location, $http, authService, $base64) {
+	  app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+	    $scope.questionsArrIndex = 0;
+	    $scope.categoryName = $rootScope.gameData.category;
+	    $scope.questionsArr = $rootScope.gameData.questions;
+	    $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
+	    $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
+	    $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
+	    
+	    var right = '';
+	    var wrong = '';
 
-	      if ($rootScope.user){
-	        $rootScope.user = null;
-	        authService.setToken();
-	      }
+	    // get res obj, store as gameData -- DONE in home_controller
+	    // pull category name off gameData -- DONE in line 3 
+	    // pull array of {question} objects off gameData -- DONE in category_model, assigned here
+	    // will come in as an array of answer strings and a question:string key-value pair and correctAnswer key-value pair  
+	    // ng-repeat the answers to display on the buttons in the order they came in (they are shuffled on the back end)
+	    // display the question (duh)
 
-	      $scope.signin = function(user) {
-	        $http({
-	          method: 'GET',
-	          url: '/signin',
-	          headers: {
-	            'Authorization': 'Basic ' + $base64.encode(user.username + ":" + user.password)
-	          }
-	        })
-	        .then(function(res) {
-	          authService.setToken(res.user.token);
-	          $rootScope.user = res.user;
-	          $location.path('/home');
-	        }, function(res) {
-	          authService.setToken();
-	          $scope.wrongPass = true;
-	        });
-	      };
+	    // on click (user choice), run checkAnswer()
+	    // CHECKANSWER should compare the chosen answer with the correctAnswer 
+	        // if true, run the counter, return true, AND add the classes "correct", "animated" and "rubberband" to the clicked button AND change the class for remaining answer-buttons to fade them out
+	        // if false, run the counter, return false, AND add the classes "incorrect", "animated", and "hinge" to the clicked button AND add the classes "correct", "animated" and "rubberband" to the button with the correct answer AND change the class for remaining answer-buttons to fade them out
+	    // run nextQuestion() after a delay of X seconds
 
+	    $scope.nextQuestion = function() {
+	      return $scope.question = $scope.questions[$scope.questionsArrIndex];
+	      // assign 'correct' and 'incorrect' classes to buttons in DOM
+	    };
+	    $scope.designateAnswer = function() {
+	      this.answer = answer; //could be scope.answer?
 	    }
-	  ]);
+	    $scope.retrieveAnswer = function() {
+	      var answer
+	    }
+	    $scope.checkAnswer = function() {
+	      if (answer === $rootScope
+	                      .gameData
+	                      .questions[$scope.questionsArrIndex]
+	                      .correctAnswer) {
+	        right += 1;
+	        return true;
+	      } else {
+	        wrong += 1;
+	        return false;
+	      }
+	      $scope.questionsArrIndex += 1;
+
+	    };
+	    $scope.showResults = function() {};
+	  }])
 	};
 
 
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-
-
-	  app.config(['$routeProvider', function($route) {
+	  app.config(['$routeProvider', '$httpProvider',  function($route, $httpProvider) {
 	    $route
-	      .when('signin', {
+	      .when('/signin', {
 	        templateUrl: '/templates/views/signin_view.html',
 	        controller: 'SigninController'
 	      })
@@ -30585,6 +30613,19 @@
 	        redirectTo: '/signin'
 	      });
 	  }]);
+
+	  $httpProvider.interceptors.push(function($q, $location) {
+	    return {
+	      response: function(response) {
+	        return response;
+	      },
+	      responseError: function(response) {
+	        if (response.status === 401 || response.status === 403) $location.url('/login');
+	        return $q.reject(response);
+	      }
+	    }
+	  })
+
 	};
 
 

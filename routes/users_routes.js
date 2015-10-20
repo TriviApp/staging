@@ -1,14 +1,14 @@
 var express = require('express');
-var User = require(__dirname + '/../models/user');
+var User = require(__dirname + '/../models/user_model');
 var jsonParser = require('body-parser').json();
-var handleError = require(__dirname + '/../lib/handle_error');
+var handleError = require(__dirname + '/../lib/handle_errors');
 var handleResponse = require(__dirname + '/../lib/handle_response');
 var passport = require('passport');
 var basicAuth = require(__dirname + '/../lib/strategies/passport_basic_strategy');
 var bearerAuth = require(__dirname + '/../lib/strategies/passport_bearer_strategy');
 
 var usersRouter = module.exports = exports = express.Router();
-usersRouter.use(passport.initalize());
+usersRouter.use(passport.initialize());
 
 usersRouter.post('/signup', jsonParser, function(req, res) {
   var newUser = new User();
