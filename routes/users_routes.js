@@ -15,11 +15,13 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
   newUser.username = req.body.username;
   newUser.generateHash(req.body.password, function(err, hash) {
     if (err) return handleError.err500(err, res);
-    newUser.save(function(err, data) {
+    newUser.generateToken(function(err, token) {
       if (err) return handleError.err500(err, res);
-      newUser.generateToken(function(err, token) {
+      newUser.token = token;
+      newUser.save(function(err, data) {
         if (err) return handleError.err500(err, res);
-        res.json({token: token});
+        delete data.password;
+        handleResponse.send201(res, data);
       });
     });
   });
@@ -28,7 +30,7 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
 usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
   var user = req.user;
   delete user.password;
-  handleResponse.send201(res, user);
+  handleResponse.send200(res, user);
 });
 
 usersRouter.get('/username', bearerAuth.bearerAuthentication, function(req, res) {
