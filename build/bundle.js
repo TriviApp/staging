@@ -30335,8 +30335,8 @@
 	    $scope.answers = gameData.questions[$scope.questionsArrIndex].answers;
 	    $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
 	    
-	    var right = '';
-	    var wrong = '';
+	    var right = 0;
+	    var wrong = 0;
 
 	    // get res obj, store as gameData -- DONE in home_controller
 	    // pull category name off gameData -- DONE in line 3 
@@ -30352,37 +30352,43 @@
 	    // run nextQuestion() after a delay of X seconds
 
 	    $scope.nextQuestion = function() {
+	      console.log('nextQuestion fired');
 	      // put a delay in here to act as the question timeout - MATCH timer in Sass file
-	      return $scope.question = $scope.questions[$scope.questionsArrIndex];
+	      console.log($scope.question = $scope.questionsArr[$scope.questionsArrIndex]);
 	      // assign 'correct' and 'incorrect' classes to buttons in DOM
 	    };
-	    $scope.designateAnswer = function() {
-	      // assign the thing that got clicked as "chosen"
-
-	      this.answer = answer; //could be scope.answer?
-	    }
 	    $scope.isChosen = function(answer) {
 	      return $scope.chosen === answer;
 	    }
-	    $scope.checkAnswer = function() {
+	    $scope.checkAnswer = function(answer) {
 	      $scope.chosen = answer;
-
-	      if (answer === $rootScope
-	                      .gameData
-	                      .questions[$scope.questionsArrIndex]
-	                      .correctAnswer) {
+	      console.log($scope.chosen);
+	      // if (answer === $rootScope
+	      //                 .gameData
+	      //                 .questions[$scope.questionsArrIndex]
+	      //                 .correctAnswer) {
+	      if (answer === gameData
+	                     .questions[$scope.questionsArrIndex]
+	                     .correctAnswer) {
 	        right += 1;
-	        isChosen($scope.chosen); // assigns chosen class to clicked button
+	        $scope.isChosen($scope.chosen); // assigns chosen class to clicked button
+	        setTimeout(function() {
+	          $scope.questionsArrIndex += 1;
+	          console.log('right: ' + right + ', wrong: ' + wrong); 
+	          $scope.nextQuestion();
+	        }, 2000);
 	        return true;
 	      } else {
 	        wrong += 1;
+	        $scope.isChosen($scope.chosen); // assigns chosen class to clicked button
 	        // assign 'correct' to the button with the correct answer and "hinge" to the chosen one, 'incorrect' to the others  MAY CHANGE if we want to simplify classes 
+	        setTimeout(function() {
+	          $scope.questionsArrIndex += 1;
+	          console.log('right: ' + right + ', wrong: ' + wrong);
+	          $scope.nextQuestion();
+	        }, 2000);
 	        return false;
 	      }
-	      setTimeout(function() {
-	        $scope.questionsArrIndex += 1;
-	        nextQuestion();
-	      }, 2000);
 	    };
 	    $scope.showResults = function() {};
 	  }])
