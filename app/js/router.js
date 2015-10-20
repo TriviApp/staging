@@ -1,9 +1,7 @@
 module.exports = function(app) {
-
-
-  app.config(['$routeProvider', function($route) {
+  app.config(['$routeProvider', '$httpProvider',  function($route, $httpProvider) {
     $route
-      .when('signin', {
+      .when('/signin', {
         templateUrl: '/templates/views/signin_view.html',
         controller: 'SigninController'
       })
@@ -27,4 +25,17 @@ module.exports = function(app) {
         redirectTo: '/signin'
       });
   }]);
+
+  $httpProvider.interceptors.push(function($q, $location) {
+    return {
+      response: function(response) {
+        return response;
+      },
+      responseError: function(response) {
+        if (response.status === 401 || response.status === 403) $location.url('/login');
+        return $q.reject(response);
+      }
+    }
+  })
+
 };
