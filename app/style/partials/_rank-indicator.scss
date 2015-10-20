@@ -9,15 +9,15 @@
   margin: 1%;
   min-width: 25%;
 }
-  .category-1 p:nth-of-type(2)::before {
+  .category-sports .rank::before {
     content: "\2605 \2605 \2605 \2606 \2606";
   }
-  .category-2 p:nth-of-type(2)::before {
+  .category-entertainment .rank::before {
     content: "\2605 \2605 \2605 \2605 \2605";
   }
-  .category-3 p:nth-of-type(2)::before {
+  .category-history .rank::before {
     content: "\2605 \2606 \2606 \2606 \2606";
   }
-  .category-4 p:nth-of-type(2)::before {
+  .category-science .rank::before {
     content: "\2606 \2606 \2606 \2606 \2606";
   }
