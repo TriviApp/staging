@@ -19,6 +19,7 @@ module.exports = function(app) {
         }
         setHeader(token);
       }
+      return setToken;
     }
   ]);
 };

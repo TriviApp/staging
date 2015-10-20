@@ -1,10 +1,10 @@
 module.exports = function(app) {
-  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'authService', '$base64',
-    function($rootScope, $scope, $location, $http, authService, $base64) {
+  app.controller('SigninController', ['$rootScope', '$scope', '$location', '$http', 'AuthService', '$base64',
+    function($rootScope, $scope, $location, $http, AuthService, $base64) {
 
       if ($rootScope.user){
         $rootScope.user = null;
-        authService.setToken();
+        AuthService.setToken();
       }
 
       $scope.signin = function(user) {
@@ -16,11 +16,11 @@ module.exports = function(app) {
           }
         })
         .then(function(res) {
-          authService.setToken(res.user.token);
+          AuthService.setToken(res.user.token);
           $rootScope.user = res.user;
           $location.path('/home');
         }, function(res) {
-          authService.setToken();
+          AuthService.setToken();
           $scope.wrongPass = true;
         });
       };
