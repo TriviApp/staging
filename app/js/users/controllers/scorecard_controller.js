@@ -51,22 +51,22 @@ module.exports = function(app) {
 
       switch ($scope.right) {
         case 1:
-          $scope.one = true;
+          $scope.gotOne = true;
           break;
         case 2:
-          $scope.two = true;
+          $scope.gotTwo = true;
           break;
         case 3:
-          $scope.three = true;
+          $scope.gotThree = true;
           break;
         case 4:
-          $scope.four = true;
+          $scope.gotFour = true;
           break;
         case 5:
-          $scope.five = true;
+          $scope.gotFive = true;
           break;
         default:
-          $scope.none = true;
+          $scope.gotNone = true;
       }
     };
     $scope.showResults();
