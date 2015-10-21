@@ -17,7 +17,7 @@ module.exports = function(app) {
         .then(function(res) {
           console.log(res.data);
           $rootScope.user = res.data;
-          AuthService($rootScope.user.token);
+          AuthService.setToken($rootScope.user.token);
           $location.path('/main');
         }, function(res) {
           console.log(res);
