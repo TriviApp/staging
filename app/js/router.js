@@ -1,16 +1,19 @@
 module.exports = function(app) {
   app.config(['$routeProvider', '$httpProvider',  function($route, $httpProvider) {
-  $httpProvider.interceptors.push(function($q, $location) {
-    return {
-      response: function(response) {
-        return response;
-      },
-      responseError: function(response) {
-        if (response.status === 401 || response.status === 403) $location.url('/login');
-        return $q.reject(response);
+    $httpProvider.interceptors.push(function($q, $location) {
+      return {
+        response: function(response) {
+          console.log('Response Interceptor: ', response);
+          return response;
+        },
+        responseError: function(response) {
+          if (response.status === 401 || response.status === 403) $location.url('/login');
+          console.log('res from interceptor responseError:  ', response);
+          return $q.reject(response);
+        }
       }
-    }
-  });
+    });
+
   $route
     .when('/signin', {
       templateUrl: '/templates/views/login_view.html',
@@ -18,7 +21,7 @@ module.exports = function(app) {
     })
     .when('/signup', {
       templateUrl: '/templates/views/login_view.html',
-      controller: 'SignupController'      
+      controller: 'SignupController'
     })
     .when('/home', {
       templateUrl: '/templates/views/home_view.html',
@@ -44,6 +47,4 @@ module.exports = function(app) {
       redirectTo: '/signin'
     });
   }]);
-
-
 };

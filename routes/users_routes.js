@@ -28,6 +28,7 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
 });
 
 usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
+  console.log('inside signin route: ', req.headers);
   var user = req.user;
   delete user.password;
   handleResponse.send200(res, user);
@@ -36,3 +37,13 @@ usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
 usersRouter.get('/username', bearerAuth.bearerAuthentication, function(req, res) {
   res.json({username: req.user.username});
 });
+
+var authenticate = function(req, res, next) {
+  basicAuth.basicAuthentication
+}
+
+
+
+
+
+

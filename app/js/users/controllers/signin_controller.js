@@ -3,33 +3,38 @@ module.exports = function(app) {
     function($rootScope, $scope, $location, $http, AuthService, $base64) {
 
       $rootScope.newUser = false;
+      $scope.user = {};
 
-      if ($rootScope.user){
+      if (!$rootScope.user){
         $rootScope.user = null;
-        AuthService.setToken();
+        AuthService();
       }
 
       $scope.newUserSignup = function() {
         $rootScope.newUser = true;
-        console.log("signin", $rootScope.newUser);
+        console.log("signin", {
+          username: $scope.user.username,
+          password: $scope.user.password
+        });
         return $location.path('/signup');
       };
 
       $scope.signin = function(user) {
         $http({
           method: 'GET',
-          url: '/signin',
+          url: '/api/signin',
           headers: {
             'Authorization': 'Basic ' + $base64.encode(user.username + ":" + user.password)
           }
         })
         .then(function(res) {
-          AuthService.setToken(res.user.token);
-          $rootScope.user = res.user;
+          $rootScope.user = res.data.msg;
+          AuthService($rootScope.user.token);
           $location.path('/home');
         }, function(res) {
-          AuthService.setToken();
+          AuthService();
           $scope.wrongPass = true;
+          console.log(res);
         });
       };
 

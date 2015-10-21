@@ -1,6 +1,7 @@
 module.exports = function(app) {
   app.controller('SignupController', ['$rootScope', '$scope', '$location', 'AuthService', '$http',
     function($rootScope, $scope, $location, AuthService, $http) {
+      $scope.user = {};
 
       if (!$rootScope.newUser) {
         $rootScope.newUser = true;
@@ -8,18 +9,15 @@ module.exports = function(app) {
 
       $scope.oldUserSignin = function() {
         !$rootScope.newUser;
-        console.log("signup", $rootScope.newUser);
         return $location.path('/signin');
       };
 
       $scope.signup = function(user) {
-        $http.post('/signup', {
-          username: $scope.username,
-          password: $scope.password
-        })
+        $http.post('/api/signup', $scope.user)
         .then(function(res) {
-          $rootScope.user = res.body.user;
-          AuthService.setToken(res.body.user.token);
+          console.log(res.data);
+          $rootScope.user = res.data;
+          AuthService($rootScope.user.token);
           $location.path('/main');
         }, function(res) {
           console.log(res);
