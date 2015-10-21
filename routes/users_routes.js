@@ -28,6 +28,7 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
 });
 
 usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
+  console.log('inside signin route: ', req.headers);
   var user = req.user;
   delete user.password;
   handleResponse.send200(res, user);

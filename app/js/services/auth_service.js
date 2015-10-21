@@ -12,10 +12,13 @@ module.exports = function(app) {
       }
 
       var setToken = function(token) {
+        var sessionStorage = $window.sessionStorage;
+        console.log(sessionStorage);
+
         if (!token) {
           sessionStorage.removeItem('userToken');
         } else {
-          sessionStorage('userToken', token);
+          sessionStorage.setItem('userToken', token);
         }
         setHeader(token);
       }

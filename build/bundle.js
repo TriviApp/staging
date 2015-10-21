@@ -30170,10 +30170,13 @@
 	      }
 
 	      var setToken = function(token) {
+	        var sessionStorage = $window.sessionStorage;
+	        console.log(sessionStorage);
+
 	        if (!token) {
 	          sessionStorage.removeItem('userToken');
 	        } else {
-	          sessionStorage('userToken', token);
+	          sessionStorage.setItem('userToken', token);
 	        }
 	        setHeader(token);
 	      }
@@ -30240,6 +30243,7 @@
 	module.exports = function(app) {
 	  app.controller('SignupController', ['$rootScope', '$scope', '$location', 'AuthService', '$http',
 	    function($rootScope, $scope, $location, AuthService, $http) {
+	      $scope.user = {};
 
 	      if (!$rootScope.newUser) {
 	        $rootScope.newUser = true;
@@ -30247,18 +30251,15 @@
 
 	      $scope.oldUserSignin = function() {
 	        !$rootScope.newUser;
-	        console.log("signup", $rootScope.newUser);
 	        return $location.path('/signin');
 	      };
 
 	      $scope.signup = function(user) {
-	        $http.post('/signup', {
-	          username: $scope.username,
-	          password: $scope.password
-	        })
+	        $http.post('/api/signup', $scope.user)
 	        .then(function(res) {
-	          $rootScope.user = res.body.user;
-	          AuthService.setToken(res.body.user.token);
+	          console.log(res.data);
+	          $rootScope.user = res.data;
+	          AuthService($rootScope.user.token);
 	          $location.path('/main');
 	        }, function(res) {
 	          console.log(res);
@@ -30279,33 +30280,38 @@
 	    function($rootScope, $scope, $location, $http, AuthService, $base64) {
 
 	      $rootScope.newUser = false;
+	      $scope.user = {};
 
 	      if ($rootScope.user){
 	        $rootScope.user = null;
-	        AuthService.setToken();
+	        AuthService();
 	      }
 
 	      $scope.newUserSignup = function() {
 	        $rootScope.newUser = true;
-	        console.log("signin", $rootScope.newUser);
+	        console.log("signin", {
+	          username: $scope.user.username,
+	          password: $scope.user.password
+	        });
 	        return $location.path('/signup');
 	      };
 
 	      $scope.signin = function(user) {
 	        $http({
 	          method: 'GET',
-	          url: '/signin',
+	          url: '/api/signin',
 	          headers: {
 	            'Authorization': 'Basic ' + $base64.encode(user.username + ":" + user.password)
 	          }
 	        })
 	        .then(function(res) {
-	          AuthService.setToken(res.user.token);
-	          $rootScope.user = res.user;
+	          $rootScope.user = res.data.msg;
+	          AuthService($rootScope.user.token);
 	          $location.path('/home');
 	        }, function(res) {
-	          AuthService.setToken();
+	          AuthService();
 	          $scope.wrongPass = true;
+	          console.log(res);
 	        });
 	      };
 
@@ -30418,17 +30424,20 @@
 
 	module.exports = function(app) {
 	  app.config(['$routeProvider', '$httpProvider',  function($route, $httpProvider) {
-	  $httpProvider.interceptors.push(function($q, $location) {
-	    return {
-	      response: function(response) {
-	        return response;
-	      },
-	      responseError: function(response) {
-	        if (response.status === 401 || response.status === 403) $location.url('/login');
-	        return $q.reject(response);
+	    $httpProvider.interceptors.push(function($q, $location) {
+	      return {
+	        response: function(response) {
+	          console.log('Response Interceptor: ', response);
+	          return response;
+	        },
+	        responseError: function(response) {
+	          if (response.status === 401 || response.status === 403) $location.url('/login');
+	          console.log('res from interceptor responseError:  ', response);
+	          return $q.reject(response);
+	        }
 	      }
-	    }
-	  });
+	    });
+
 	  $route
 	    .when('/signin', {
 	      templateUrl: '/templates/views/login_view.html',
@@ -30436,7 +30445,7 @@
 	    })
 	    .when('/signup', {
 	      templateUrl: '/templates/views/login_view.html',
-	      controller: 'SignupController'      
+	      controller: 'SignupController'
 	    })
 	    .when('/home', {
 	      templateUrl: '/templates/views/home_view.html',
@@ -30458,8 +30467,6 @@
 	      redirectTo: '/signin'
 	    });
 	  }]);
-
-
 	};
 
 
