@@ -39,10 +39,10 @@ module.exports = function(app) {
       templateUrl: '/templates/views/scorecard_view.html',
       controller: 'ScorecardController'
     })
-    .when('/endgame', {
-      templateUrl: '/templates/views/endgame_view.html',
-      controller: 'EndgameController'
-    })
+    // .when('/endgame', {
+    //   templateUrl: '/templates/views/endgame_view.html',
+    //   controller: 'EndgameController'
+    // })
     .otherwise({
       redirectTo: '/signin'
     });
