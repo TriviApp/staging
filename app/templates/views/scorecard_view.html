@@ -3,22 +3,11 @@
        data-category-header="categoryName"
       ></div>
   <div class="stars">
-    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
-    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
-    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
-    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
-    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
+    <span data-ng-class="{'icon-0stars': none, 'icon-1star': one, 'icon-2stars': two, 'icon-3stars': three, 'icon-4stars': four, 'icon-5stars': five}"></span>
   </div>
   <p class="score">{{right}} correct of 5</p>
   <ul>
-    <p>Here's what you missed:</p>
-    <li data-ng-repeat="obj in incorrectArr">{{obj}}</li>
-  </ul>
-  
-
-  
-
-  <ul>
-    <li data-ng-repeat="question in questions">{{question.question}}</li>
+    <li class="incorrect" data-ng-repeat="obj in incorrectArr">{{obj}}</li>
+    <li class="correct" data-ng-repeat="obj in correctArr">{{obj}}</li>
   </ul>
 </section>

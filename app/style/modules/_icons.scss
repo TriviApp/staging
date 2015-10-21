@@ -11,9 +11,9 @@
   font-style: normal;
 }
 
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
+%icon-fonts {
   font-family: "icons";
+  // font-size: 1000%;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -21,29 +21,31 @@
   speak: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: $text-color-theme;
 }
 
-.icon-star-correct:before {
-  content: "\e002";
-  color: $text-color-dark;
-  font-size: 1000%;
+$icons: (starbar "\e001") (avatar-bw "\e000") (0stars "\e004") (1star "\e604") (2stars "\e006") (3stars "\e007") (4stars "\e008") (5stars "\e009");
+
+@each $icon in $icons {
+  .icon-#{nth($icon, 1)}:before {
+    content: nth($icon, 2);
+    display: inline-block;
+    font-size: 500%;
+    margin-top: -0.25em;
+    @extend %icon-fonts;
+  }
 }
-.icon-star-incorrect:before {
-  content: "\e003";
-  color: $text-color-dark;
-  font-size: 100%;
-}
+
 .icon-starbar:before {
-  content: "\e001";
   color: $text-color-dark;
-  font-size: 1000%;
+  margin-top: 0;
+  // font-size: 1000%;
 }
 .icon-avatar-bw:before {
-  content: "\e000";
-  color: $text-color-theme;
   border: 1px solid $border-color-theme;
   border-radius: 50%;
   padding: 0.15em;
+  margin-top: 0;
   margin-right: 0.1em;
   font-size: 1.2em;
 }
