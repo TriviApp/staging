@@ -31,9 +31,11 @@ module.exports = function(app) {
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
     $scope.answers = gameData.questions[$scope.questionsArrIndex].answers;
     $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
+    $scope.cardEl = document.getElementById('q-card');
     
     var right = 0;
     var wrong = 0;
+
 
     // CHECKANSWER should compare the chosen answer with the correctAnswer 
         // if true, run the counter, return true, AND add the classes "correct", "animated" and "rubberband" to the clicked button AND change the class for remaining answer-buttons to fade them out
@@ -41,8 +43,14 @@ module.exports = function(app) {
     // run nextQuestion() after a delay of X seconds
 
     $scope.nextQuestion = function() {
-      console.log('nextQuestion fired');
       // put a delay in here to act as the question timeout - MATCH timer in Sass file
+      $scope.isIncorrect = false;
+      $scope.isAnimated = false;
+      $scope.isChosen = false; 
+      $scope.isCorrect = false;
+      $scope.runRubberBand = false;
+      $scope.isRight = false;
+      $scope.isWrong = false;
       $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
       $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
       $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
@@ -56,9 +64,8 @@ module.exports = function(app) {
     // }
     $scope.checkAnswer = function(answer) {
       $scope.chosen = answer;
-      $scope.isIncorrect = true; // turning everything gray
-      console.log($scope.chosen);
-      console.log($scope.correctAnswer);
+      $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
+      $scope.isAnimated = true;   // adds "animated" class to all buttons
       // if (answer === $rootScope
       //                 .gameData
       //                 .questions[$scope.questionsArrIndex]
@@ -66,27 +73,42 @@ module.exports = function(app) {
       if (answer === gameData
                      .questions[$scope.questionsArrIndex]
                      .correctAnswer) {
-        this.isChosen = true; // not overriding the gray (ARGH!)
-        this.isCorrect = true;
+        $scope.isRight = true;
+        this.isChosen = true;       // adds "chosen" class to selected button
+        this.isCorrect = true;      // adds "correct" class to selected button
+        this.runRubberBand = true;  // adds "rubberBand" class to selected button
         right += 1;
         // $scope.isChosen($scope.chosen);
 
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
-          console.log('right: ' + right + ', wrong: ' + wrong); 
+          console.log('right: ' + right + ', wrong: ' + wrong);
+          console.log('index: ' + $scope.questionsArrIndex);
+          if ($scope.questionsArrIndex < 5) {
+            $scope.nextQuestion();
+          } else {
+            alert('game has run its course!');
+          } 
           $scope.nextQuestion();
         }, 2000);
         return true;
       } else {
+        $scope.isWrong = true;
+        this.isChosen = true;       // adds "chosen" class to selected button
+        this.runHinge = true;  // adds "hinge" class to selected button
         wrong += 1;
         // $scope.isChosen($scope.chosen);
-        console.log($scope.correctAnswer);
         // assign 'correct' to the button with the correct answer and "hinge" to the chosen one, 'incorrect' to the others  MAY CHANGE if we want to simplify classes 
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
           console.log('right: ' + right + ', wrong: ' + wrong);
-          $scope.nextQuestion();
-        }, 2000);
+          console.log('index: ' + $scope.questionsArrIndex);
+          if ($scope.questionsArrIndex < 5) {
+            $scope.nextQuestion();
+          } else {
+            alert('game has run its course!');
+          }
+        }, 2200);
         return false;
       }
     };
