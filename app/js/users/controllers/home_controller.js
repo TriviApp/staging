@@ -10,7 +10,9 @@ module.exports = function(app) {
       .then(function(res){
         // res will have the category data
         $rootScope.gameData = res.data;
-        $location.path('/newGame');
+        $location.path('/newgame');
+      }, function(res) {
+        console.log(res);
       });
     };
 

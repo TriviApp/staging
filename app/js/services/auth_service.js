@@ -25,10 +25,10 @@ module.exports = function(app) {
 
       var restoreSession = function() {
         var token = sessionStorage.getItem('userToken');
+        var deferred = $q.defer();
 
         if (token) {
           setHeader(token);
-          var deferred = $q.defer();
 
           $http.get('/api/username')
             .then(function(res) {
@@ -40,7 +40,7 @@ module.exports = function(app) {
               $location.path('/signin');
             });
         } else {
-          $deferred.reject();
+          deferred.reject();
           $location.path('/signin');
         }
         return true;
