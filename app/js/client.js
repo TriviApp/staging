@@ -1,9 +1,9 @@
 require('angular/angular');
-require('angular-route'); // for router
-require('angular-base64'); //for encoding
-var angular = window.angular; //appease the jshint gods
+require('angular-route');
+require('angular-base64'); 
+var angular = window.angular; 
 
-var triviApp = angular.module('triviApp', ['ngRoute', 'base64']); // injecting files from above
+var triviApp = angular.module('triviApp', ['ngRoute', 'base64']); 
 
 require('./services/services')(triviApp);
 require('./game/game')(triviApp);
