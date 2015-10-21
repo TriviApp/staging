@@ -10,7 +10,6 @@ categoryRouter.get('/categories', jsonParser, function (req, res) {
   Category.find({category: req.category}, function (err, data) {
     if (err) return handleError(err, res);
     var questions = _.sample(req.questions, 5);
-    //var answers = _.shuffle(req.questions.answers); //do we need this if array is random?
     res.json({msg: questions}); //lodash sample of five questions
-  });
+  });	
 });
