@@ -36,11 +36,6 @@
     &:hover {
       background: $background-color-theme;
     }
-    &:focus {
-      -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
-      -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
-        box-shadow: 1px 1px 10px 6px $background-color-theme;
-    }
   }
   img {
     width: 80%;
@@ -66,6 +61,11 @@
     z-index: 90;
     -webkit-transition: background-color 0.3s;
       transition: background-color 0.3s;
+    &:focus {
+      -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
+      -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
+        box-shadow: 1px 1px 10px 6px $background-color-theme;
+    }
   }
   input[type="radio"]:checked + label {
     background: $background-color-theme;
