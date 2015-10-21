@@ -33,8 +33,8 @@ module.exports = function(app) {
     $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
     $rootScope.scoreArr = [];
     
-    var right = 0;
-    var wrong = 0;
+    $rootScope.right = 0;
+    $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
       $scope.isIncorrect = false;
@@ -66,12 +66,12 @@ module.exports = function(app) {
         this.isChosen = true;       // adds "chosen" class to selected button
         this.isCorrect = true;      // adds "correct" class to selected button
         this.runRubberBand = true;  // adds "rubberBand" class to selected button
-        right += 1;
-        $rootScope.scoreArr.push(1);
+        $rootScope.right += 1;
+        $rootScope.scoreArr.push(true);
         console.log($rootScope.scoreArr);
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
-          console.log('right: ' + right + ', wrong: ' + wrong);
+          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
           console.log('index: ' + $scope.questionsArrIndex);
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
@@ -85,12 +85,12 @@ module.exports = function(app) {
         $scope.isWrong = true; // adds "wrong" class to entire view card
         this.isChosen = true;  // adds "chosen" class to selected button
         this.runHinge = true;  // adds "hinge" class to selected button
-        wrong += 1;
-        $rootScope.scoreArr.push(0); 
+        $rootScope.wrong += 1;
+        $rootScope.scoreArr.push(false); 
         console.log($rootScope.scoreArr);
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
-          console.log('right: ' + right + ', wrong: ' + wrong);
+          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
           console.log('index: ' + $scope.questionsArrIndex);
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
@@ -101,6 +101,5 @@ module.exports = function(app) {
         return false;
       }
     };
-    $scope.showResults = function() {};
   }])
 };

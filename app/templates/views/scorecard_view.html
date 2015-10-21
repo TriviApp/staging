@@ -3,15 +3,16 @@
        data-category-header="categoryName"
       ></div>
   <div class="stars">
-    <span class="icon-star-incorrect"></span>
-    <span class="icon-star-incorrect"></span>
-    <span class="icon-star-incorrect"></span>
-    <span class="icon-star-incorrect"></span>
-    <span class="icon-star-incorrect"></span>
+    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
+    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
+    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
+    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
+    <span data-ng-class="{'icon-star-incorrect': isIncorrect, 'icon-star-correct': isCorrect}"></span>
   </div>
-  <p class="score">2 correct of 5</p>
-  <div data-ng-repeat="question in questionsArr">{{question.question}}<br />{{question.correctAnswer}}</div>
-
+  <p class="score">{{right}} correct of 5</p>
+  <ul>
+    <li data-ng-repeat="obj in incorrectArr">{{obj}}</li>
+  </ul>
   
 
   
