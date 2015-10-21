@@ -25,6 +25,7 @@ module.exports = function(app) {
           "correctAnswer": "70m"}
           ]
         }
+    $scope.categoryName = gameData.category;
     $scope.questionsArrIndex = 0;
     $scope.questionsArr = gameData.questions;
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
@@ -33,17 +34,40 @@ module.exports = function(app) {
     // $scope.right = 3;
     // $scope.wrong = 2;
     $scope.incorrectArr = [];
-    $scope.stars = [];
+    $scope.correctArr = [];
 
     $scope.showResults = function() {
       for (var i = 0; i < scoreArr.length; i++) {
         if (!scoreArr[i]) {
           $scope.incorrectArr.push($scope.questionsArr[i].question);
           $scope.incorrectArr.push($scope.questionsArr[i].correctAnswer);
-          $scope.stars.push(scoreArr[i]);
+        } else {
+          $scope.correctArr.push($scope.questionsArr[i].question);
+          $scope.correctArr.push($scope.questionsArr[i].correctAnswer);
         }
       };
-      console.log($scope.stars.length);
+      console.log($scope.incorrectArr);
+      console.log($scope.correctArr);
+
+      switch ($scope.right) {
+        case 1:
+          $scope.gotOne = true;
+          break;
+        case 2:
+          $scope.gotTwo = true;
+          break;
+        case 3:
+          $scope.gotThree = true;
+          break;
+        case 4:
+          $scope.gotFour = true;
+          break;
+        case 5:
+          $scope.gotFive = true;
+          break;
+        default:
+          $scope.gotNone = true;
+      }
     };
     $scope.showResults();
   }])

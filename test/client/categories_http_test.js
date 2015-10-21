@@ -1,6 +1,6 @@
 require(__dirname + '/../../app/js/client');
 require('angular-mocks');
-
+console.log('in karmatests~~~~~~~~~~~~~~~~~~~');
 describe('game controller', function () {
   var $httpBackend;
   var $ControllerConstructor;
@@ -27,12 +27,27 @@ describe('game controller', function () {
       $ControllerConstructor('GameController', {$scope: $scope});
     }));
 
-    
     afterEach(function () {
       $httpBackend.verifyNoOutstandingExpectation();
       $httpBackend.verifyNoOutstandingRequest();
     });
 
-    //more to follow
+    it ('should be able to make a get request when a category is selected', function() {
+      $httpBackend.expectGET('/api/categories')
+                  .respond(200, [{"category": "sports",
+                                 "questions": [{
+                                  "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
+                                  "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
+                                  "correctAnswer": "Arizona"
+                                  }]
+                                }]);
+        $scope.newGame('sports');
+        $httpBackend.flush();
+        expect($scope.category).toBe('sports');
+        expect($scope.questions[0].question).toBe("Which NHL Team are nicknamed the 'Coyotes'?");
+        expect(Array.isArray($scope.questions[0].answers)).toBe(true);
+        expect($scope.questions[0].correctAnswer).toBe('Arizona');  
+        expect(res.status).toBe(200);                
+    });
   });
 });

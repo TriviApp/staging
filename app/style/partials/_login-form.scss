@@ -11,9 +11,6 @@
     width: 50%;
     margin-top: 1em;
   }
-  .away-button {
-    @extend %navigate-away-button;
-  }
   input {
     @include set-font;
     display: block;
@@ -22,6 +19,13 @@
     border: none;
     background-color: $background-color-light;
     color: $text-color-theme;
+  }
+}
+
+.away-button {
+  @extend %navigate-away-button;
+  @media (max-width: 610px) {
+    width: 40%;
   }
 }
 
