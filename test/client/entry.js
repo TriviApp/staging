@@ -1,1 +1,1 @@
-require(__dirname + 'categories_http_test');
+require(__dirname + '/categories_http_test');
