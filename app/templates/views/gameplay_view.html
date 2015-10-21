@@ -1,10 +1,20 @@
+<header>
+  <h1 class="icon-avatar-bw">TriviApp</h1>
+  <figure><img src="imgs/avatar6.svg"><figcaption>username</figcaption></figure>
+</header>
 <section id="q-card" class="q-card" data-ng-class="{'right': isRight, 'wrong': isWrong}">
   <div data-question-header
        data-category-header="categoryName"
        data-question="question"
       ></div>
   <div id="answers" class="answers">
-    <a data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="answer-button" data-ng-class="{'chosen': isChosen, 'correct': isCorrect, 'incorrect': isIncorrect, 'animated':isAnimated, 'hinge': runHinge, 'rubberBand':runRubberBand}">{{answer}}</a>
+    <a data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="big-button" data-ng-class="{'chosen': isChosen, 'correct': isCorrect, 'incorrect': isIncorrect, 'animated':isAnimated, 'hinge': runHinge, 'rubberBand':runRubberBand}">{{answer}}</a>
   </div>
 </section>
-<a class="small-button quit" href="#">Quit</a>
+<a class="small-button last-content" href="#/signin">Quit</a>
+<footer>
+  <ul>
+    <li>&copy; Copyright 2015. All Rights Reserved.</li>
+    <li>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</li>
+  </ul>         
+</footer>

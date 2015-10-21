@@ -1,5 +1,5 @@
 .small-button {
-  @include button($text-color-dark, $background-color-light, $border-color-med, $main-font-light-italic, $font-size-regular, $background-color-light, $text-color-dark);
+  @include button($text-color-light, $background-color-dark, $border-color-med, $main-font-light-italic, $font-size-regular, $background-color-dark, $text-color-light);
   display: block;
   margin: 1em auto;
   padding: 0.5em;
@@ -7,8 +7,4 @@
 }
 .small-button.current {
   background-color: $background-color-med;
-}
-.small-button.quit {
-  background-color: $background-color-dark;
-  color: $text-color-light;
 }
