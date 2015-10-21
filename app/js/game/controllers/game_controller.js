@@ -5,21 +5,27 @@ module.exports = function(app) {
       "questions": [
         { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
           "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
-          "correctAnswer": "Arizona"},
+          "correctAnswer": "Arizona"
+        },
         { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
           "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-          "correctAnswer": "Bobby Jones"},
+          "correctAnswer": "Bobby Jones"
+        },
         { "question":"Chukkas is the term given to periods played in what sport?", 
           "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
-          "correctAnswer": "Polo"},
+          "correctAnswer": "Polo"
+        },
         { "question":"How many goose feathers does it take to make a shuttlecock?", 
           "answers": ["16", "60", "21", "32"], 
-          "correctAnswer": "16"},
+          "correctAnswer": "16"
+        },
         { "question":"In Olympic Archery, how far is the competitor from the target?", 
           "answers": ["50m", "120m", "70m", "100m"], 
-          "correctAnswer": "70m"}
-          ]
+          "correctAnswer": "70m"
         }
+      ]
+    };
+
     $scope.questionsArrIndex = 0;
     // $scope.categoryName = $rootScope.gameData.category;
     // $scope.questionsArr = $rootScope.gameData.questions;
@@ -50,6 +56,21 @@ module.exports = function(app) {
       $scope.$apply();
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
     };
+
+      // $scope.isWrong = true;
+    $scope.gameTimer = function() {
+      console.log('i hear you');
+      console.log($scope.isWrong);
+      $scope.isWrong = true; // adds "wrong" class to entire view card
+    };
+    
+    console.log('hi there');
+    
+    setTimeout(function() {
+      $scope.gameTimer()
+    }, 10000);
+    
+    // $scope.gameTimer();
 
     $scope.checkAnswer = function(answer) {
       $scope.chosen = answer;
