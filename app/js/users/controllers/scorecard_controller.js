@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+  app.controller('ScorecardController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
     var gameData = {
       "category": "sports",
       "questions": [
@@ -32,11 +32,12 @@ module.exports = function(app) {
     $scope.answers = gameData.questions[$scope.questionsArrIndex].answers;
     $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
     $scope.cardEl = document.getElementById('q-card');
-    $rootScope.scoreArr = [];
     
     var right = 0;
     var wrong = 0;
 
+    console.log($scope.question);
+    console.log($rootScope.scoreArr);
     // CHECKANSWER should compare the chosen answer with the correctAnswer 
         // if true, run the counter, return true, AND add the classes "correct", "animated" and "rubberband" to the clicked button AND change the class for remaining answer-buttons to fade them out
         // if false, run the counter, return false, AND add the classes "incorrect", "animated", and "hinge" to the clicked button AND add the classes "correct", "animated" and "rubberband" to the button with the correct answer AND change the class for remaining answer-buttons to fade them out
@@ -78,7 +79,6 @@ module.exports = function(app) {
         this.isCorrect = true;      // adds "correct" class to selected button
         this.runRubberBand = true;  // adds "rubberBand" class to selected button
         right += 1;
-        $rootScope.scoreArr.push(1);
         // $scope.isChosen($scope.chosen);
 
         setTimeout(function() {
@@ -88,8 +88,8 @@ module.exports = function(app) {
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {
-            window.location.href = "#/results";
-          }
+            alert('game has run its course!');
+          } 
           $scope.nextQuestion();
         }, 2000);
         return true;
@@ -98,7 +98,6 @@ module.exports = function(app) {
         this.isChosen = true;       // adds "chosen" class to selected button
         this.runHinge = true;  // adds "hinge" class to selected button
         wrong += 1;
-        $rootScope.scoreArr.push(0);
         // $scope.isChosen($scope.chosen);
         // assign 'correct' to the button with the correct answer and "hinge" to the chosen one, 'incorrect' to the others  MAY CHANGE if we want to simplify classes 
         setTimeout(function() {
@@ -108,7 +107,7 @@ module.exports = function(app) {
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {
-            window.location.href = "#/results";
+            window.location.href = "#/new_url";
           }
         }, 2200);
         return false;
