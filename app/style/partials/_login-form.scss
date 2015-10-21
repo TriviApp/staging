@@ -30,6 +30,17 @@
     min-width: 5em;
     min-height: 5em;
     position: relative;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s;  
+    &:hover {
+      background: $background-color-theme;
+    }
+    &:focus {
+      -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
+      -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
+        box-shadow: 1px 1px 10px 6px $background-color-theme;
+    }
   }
   img {
     width: 80%;
