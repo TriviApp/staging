@@ -20,4 +20,12 @@
     text-align: center;
     line-height: 1.5;   
   }
+  &.right {
+    background-color: $background-color-correct;
+    border-color: $border-color-correct;
+  }
+  &.wrong {
+    background-color: $background-color-wrong;
+    border-color: $border-color-wrong;
+  }
 }

@@ -25,30 +25,25 @@
       margin-top: 0.3em;
     }
   }
-  .correct & {
-    color: $text-color-med;
-    background-color: $background-color-correct;
-    border-color: $border-color-med;
-    &.correct.chosen {
-      color: $text-color-correct;
-      background-color: $background-color-light;
-      border-color: $border-color-correct;
-    }
-  }
-  .wrong & {
+  .wrong &.incorrect {
     color: $text-color-med;
     background-color: $background-color-wrong;
     border-color: $border-color-med;
-    &.correct {
-      color: $text-color-correct;
-      background-color: $background-color-light;
-      border-color: $border-color-correct;
-    }
-    &.chosen {
-      color: $text-color-wrong;
-      background-color: $background-color-wrong;
-      border-color: $border-color-wrong;
-    }
+  }
+  .right &.incorrect {
+    color: $text-color-med;
+    background-color: $background-color-correct;
+    border-color: $border-color-med;
+  }
+  &.chosen.incorrect {
+    color: $text-color-wrong;
+    background-color: $background-color-light;
+    border-color: $border-color-wrong;
+  }
+  &.chosen.correct {
+    color: $text-color-correct;
+    background-color: $background-color-light;
+    border-color: $border-color-correct;
   }
 }
 
