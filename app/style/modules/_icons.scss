@@ -23,12 +23,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-star-correct:before {
+  content: "\e002";
+  color: $text-color-dark;
+  font-size: 1000%;
+}
+.icon-star-incorrect:before {
+  content: "\e003";
+  color: $text-color-dark;
+  font-size: 100%;
+}
 .icon-starbar:before {
   content: "\e001";
   color: $text-color-dark;
   font-size: 1000%;
 }
-
 .icon-avatar-bw:before {
   content: "\e000";
   color: $text-color-theme;
