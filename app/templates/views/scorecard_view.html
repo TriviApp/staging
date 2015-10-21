@@ -1,9 +1,13 @@
+<header>
+  <h1 class="icon-avatar-bw">TriviApp</h1>
+  <figure><img src="imgs/avatar6.svg"><figcaption>username</figcaption></figure>
+</header>
 <section class="score-card">
   <div data-result-list
        data-category-header="categoryName"
       ></div>
   <div class="stars">
-    <span data-ng-class="{'icon-0stars': none, 'icon-1star': one, 'icon-2stars': two, 'icon-3stars': three, 'icon-4stars': four, 'icon-5stars': five}"></span>
+    <span data-ng-class="{'icon-0stars': gotNone, 'icon-1star': gotOne, 'icon-2stars': gotTwo, 'icon-3stars': gotThree, 'icon-4stars': gotFour, 'icon-5stars': gotFive}"></span>
   </div>
   <p class="score">{{right}} correct of 5</p>
   <ul>
@@ -11,3 +15,14 @@
     <li class="correct" data-ng-repeat="obj in correctArr">{{obj}}</li>
   </ul>
 </section>
+<a class="big-button" href="#/home">Play Again</a>
+<div class="button-wrap last-content">
+  <a class="small-button" href="#/signin">Quit</a>
+  <a class="small-button" href="#/profile">Profile</a>
+</div>
+<footer>
+  <ul>
+    <li>&copy; Copyright 2015. All Rights Reserved.</li>
+    <li>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</li>
+  </ul>         
+</footer>

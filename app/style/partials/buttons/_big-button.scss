@@ -1,12 +1,31 @@
 .big-button {
-  @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark, "auto");
+  @include button($text-color-dark, $background-color-theme, $border-color-med, $main-font-bold, $font-size-regular, $background-color-theme, $text-color-dark, uppercase);
   display: block;
   margin: 0.25em auto;
   width: 90%;
-}
-.big-button.won {
-  background-color: $background-color-correct;
-}
-.big-button.lost {
-  background-color: $background-color-wrong;
+  .wrong &.incorrect {
+    color: $text-color-med;
+    background-color: $background-color-wrong;
+    border-color: $border-color-med;
+  }
+  .right &.incorrect {
+    color: $text-color-med;
+    background-color: $background-color-correct;
+    border-color: $border-color-med;
+  }
+  &.chosen.incorrect {
+    color: $text-color-wrong;
+    background-color: $background-color-light;
+    border-color: $border-color-wrong;
+  }
+  &.chosen.correct {
+    color: $text-color-correct;
+    background-color: $background-color-light;
+    border-color: $border-color-correct;
+  }
+  &:focus {
+  -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
+  -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
+    box-shadow: 1px 1px 10px 6px $background-color-theme;
+  }  
 }

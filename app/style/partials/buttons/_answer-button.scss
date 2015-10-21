@@ -5,15 +5,6 @@
   @include flex-container(inline-flex,row,wrap,center,center,center);
   position: relative;
   margin: 0.25em 1%;
-  .letter {
-    font-size: $font-size-large;
-    width: 13%;
-    margin-right: 2%;
-  }
-  .text {
-    width: 85%;
-    line-height: 1.2;
-  }
   &:nth-child(5) {
     display: block;
     margin-left: auto;

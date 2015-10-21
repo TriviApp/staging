@@ -3,12 +3,12 @@ module.exports = function(app) {
     $httpProvider.interceptors.push(function($q, $location) {
       return {
         response: function(response) {
-          console.log('Response Interceptor: ', response);
+          console.log(response);
           return response;
         },
         responseError: function(response) {
           if (response.status === 401 || response.status === 403) $location.url('/login');
-          console.log('res from interceptor responseError:  ', response);
+          console.log('interceptor responseError:  ', response);
           return $q.reject(response);
         }
       }
@@ -39,10 +39,10 @@ module.exports = function(app) {
       templateUrl: '/templates/views/scorecard_view.html',
       controller: 'ScorecardController'
     })
-    .when('/endgame', {
-      templateUrl: '/templates/views/endgame_view.html',
-      controller: 'EndgameController'
-    })
+    // .when('/endgame', {
+    //   templateUrl: '/templates/views/endgame_view.html',
+    //   controller: 'EndgameController'
+    // })
     .otherwise({
       redirectTo: '/signin'
     });

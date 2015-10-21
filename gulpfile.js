@@ -65,7 +65,7 @@ gulp.task('servertests', function() {
 
 gulp.task('karmatests', ['webpack:test'], function(done) {
 	new Karma({
-		configFile: __dirname + 'karma.conf.js'
+		configFile: __dirname + '/karma.conf.js'
 	}, done).start();
 });
 

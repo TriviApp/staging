@@ -1,17 +1,26 @@
 module.exports = function(app) {
-  app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
-    $scope.user = $rootScope.user;
-    // start a game/pick a category
+  app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', 'AuthService',
+   function($rootScope, $scope, $location, $http, AuthService) {
+
+    if (!$rootScope.user) AuthService.restoreSession();
+
     $scope.newGame = function(category) {
       //request category data
-      $http.get('/api/getCategory/' + category)
+      $http.get('/api/categories/' + category)
       .then(function(res){
         // res will have the category data
         $rootScope.gameData = res.data;
         $location.path('/newGame');
-      })
-    }
-    // view profile
-    // logout
-  }])
+      });
+    };
+
+    $scope.viewProfile = function() {
+      $location.path('/profile');
+    };
+
+    $scope.logout = function() {
+      AuthService.setToken();
+      $location.path('/signin');
+    };
+  }]);
 };
