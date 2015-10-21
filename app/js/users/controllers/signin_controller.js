@@ -7,7 +7,7 @@ module.exports = function(app) {
 
       if (!$rootScope.user){
         $rootScope.user = null;
-        AuthService();
+        AuthService.setToken();
       }
 
       $scope.newUserSignup = function() {
@@ -29,10 +29,10 @@ module.exports = function(app) {
         })
         .then(function(res) {
           $rootScope.user = res.data.msg;
-          AuthService($rootScope.user.token);
+          AuthService.setToken($rootScope.user.token);
           $location.path('/home');
         }, function(res) {
-          AuthService();
+          AuthService.setToken();
           $scope.wrongPass = true;
           console.log(res);
         });

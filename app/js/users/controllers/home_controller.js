@@ -1,7 +1,8 @@
 module.exports = function(app) {
   app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', 'AuthService',
    function($rootScope, $scope, $location, $http, AuthService) {
-    $scope.user = $rootScope.user;
+
+    if (!$rootScope.user) AuthService.restoreSession();
 
     $scope.newGame = function(category) {
       //request category data
@@ -18,7 +19,7 @@ module.exports = function(app) {
     };
 
     $scope.logout = function() {
-      AuthService();
+      AuthService.setToken();
       $location.path('/signin');
     };
   }]);
