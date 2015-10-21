@@ -10,6 +10,6 @@ categoryRouter.get('/categories', jsonParser, function (req, res) {
   Category.find({category: req.category}, function (err, data) {
     if (err) return handleError(err, res);
     var questions = _.sample(req.questions, 5);
-    res.json({msg: questions}); //lodash sample of five questions
+    res.json({msg: questions}); 
   });	
 });
