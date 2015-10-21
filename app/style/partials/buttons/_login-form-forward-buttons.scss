@@ -1,0 +1,7 @@
+.login {
+  .button {
+    @include button($text-color-light, $background-color-theme, $border-color-med, $main-font-regular, $font-size-regular, $background-color-theme, $text-color-light, uppercase);
+    width: 50%;
+    margin-top: 1em;
+  }
+}

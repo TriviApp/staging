@@ -4,12 +4,12 @@
     <form class="login" id="login" data-ng-submit="signin(user)">
       <fieldset class="slide-in-down">
         <legend>Login</legend>
-        <input name="username" type="text" placeholder="username" data-ng-model="user.username"/>
-        <input name="password" type="password" placeholder="password" data-ng-model="user.password"/>
-        <input class="button" type="submit" value="Let's play now!"/>
+        <input name="username" type="text" placeholder="username" data-ng-model="user.username" tabindex="1"/>
+        <input name="password" type="password" placeholder="password" data-ng-model="user.password" tabindex="2"/>
+        <input class="button" type="submit" value="Let's play now!" tabindex="3"/>
       </fieldset>
     </form>
-    <input data-ng-click="newUserSignup()" class="away-button" type="submit" value="create new account"/>
+    <input data-ng-click="newUserSignup()" class="away-button" type="submit" value="create new account" tabindex="4"/>
   </section>
 
   <section class="component" data-ng-if="newUser">
@@ -17,53 +17,53 @@
     <form class="login slide-in-up" id="signup" data-ng-submit="signup(user)">
       <fieldset>
         <legend>New User</legend>
-        <input name="username" type="text" placeholder="username" data-ng-model="user.username"/>
-        <input name="password" type="password" placeholder="password" data-ng-model="user.password"/>
-        <input name="password" type="password" placeholder="re-enter password" data-ng-model="user.confirmPassword"/>
+        <input name="username" type="text" placeholder="username" data-ng-model="user.username" tabindex="5"/>
+        <input name="password" type="password" placeholder="password" data-ng-model="user.password tabindex="6""/>
+        <input name="password" type="password" placeholder="re-enter password" data-ng-model="user.confirmPassword" tabindex="7"/>
         <fieldset class="user-avatar-selector">
           <legend>Select your avatar</legend>
           <ul>
             <li class="slide-in-right">
-              <input name="avatar" type="radio" value="red" data-ng-model="user.avatar"/>
+              <input name="avatar" type="radio" value="red" data-ng-model="user.avatar" tabindex="8"/>
               <label>
                 <img src="imgs/avatar1.svg">
               </label>
             </li>
             <li class="slide-in-left">
-              <input name="avatar" type="radio" value="orange" data-ng-model="user.avatar"/>
+              <input name="avatar" type="radio" value="orange" data-ng-model="user.avatar" tabindex="9"/>
               <label>
                 <img src="imgs/avatar2.svg">
               </label>
             </li>
             <li class="slide-in-right">
-              <input name="avatar" type="radio" value="yellow" data-ng-model="user.avatar"/>
+              <input name="avatar" type="radio" value="yellow" data-ng-model="user.avatar" tabindex="10"/>
               <label>
                 <img src="imgs/avatar3.svg">
               </label>
             </li>
             <li class="slide-in-left">
-              <input name="avatar" type="radio" value="green" data-ng-model="user.avatar"/>
+              <input name="avatar" type="radio" value="green" data-ng-model="user.avatar" tabindex="11"/>
               <label>
                 <img src="imgs/avatar4.svg">
               </label>
             </li>
             <li class="slide-in-right">
-              <input name="avatar" type="radio" value="purple" data-ng-model="user.avatar"/>
+              <input name="avatar" type="radio" value="purple" data-ng-model="user.avatar" tabindex="12"/>
               <label>
                 <img src="imgs/avatar6.svg">
               </label>
             </li>
             <li class="slide-in-left">
-              <input name="avatar" type="radio" value="pink" data-ng-model="user.avatar"/>
+              <input name="avatar" type="radio" value="pink" data-ng-model="user.avatar" tabindex="13"/>
               <label>
                 <img src="imgs/avatar7.svg">
               </label>
             </li>
           </ul>
         </fieldset>
-        <input class="button" type="submit" value="Add Player"/>
+        <input class="button" type="submit" value="Add Player" tabindex="14"/>
       </fieldset>
     </form>
-    <input data-ng-click="oldUserSignin()" class="away-button" type="submit" value="return to login"/>
+    <input data-ng-click="oldUserSignin()" class="away-button" type="submit" value="return to login" tabindex="15"/>
   </section>
 </div>
