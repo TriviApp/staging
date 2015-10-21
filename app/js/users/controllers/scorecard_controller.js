@@ -1,11 +1,10 @@
 module.exports = function(app) {
   app.controller('ScorecardController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
-    // var scoreArr = $rootScope.scoreArr;
-    // var $scope.right = $rootScope.right;
-    // var $scope.wrong = $rootScope.wrong;
-    var scoreArr = [true,true,false,true,true];
+    var scoreArr = $rootScope.scoreArr;
+    $scope.right = $rootScope.right;
+    $scope.wrong = $rootScope.wrong;
+    // var scoreArr = [true,true,false,true,true];
 
-    
     var gameData = {
       "category": "sports",
       "questions": [
@@ -27,19 +26,12 @@ module.exports = function(app) {
           ]
         }
     $scope.questionsArrIndex = 0;
-    // $scope.categoryName = $rootScope.gameData.category;
-    // $scope.questionsArr = $rootScope.gameData.questions;
-    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
-    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
-    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
-    // $scope.categoryName = gameData.category;
     $scope.questionsArr = gameData.questions;
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
-    // $scope.answers = gameData.questions[$scope.questionsArrIndex].answers;
     $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
     
-    $scope.right = 3;
-    $scope.wrong = 2;
+    // $scope.right = 3;
+    // $scope.wrong = 2;
     $scope.incorrectArr = [];
     $scope.stars = [];
 
@@ -54,68 +46,5 @@ module.exports = function(app) {
       console.log($scope.stars.length);
     };
     $scope.showResults();
-
-    // $scope.nextQuestion = function() {
-    //   $scope.isIncorrect = false;
-    //   $scope.isAnimated = false;
-    //   $scope.isChosen = false; 
-    //   $scope.isCorrect = false;
-    //   $scope.runRubberBand = false;
-    //   $scope.isRight = false;
-    //   $scope.isWrong = false;
-    //   $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
-    //   $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
-    //   $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
-    //   $scope.$apply();
-    //   return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
-    // };
-
-    // $scope.checkAnswer = function(answer) {
-    //   $scope.chosen = answer;
-    //   $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
-    //   $scope.isAnimated = true;   // adds "animated" class to all buttons
-    //   // if (answer === $rootScope
-    //   //                 .gameData
-    //   //                 .questions[$scope.questionsArrIndex]
-    //   //                 .correctAnswer) {
-    //   if (answer === gameData
-    //                  .questions[$scope.questionsArrIndex]
-    //                  .correctAnswer) {
-    //     $scope.isRight = true;
-    //     this.isChosen = true;       // adds "chosen" class to selected button
-    //     this.isCorrect = true;      // adds "correct" class to selected button
-    //     this.runRubberBand = true;  // adds "rubberBand" class to selected button
-    //     right += 1;
-    //     setTimeout(function() {
-    //       $scope.questionsArrIndex += 1;
-    //       // console.log('right: ' + right + ', wrong: ' + wrong);
-    //       // console.log('index: ' + $scope.questionsArrIndex);
-    //       if ($scope.questionsArrIndex < 5) {
-    //         $scope.nextQuestion();
-    //       } else {
-    //         alert('game has run its course!');
-    //       } 
-    //       $scope.nextQuestion();
-    //     }, 2000);
-    //     return true;
-    //   } else {
-    //     $scope.isWrong = true;
-    //     this.isChosen = true;       // adds "chosen" class to selected button
-    //     this.runHinge = true;  // adds "hinge" class to selected button
-    //     wrong += 1;
-    //     setTimeout(function() {
-    //       $scope.questionsArrIndex += 1;
-    //       // console.log('right: ' + right + ', wrong: ' + wrong);
-    //       // console.log('index: ' + $scope.questionsArrIndex);
-    //       if ($scope.questionsArrIndex < 5) {
-    //         $scope.nextQuestion();
-    //       } else {
-    //         window.location.href = "#/new_url";
-    //       }
-    //     }, 2200);
-    //     return false;
-    //   }
-    // };
-    // $scope.showResults = function() {};
   }])
 };
