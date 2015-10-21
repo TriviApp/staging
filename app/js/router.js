@@ -32,6 +32,10 @@ module.exports = function(app) {
       templateUrl: '/templates/views/profile_view.html',
       controller: 'ProfileController'
     })
+    .when('/results', {
+      templateUrl: '/templates/views/scorecard_view.html',
+      controller: 'ScorecardController'
+    })
     .when('/endgame', {
       templateUrl: '/templates/views/endgame_view.html',
       controller: 'EndgameController'
