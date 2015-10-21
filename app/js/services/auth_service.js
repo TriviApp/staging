@@ -13,7 +13,6 @@ module.exports = function(app) {
 
       var setToken = function(token) {
         var sessionStorage = $window.sessionStorage;
-        console.log(sessionStorage);
 
         if (!token) {
           sessionStorage.removeItem('userToken');

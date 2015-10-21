@@ -54,7 +54,7 @@
 	__webpack_require__(5)(triviApp);
 	__webpack_require__(7)(triviApp);
 	__webpack_require__(10)(triviApp);
-	__webpack_require__(14)(triviApp);
+	__webpack_require__(15)(triviApp);
 
 
 /***/ },
@@ -30171,7 +30171,6 @@
 
 	      var setToken = function(token) {
 	        var sessionStorage = $window.sessionStorage;
-	        console.log(sessionStorage);
 
 	        if (!token) {
 	          sessionStorage.removeItem('userToken');
@@ -30233,6 +30232,7 @@
 	  __webpack_require__(11)(app);
 	  __webpack_require__(12)(app);
 	  __webpack_require__(13)(app);
+	  __webpack_require__(14)(app);
 	};
 
 
@@ -30445,6 +30445,29 @@
 
 /***/ },
 /* 14 */
+/***/ function(module, exports) {
+
+	module.exports = function(app) {
+	  app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+	    $scope.user = $rootScope.user;
+	    // start a game/pick a category
+	    $scope.newGame = function(category) {
+	      //request category data
+	      $http.get('/api/getCategory/' + category)
+	      .then(function(res){
+	        // res will have the category data
+	        $rootScope.gameData = res.data;
+	        $location.path('/newGame');
+	      })
+	    }
+	    // view profile
+	    // logout
+	  }])
+	};
+
+
+/***/ },
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
