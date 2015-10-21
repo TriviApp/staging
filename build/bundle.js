@@ -30282,7 +30282,7 @@
 	      $rootScope.newUser = false;
 	      $scope.user = {};
 
-	      if ($rootScope.user){
+	      if (!$rootScope.user){
 	        $rootScope.user = null;
 	        AuthService();
 	      }

@@ -37,3 +37,13 @@ usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
 usersRouter.get('/username', bearerAuth.bearerAuthentication, function(req, res) {
   res.json({username: req.user.username});
 });
+
+var authenticate = function(req, res, next) {
+  basicAuth.basicAuthentication
+}
+
+
+
+
+
+
