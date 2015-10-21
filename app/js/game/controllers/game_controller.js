@@ -31,19 +31,12 @@ module.exports = function(app) {
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
     $scope.answers = gameData.questions[$scope.questionsArrIndex].answers;
     $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
-    $scope.cardEl = document.getElementById('q-card');
+    $rootScope.scoreArr = [];
     
-    var right = 0;
-    var wrong = 0;
-
-
-    // CHECKANSWER should compare the chosen answer with the correctAnswer 
-        // if true, run the counter, return true, AND add the classes "correct", "animated" and "rubberband" to the clicked button AND change the class for remaining answer-buttons to fade them out
-        // if false, run the counter, return false, AND add the classes "incorrect", "animated", and "hinge" to the clicked button AND add the classes "correct", "animated" and "rubberband" to the button with the correct answer AND change the class for remaining answer-buttons to fade them out
-    // run nextQuestion() after a delay of X seconds
+    $rootScope.right = 0;
+    $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
-      // put a delay in here to act as the question timeout - MATCH timer in Sass file
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
       $scope.isChosen = false; 
@@ -56,12 +49,8 @@ module.exports = function(app) {
       $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
       $scope.$apply();
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
-
-      // assign 'correct' and 'incorrect' classes to buttons in DOM
     };
-    // $scope.isChosen = function(answer) {
-    //   return $scope.chosen === answer;
-    // }
+
     $scope.checkAnswer = function(answer) {
       $scope.chosen = answer;
       $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
@@ -73,45 +62,44 @@ module.exports = function(app) {
       if (answer === gameData
                      .questions[$scope.questionsArrIndex]
                      .correctAnswer) {
-        $scope.isRight = true;
+        $scope.isRight = true;      // adds "right" class to entire view card
         this.isChosen = true;       // adds "chosen" class to selected button
         this.isCorrect = true;      // adds "correct" class to selected button
         this.runRubberBand = true;  // adds "rubberBand" class to selected button
-        right += 1;
-        // $scope.isChosen($scope.chosen);
-
+        $rootScope.right += 1;
+        $rootScope.scoreArr.push(true);
+        console.log($rootScope.scoreArr);
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
-          console.log('right: ' + right + ', wrong: ' + wrong);
+          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
           console.log('index: ' + $scope.questionsArrIndex);
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {
-            alert('game has run its course!');
-          } 
+            window.location.href = "#/results";
+          }
           $scope.nextQuestion();
         }, 2000);
         return true;
       } else {
-        $scope.isWrong = true;
-        this.isChosen = true;       // adds "chosen" class to selected button
+        $scope.isWrong = true; // adds "wrong" class to entire view card
+        this.isChosen = true;  // adds "chosen" class to selected button
         this.runHinge = true;  // adds "hinge" class to selected button
-        wrong += 1;
-        // $scope.isChosen($scope.chosen);
-        // assign 'correct' to the button with the correct answer and "hinge" to the chosen one, 'incorrect' to the others  MAY CHANGE if we want to simplify classes 
+        $rootScope.wrong += 1;
+        $rootScope.scoreArr.push(false); 
+        console.log($rootScope.scoreArr);
         setTimeout(function() {
           $scope.questionsArrIndex += 1;
-          console.log('right: ' + right + ', wrong: ' + wrong);
+          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
           console.log('index: ' + $scope.questionsArrIndex);
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {
-            alert('game has run its course!');
+            window.location.href = "#/results";
           }
         }, 2200);
         return false;
       }
     };
-    $scope.showResults = function() {};
   }])
 };
