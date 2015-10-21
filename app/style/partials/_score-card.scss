@@ -9,6 +9,7 @@
     @include set-font($text-color-dark, $main-font-regular, $font-size-jumbo, "auto");
     text-align: center;
     margin-bottom: 0.5em;
+    text-transform: capitalize;
   }
   h2 {
     @include set-font($text-color-dark, $main-font-regular, $font-size-large, "auto");
@@ -26,8 +27,7 @@
   .question {
     @include set-font($text-color-theme, $main-font-bold, $font-size-regular, "auto");
   }
-  .star {
-    @include set-font($text-color-theme, $main-font-regular, $font-size-jumbo, "auto");
+  .stars {
     text-align: center;
   }
   p.score {

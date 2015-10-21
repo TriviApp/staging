@@ -15,6 +15,16 @@ gulp.task('build:css', function() {
     .pipe(gulp.dest('build/style/'));
 });
 
+gulp.task('build:fonts', function() {
+  return gulp.src('./app/style/fonts/*')
+  .pipe(gulp.dest('build/style/fonts/'));
+});
+
+gulp.task('build:images', function() {
+  return gulp.src('./app/imgs/*')
+  .pipe(gulp.dest('build/imgs/'));
+});
+
 gulp.task('webpack:dev', function() {
 	return gulp.src('./app/js/client.js')
 		.pipe(webpack({
@@ -63,5 +73,5 @@ gulp.task("watch:css", ["build:css"], function() {
   gulp.watch("./app/**/*.html", ["build:css"]);
   gulp.watch("./app/style/**/*.scss", ["build:css"]);
 });
-gulp.task('build:dev', ['staticfiles:dev', 'webpack:dev', 'build:css']);
+gulp.task('build:dev', ['staticfiles:dev', 'webpack:dev', 'build:css', 'build:fonts', 'build:images']);
 gulp.task('default', ['build:dev']);

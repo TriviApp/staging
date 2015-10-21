@@ -6,7 +6,6 @@ module.exports = function(app) {
       templateUrl: '/templates/directives/result_list_template.html',
       scope: {
         categoryHeader: '=',
-        questions: '=',
         quit: '&'
       }
     };
