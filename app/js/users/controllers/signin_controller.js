@@ -12,10 +12,6 @@ module.exports = function(app) {
 
       $scope.newUserSignup = function() {
         $rootScope.newUser = true;
-        console.log("signin", {
-          username: $scope.user.username,
-          password: $scope.user.password
-        });
         return $location.path('/signup');
       };
 
@@ -34,7 +30,7 @@ module.exports = function(app) {
         }, function(res) {
           AuthService.setToken();
           $scope.wrongPass = true;
-          console.log(res);
+          console.log('signin res error: ', res);
         });
       };
 
