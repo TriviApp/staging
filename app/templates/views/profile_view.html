@@ -1,10 +1,29 @@
 <header>
   <h1 class="icon-avatar-bw">TriviApp</h1>
 </header>
-<section data-ng-controller="ProfileController">
+<section data-ng-controller="ProfileController" class="last-content">
   <section class="player-profile">
-    <h1>TriviApp</h1>
+    <aside class="rating-indicator-container left">
+      <div class="rank-indicator category-sports slide-in-left">
+        <p>Sports</p>
+        <p>{{ rankings(category1) }}</p>
+      </div>
+      <div class="rank-indicator category-entertainment slide-in-right">
+        <p>Entertainment</p>
+        <p>{{ rankings(category2) }}</p>
+      </div>
+    </aside>
     <figure><img src="{{user.avatar}}"><figcaption>{{user.username}}</figcaption></figure>
+    <aside class="rating-indicator-container right">
+      <div class="rank-indicator category-history slide-in-left">
+        <p>History</p>
+        <p>{{ rankings(category3) }}</p>
+      </div>
+      <div class="rank-indicator category-science slide-in-right">
+        <p>Science</p>
+        <p>{{ rankings(category4) }}</p>
+      </div>
+    </aside>
     <!-- <p>{{user.category1.correct}}</p> -->
   </section>
   <a class="big-button" href="#/home">Play Now</a>
