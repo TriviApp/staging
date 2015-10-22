@@ -33265,9 +33265,10 @@
 	    expect(typeof controller).toBe('object');
 	  });
 	  it('should be able to sign up a user', function() {
-	  	$httpBackend.expectPOST('/api/signup', {username:'dexter'}).respond(200, {username:'dexter'});
-	  	console.log('before flush', $scope.user);
-	  	$scope.signup({username:'dexter'});
+	  	$httpBackend.expectPOST('/api/signup', {'username':'dexter'}).respond(200, {'username':'dexter', 'token': 'tortilla'});
+	  	$scope.signup({'username':'dexter'});
+	  	// var $rootScope.user = {token: 'tortilla'};
+	  	console.log('before flush', $scope.username);
 	  	$httpBackend.flush();
 	  	console.log('after flush', $scope.user);
 	  	expect(null).toBe(null);

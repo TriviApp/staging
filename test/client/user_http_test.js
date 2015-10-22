@@ -9,8 +9,11 @@ describe('signup controller', function() {
 
   beforeEach(angular.mock.module('triviApp'));
 
-  beforeEach(angular.mock.inject(function ($rootScope, $controller) {
-    $scope = $rootScope.$new();
+
+  beforeEach(angular.mock.inject(function (_$rootScope_, $controller) {
+    $rootScope.user = {};
+    $rootScope = _$rootScope_;
+    $scope = _$rootScope_.$new();
     $ControllerConstructor = $controller;
   }));
   
@@ -32,9 +35,10 @@ describe('signup controller', function() {
     expect(typeof controller).toBe('object');
   });
   it('should be able to sign up a user', function() {
-  	$httpBackend.expectPOST('/api/signup', {username:'dexter'}).respond(200, {username:'dexter'});
-  	console.log('before flush', $scope.user);
-  	$scope.signup({username:'dexter'});
+  	$httpBackend.expectPOST('/api/signup', {'username':'dexter'}).respond(200, {'username':'dexter', 'token': 'tortilla'});
+  	$scope.signup({'username':'dexter'});
+  	// var $rootScope.user = {token: 'tortilla'};
+  	console.log('before flush', $scope.username);
   	$httpBackend.flush();
   	console.log('after flush', $scope.user);
   	expect(null).toBe(null);
