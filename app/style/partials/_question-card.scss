@@ -18,7 +18,14 @@
     border-bottom: 1px solid rgba($border-color-theme, 0.5);
     padding-bottom: 0.35em;
     text-align: center;
-    line-height: 1.5;   
+    line-height: 1.5; 
+  }
+  .countdown {
+    // position: relative;
+    display: inline-block;
+    height: 1.5em;
+    width: 100%;
+    background-color: $background-color-theme;
   }
   &.right {
     background-color: $background-color-correct;
