@@ -1,30 +1,31 @@
 module.exports = function(app) {
   app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
     var duration = 15000;
+    var clock;
     $scope.timeout;
     $scope.inBetweenQuestions = false;
 
     $scope.timer = function() {
-      $scope.timeout = setTimeout(function() {
+      clock = setTimeout(function() {
         if ($scope.inBetweenQuestions === true) {
           return;
-        }
-        $scope.inBetweenQuestions = true;
-        console.log('inside timeout');
-        angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
-        angular.element(document.getElementsByClassName("big-button")).addClass("wrong");
-        angular.element(document.getElementById("timer")).addClass("hidden");
-        $scope.questionsArrIndex += 1;
-        $rootScope.wrong += 1;
-        $rootScope.scoreArr.push(false);
-        setTimeout(function() {
-          angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
-          angular.element(document.getElementsByClassName("big-button")).removeClass("wrong");
-          if ($scope.questionsArrIndex < 5) {
-            $scope.nextQuestion();
-          } else {
-            window.location.href = "#/results";
-          }
+        };
+          $scope.inBetweenQuestions = true;
+          console.log('inside timeout');
+          angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
+          angular.element(document.getElementsByClassName("big-button")).addClass("wrong");
+          angular.element(document.getElementById("timer")).addClass("hidden");
+          $scope.questionsArrIndex += 1;
+          $rootScope.wrong += 1;
+          $rootScope.scoreArr.push(false);
+          setTimeout(function() {
+            angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
+            angular.element(document.getElementsByClassName("big-button")).removeClass("wrong");
+            if ($scope.questionsArrIndex < 5) {
+              $scope.nextQuestion();
+            } else {
+              window.location.href = "#/results";
+            }
         }, 1000);
       }, duration);
     };
@@ -92,7 +93,7 @@ module.exports = function(app) {
         return;
       } else {
         $scope.inBetweenQuestions = true;
-        clearTimeout($scope.timer);
+        clearTimeout(clock);
         $scope.chosen = answer;
         $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
         $scope.isAnimated = true;   // adds "animated" class to all buttons
