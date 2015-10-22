@@ -33234,12 +33234,12 @@
 	    expect(typeof controller).toBe('object');
 	  });
 	  it('should be able to sign up a user', function() {
-	  	$httpBackend.expectPOST('/api/signup', {user:'clare'}).respond(200, {_id:1, user: 'clare'});
-	  	$scope.signup({user: 'clare'});
+	  	$httpBackend.expectPOST('/api/signup', {username:'dexter'}).respond(200, {username:'dexter'});
 	  	console.log('before flush', $scope.user);
+	  	$scope.signup('dexter');
 	  	$httpBackend.flush();
 	  	console.log('after flush', $scope.user);
-	  	expect(res.status)
+	  	expect(null).toBe(null);
 	  });
 	});  
 	});  
