@@ -5,10 +5,9 @@ module.exports = function(app) {
 
     var gameTimer = setTimeout(function() {
       console.log('inside timeout');
-      $scope.questionsArrIndex += 1;
-      $scope.isWrong = true;
-      $rootScope.wrong += 1;
-      $rootScope.scoreArr.push(false); 
+      // $scope.questionsArrIndex += 1;
+      // $rootScope.wrong += 1;
+      // $rootScope.scoreArr.push(false); 
       $scope.nextQuestion();
     }, 10000);
     //then, store when you create them
@@ -66,7 +65,6 @@ module.exports = function(app) {
       var gameTimer = setTimeout(function() {
         // console.log('inside timeout');
         $scope.questionsArrIndex += 1;
-        $scope.isWrong = true;
         $rootScope.wrong += 1;
         $rootScope.scoreArr.push(false); 
         // console.log($rootScope.scoreArr);
@@ -135,7 +133,6 @@ module.exports = function(app) {
         }, 2000);
         return true;
       } else {
-        
         $scope.isWrong = true; // adds "wrong" class to entire view card
         this.isChosen = true;  // adds "chosen" class to selected button
         this.runHinge = true;  // adds "hinge" class to selected button
