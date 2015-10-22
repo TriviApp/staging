@@ -45,15 +45,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
+	__webpack_require__(21);
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-	__webpack_require__(19);
+	__webpack_require__(20);
 
-	describe('game controller', function () {
+	describe('home and game controller', function () {
 	  var $httpBackend;
 	  var $ControllerConstructor;
 	  var $scope;
@@ -65,7 +66,7 @@
 	    $ControllerConstructor = $controller;
 	  }));
 
-	  it('should be able to create a controller', function () {
+	  it('should be able to request a new game', function () {
 	    var controller = new $ControllerConstructor('HomeController', {$scope: $scope});
 	    expect(typeof $scope).toBe('object');
 	    expect(typeof controller).toBe('object');
@@ -116,7 +117,7 @@
 	__webpack_require__(7)(triviApp);
 	__webpack_require__(9)(triviApp);
 	__webpack_require__(13)(triviApp);
-	__webpack_require__(18)(triviApp);
+	__webpack_require__(19)(triviApp);
 
 
 /***/ },
@@ -30246,6 +30247,7 @@
 	      var restoreSession = function() {
 	        var token = sessionStorage.getItem('userToken');
 	        var deferred = $q.defer();
+
 	        if (token) {
 	          setHeader(token);
 
@@ -30335,6 +30337,8 @@
 	    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
 	    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
 	    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
+	    
+	    //hard coding versions
 	    $scope.categoryName = gameData.category;
 	    $scope.questionsArr = gameData.questions;
 	    $scope.question = gameData.questions[$scope.questionsArrIndex].question;
@@ -30441,6 +30445,7 @@
 	  __webpack_require__(15)(app);
 	  __webpack_require__(16)(app);
 	  __webpack_require__(17)(app);
+	  __webpack_require__(18)(app);
 	};
 
 
@@ -30468,7 +30473,7 @@
 	          console.log(res.data);
 	          $rootScope.user = res.data;
 	          AuthService.setToken($rootScope.user.token);
-	          $location.path('/main');
+	          $location.path('/home');
 	        }, function(res) {
 	          console.log(res);
 	        });
@@ -30490,7 +30495,7 @@
 	      $rootScope.newUser = false;
 	      $scope.user = {};
 
-	      if (!$rootScope.user){
+	      if ($rootScope.user){
 	        $rootScope.user = null;
 	        AuthService.setToken();
 	      }
@@ -30544,7 +30549,9 @@
 	      .then(function(res){
 	        // res will have the category data
 	        $rootScope.gameData = res.data;
-	        $location.path('/newGame');
+	        $location.path('/newgame');
+	      }, function(res) {
+	        console.log(res);
 	      });
 	    };
 
@@ -30645,6 +30652,23 @@
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
+	  app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+	    $scope.user = $rootScope.user;
+
+	    $scope.rankings = function(category) {
+	      var correct = $scope.user.category.correct;
+	      var total = $scope.user.category.total;
+	      return correct/total;
+	    };
+
+	  }])
+	}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = function(app) {
 	  app.config(['$routeProvider', '$httpProvider',  function($route, $httpProvider) {
 	    $httpProvider.interceptors.push(function($q, $location) {
 	      return {
@@ -30697,7 +30721,7 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	/**
@@ -33170,6 +33194,55 @@
 
 
 	})(window, window.angular);
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(2);
+	__webpack_require__(20);
+	// var User = require(__dirname + './../models/user_model');
+
+	describe('signup controller', function() {
+	  var $httpBackend;
+	  var $ControllerConstructor;
+	  var $scope;
+
+	  beforeEach(angular.mock.module('triviApp'));
+
+	  beforeEach(angular.mock.inject(function ($rootScope, $controller) {
+	    $scope = $rootScope.$new();
+	    $ControllerConstructor = $controller;
+	  }));
+	  
+	  describe('REST request to generate user', function () {
+	    beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
+	      $httpBackend = _$httpBackend_;
+	      $scope = $rootScope.$new();
+	      $ControllerConstructor('SignupController', {'$scope': $scope});
+	    }));
+
+	    afterEach(function () {
+	      $httpBackend.verifyNoOutstandingExpectation();
+	      $httpBackend.verifyNoOutstandingRequest();
+	    });
+
+	  it('should be able to sign up a new user', function () {
+	    var controller = new $ControllerConstructor('SignupController', {$scope: $scope});
+	    expect(typeof $scope).toBe('object');
+	    expect(typeof controller).toBe('object');
+	  });
+	  it('should be able to sign up a user', function() {
+	  	$httpBackend.expectPOST('/api/signup', {username:'dexter'}).respond(200, {username:'dexter'});
+	  	console.log('before flush', $scope.user);
+	  	$scope.signup('dexter');
+	  	$httpBackend.flush();
+	  	console.log('after flush', $scope.user);
+	  	expect(null).toBe(null);
+	  });
+	});  
+	});  
 
 
 /***/ }
