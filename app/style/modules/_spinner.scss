@@ -8,6 +8,10 @@ $duration: 2.5s;
   background: $background-color-light;
   width: 2em;
   height: 2em;
+  border-radius: 50%;
+  .hidden {
+    display: none;
+  }
 }
 
 .timer, .timer * {

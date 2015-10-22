@@ -10,6 +10,7 @@ module.exports = function(app) {
           return;
         }
         $scope.inBetweenQuestions = true;
+        angular.element(document.getElementById("countdown")).addClass("hidden");
         console.log('inside timeout');
         angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
         $scope.questionsArrIndex += 1;
@@ -80,6 +81,7 @@ module.exports = function(app) {
       $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
       $scope.$apply();
       $scope.inBetweenQuestions = false;
+      angular.element(document.getElementById("countdown")).removeClass("hidden");
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
     };
 
