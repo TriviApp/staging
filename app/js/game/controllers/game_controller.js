@@ -3,19 +3,27 @@ module.exports = function(app) {
     var gameTimer;
     var timeouts = [];
 
-    var gameTimer = setTimeout(function() {
-      console.log('inside timeout');
-      angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
-      // $scope.questionsArrIndex += 1;
-      // $rootScope.wrong += 1;
-      // $rootScope.scoreArr.push(false);
-      setTimeout(function() {
-        angular.element(document.getElementById("q-card")).removeClass("wrong animated shake"); 
-        $scope.nextQuestion();
+    $scope.timer = function() {
+      gameTimer = setTimeout(function() {
+        console.log('inside timeout');
+        angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
+        $scope.questionsArrIndex += 1;
+        $rootScope.wrong += 1;
+        $rootScope.scoreArr.push(false);
+        setTimeout(function() {
+          angular.element(document.getElementById("q-card")).removeClass("wrong animated shake");
+          if ($scope.questionsArrIndex < 5) {
+            $scope.nextQuestion();
+          } else {
+            window.location.href = "#/results";
+          }
+        }, 2500);
       }, 2500);
-    }, 2500);
+    };
+
+    $scope.timer();
     //then, store when you create them
-    timeouts.push(gameTimer);
+    // timeouts.push(gameTimer);
 
     // stopGameTimer = function () {
     //   console.log('stop has been called');
@@ -65,25 +73,13 @@ module.exports = function(app) {
     $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
-      console.log('gameTimer is being called in nextQuestion');
-      var gameTimer = setTimeout(function() {
-        // console.log('inside timeout');
-        $scope.questionsArrIndex += 1;
-        $rootScope.wrong += 1;
-        $rootScope.scoreArr.push(false); 
-        // console.log($rootScope.scoreArr);
-        if ($scope.questionsArrIndex < 5) {
-            angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
-            setTimeout(function() {
-              angular.element(document.getElementById("q-card")).removeClass("wrong animated shake");
-              $scope.nextQuestion();
-            }, 2500);
-          } else {
-            window.location.href = "#/results";
-        }
-      }, 10000);
+      // console.log('gameTimer is being called in nextQuestion');
+      // var gameTimer = setTimeout(function() {
+
+      // }, 10000);
       //then, store when you create them
-      timeouts.push(gameTimer);
+      // timeouts.push(gameTimer);
+      clearTimeout(gameTimer);
 
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
@@ -96,15 +92,16 @@ module.exports = function(app) {
       $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
       $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
       $scope.$apply();
+      $scope.timer();
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
     };
 
     $scope.checkAnswer = function(answer) {
-      for (var i = 0; i < timeouts.length; i++) {
-        clearTimeout(timeouts[i]);
-      }
+      // for (var i = 0; i < timeouts.length; i++) {
+      //   clearTimeout(timeouts[i]);
+      // }
       //quick reset of the timer array you just cleared
-      timeouts = [];
+      // timeouts = [];
       $scope.chosen = answer;
       $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
       $scope.isAnimated = true;   // adds "animated" class to all buttons
@@ -124,11 +121,11 @@ module.exports = function(app) {
         $rootScope.scoreArr.push(true);
         console.log($rootScope.scoreArr);
         setTimeout(function() {
-          for (var i = 0; i < timeouts.length; i++) {
-            clearTimeout(timeouts[i]);
-          }
+        //   for (var i = 0; i < timeouts.length; i++) {
+        //     clearTimeout(timeouts[i]);
+        //   }
           //quick reset of the timer array you just cleared
-          timeouts = [];
+          // timeouts = [];
           $scope.questionsArrIndex += 1;
           console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
           console.log('index: ' + $scope.questionsArrIndex);
@@ -148,11 +145,11 @@ module.exports = function(app) {
         $rootScope.scoreArr.push(false); 
         console.log($rootScope.scoreArr);
         setTimeout(function() {
-          for (var i = 0; i < timeouts.length; i++) {
-            clearTimeout(timeouts[i]);
-          }
+        //   for (var i = 0; i < timeouts.length; i++) {
+        //     clearTimeout(timeouts[i]);
+        //   }
           //quick reset of the timer array you just cleared
-          timeouts = [];
+          // timeouts = [];
           $scope.questionsArrIndex += 1;
           console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
           console.log('index: ' + $scope.questionsArrIndex);
