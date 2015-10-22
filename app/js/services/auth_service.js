@@ -23,7 +23,7 @@ module.exports = function(app) {
         return setHeader(token);
       }
 
-      var restoreSession = function() {
+      var verifySession = function() {
         var token = sessionStorage.getItem('userToken');
         var deferred = $q.defer();
 
@@ -32,7 +32,7 @@ module.exports = function(app) {
 
           $http.get('/api/username')
             .then(function(res) {
-              $rootScope.user = res.data.user;
+              $rootScope.user = res.data.msg;
               deferred.resolve();
             }, function(res) {
               console.log(res);
@@ -48,7 +48,7 @@ module.exports = function(app) {
 
       return {
         setToken: setToken,
-        restoreSession: restoreSession
+        verifySession: verifySession
       };
     }
   ]);
