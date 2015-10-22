@@ -1,22 +1,23 @@
 // modified from Codepen: http://codepen.io/HugoGiraudel/pen/BHEwo
 
-$duration: 10s;
+$duration: 2.5s;
 
 .timer {
   position: relative;
   margin: 0.5em auto;
   background: $background-color-light;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  .hidden {
+    display: none;
+  }
 }
 
 .timer, .timer * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-.timer {
-  width: 2em;
-  height: 2em;
 }
 
 .timer .pie {
