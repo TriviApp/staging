@@ -13,7 +13,7 @@ module.exports = function(app) {
       };
 
       $scope.signup = function(user) {
-        $http.post('/api/signup', $scope.user)
+        $http.post('/api/signup', user)
         .then(function(res) {
           $rootScope.user = res.data.msg;
           AuthService.setToken($rootScope.user.token);
