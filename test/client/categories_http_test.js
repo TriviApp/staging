@@ -42,9 +42,6 @@ describe('game controller', function () {
                                 });          
         $scope.newGame('sports');
         $httpBackend.flush();
-        console.log($scope.gameData); //undefined
-        // console.log($rootScope.gameData);
-        //these get determined in Game Contoller
         expect($scope.gameData.category).toBe('sports');
         expect($scope.gameData.questions[0].question).toBe("Which NHL Team are nicknamed the 'Coyotes'?");
         expect(Array.isArray($scope.gameData.questions[0].answers)).toBe(true);
