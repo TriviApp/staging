@@ -69,9 +69,13 @@ gulp.task('karmatests', ['webpack:test'], function(done) {
 	}, done).start();
 });
 
-gulp.task("watch:css", ["build:css"], function() {
-  gulp.watch("./app/**/*.html", ["build:css"]);
-  gulp.watch("./app/style/**/*.scss", ["build:css"]);
+
+gulp.task('watch', function() {
+  gulp.watch('./app/**/*.html', ['build:css']);
+  gulp.watch('./app/style/**/*.scss', ['build:css']);
+  gulp.watch('./app/js/**/*.js', ['webpack:dev']);
+  gulp.watch('./app/templates/**/*.html', ['webpack:dev']);
 });
+
 gulp.task('build:dev', ['staticfiles:dev', 'webpack:dev', 'build:css', 'build:fonts', 'build:images']);
 gulp.task('default', ['build:dev']);

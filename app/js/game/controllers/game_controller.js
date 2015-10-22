@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+  app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', '$timeout', function($rootScope, $scope, $location, $http, $timeout) {
     var gameData = {
       "category": "sports",
       "questions": [
@@ -25,7 +25,7 @@ module.exports = function(app) {
         }
       ]
     };
-
+    
     $scope.questionsArrIndex = 0;
     // $scope.categoryName = $rootScope.gameData.category;
     // $scope.questionsArr = $rootScope.gameData.questions;
@@ -60,15 +60,24 @@ module.exports = function(app) {
       // $scope.isWrong = true;
     $scope.gameTimer = function() {
       console.log('i hear you');
-      console.log($scope.isWrong);
+      console.log('hear you');
       $scope.isWrong = true; // adds "wrong" class to entire view card
+      if ($scope.questionsArrIndex < 5) {
+        $scope.nextQuestion();
+      } else {
+        window.location.href = "#/results";
+      }
     };
+
+    $timeout(function(){
+      $scope.gameTimer();      
+    }, 3000);
     
     console.log('hi there');
     
-    setTimeout(function() {
-      $scope.gameTimer()
-    }, 10000);
+    // setTimeout(function() {
+    //   $scope.gameTimer()
+    // }, 2000);
     
     // $scope.gameTimer();
 
