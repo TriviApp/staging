@@ -14,7 +14,7 @@ module.exports = function(app) {
         $rootScope.newUser = true;
         console.log("signin", {
           username: $scope.user.username,
-          password: $scope.user.password
+          password: $scope.user.password,
         });
         return $location.path('/signup');
       };

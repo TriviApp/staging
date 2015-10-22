@@ -13,7 +13,7 @@ module.exports = function(app) {
       };
 
       $scope.signup = function(user) {
-        $http.post('/api/signup', $scope.user)
+        $http.post('/api/signup', user)
         .then(function(res) {
           console.log(res.data);
           $rootScope.user = res.data;
