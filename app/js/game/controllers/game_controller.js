@@ -11,18 +11,18 @@ module.exports = function(app) {
         }
         $scope.inBetweenQuestions = true;
         console.log('inside timeout');
-        angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
+        angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
         $scope.questionsArrIndex += 1;
         $rootScope.wrong += 1;
         $rootScope.scoreArr.push(false);
         setTimeout(function() {
-          angular.element(document.getElementById("q-card")).removeClass("wrong animated shake");
+          angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {
             window.location.href = "#/results";
           }
-        }, 2500);
+        }, 1000);
       }, duration);
     };
 
