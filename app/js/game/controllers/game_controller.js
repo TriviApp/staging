@@ -1,10 +1,12 @@
 module.exports = function(app) {
   app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
-    var gameTimer;
-    var timeouts = [];
+    var duration = 2500;
+    $scope.timeout;
+    $scope.inBetweenQuestions = false;
 
     $scope.timer = function() {
-      gameTimer = setTimeout(function() {
+      $scope.timeout = setTimeout(function() {
+        $scope.inBetweenQuestions = true;
         console.log('inside timeout');
         angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
         $scope.questionsArrIndex += 1;
@@ -18,17 +20,10 @@ module.exports = function(app) {
             window.location.href = "#/results";
           }
         }, 2500);
-      }, 2500);
+      }, duration);
     };
 
     $scope.timer();
-    //then, store when you create them
-    // timeouts.push(gameTimer);
-
-    // stopGameTimer = function () {
-    //   console.log('stop has been called');
-    //   clearTimeout(gameTimer);
-    // }
     
     var gameData = {
       "category": "sports",
@@ -57,11 +52,6 @@ module.exports = function(app) {
     };
 
     $scope.questionsArrIndex = 0;
-    // $scope.categoryName = $rootScope.gameData.category;
-    // $scope.questionsArr = $rootScope.gameData.questions;
-    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
-    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
-    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
     $scope.categoryName = gameData.category;
     $scope.questionsArr = gameData.questions;
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
@@ -73,14 +63,8 @@ module.exports = function(app) {
     $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
-      // console.log('gameTimer is being called in nextQuestion');
-      // var gameTimer = setTimeout(function() {
-
-      // }, 10000);
-      //then, store when you create them
-      // timeouts.push(gameTimer);
-      clearTimeout(gameTimer);
-
+      // clearTimeout($scope.timeout);
+      $scope.timer();
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
       $scope.isChosen = false; 
@@ -92,75 +76,63 @@ module.exports = function(app) {
       $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
       $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
       $scope.$apply();
-      $scope.timer();
+      $scope.inBetweenQuestions = false;
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
     };
 
     $scope.checkAnswer = function(answer) {
-      // for (var i = 0; i < timeouts.length; i++) {
-      //   clearTimeout(timeouts[i]);
-      // }
-      //quick reset of the timer array you just cleared
-      // timeouts = [];
-      $scope.chosen = answer;
-      $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
-      $scope.isAnimated = true;   // adds "animated" class to all buttons
-      // if (answer === $rootScope
-      //                 .gameData
-      //                 .questions[$scope.questionsArrIndex]
-      //                 .correctAnswer) {
-      if (answer === gameData
-                     .questions[$scope.questionsArrIndex]
-                     .correctAnswer) {
-        
-        $scope.isRight = true;      // adds "right" class to entire view card
-        this.isChosen = true;       // adds "chosen" class to selected button
-        this.isCorrect = true;      // adds "correct" class to selected button
-        this.runRubberBand = true;  // adds "rubberBand" class to selected button
-        $rootScope.right += 1;
-        $rootScope.scoreArr.push(true);
-        console.log($rootScope.scoreArr);
-        setTimeout(function() {
-        //   for (var i = 0; i < timeouts.length; i++) {
-        //     clearTimeout(timeouts[i]);
-        //   }
-          //quick reset of the timer array you just cleared
-          // timeouts = [];
-          $scope.questionsArrIndex += 1;
-          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
-          console.log('index: ' + $scope.questionsArrIndex);
-          if ($scope.questionsArrIndex < 5) {
-            $scope.nextQuestion();
-          } else {
-            window.location.href = "#/results";
-          }
-          $scope.nextQuestion();
-        }, 2000);
-        return true;
+      if ($scope.inBetweenQuestions === true) {
+        console.log("bouncing out of checkAnswer")
+        return;
       } else {
-        $scope.isWrong = true; // adds "wrong" class to entire view card
-        this.isChosen = true;  // adds "chosen" class to selected button
-        this.runHinge = true;  // adds "hinge" class to selected button
-        $rootScope.wrong += 1;
-        $rootScope.scoreArr.push(false); 
-        console.log($rootScope.scoreArr);
-        setTimeout(function() {
-        //   for (var i = 0; i < timeouts.length; i++) {
-        //     clearTimeout(timeouts[i]);
-        //   }
-          //quick reset of the timer array you just cleared
-          // timeouts = [];
-          $scope.questionsArrIndex += 1;
-          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
-          console.log('index: ' + $scope.questionsArrIndex);
-          if ($scope.questionsArrIndex < 5) {
+        clearTimeout($scope.timeout);
+        $scope.inBetweenQuestions = true;
+        $scope.chosen = answer;
+        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
+        $scope.isAnimated = true;   // adds "animated" class to all buttons
+        if (answer === gameData
+                       .questions[$scope.questionsArrIndex]
+                       .correctAnswer) {
+          
+          $scope.isRight = true;      // adds "right" class to entire view card
+          this.isChosen = true;       // adds "chosen" class to selected button
+          this.isCorrect = true;      // adds "correct" class to selected button
+          this.runRubberBand = true;  // adds "rubberBand" class to selected button
+          $rootScope.right += 1;
+          $rootScope.scoreArr.push(true);
+          console.log($rootScope.scoreArr);
+          setTimeout(function() {
+            $scope.questionsArrIndex += 1;
+            console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
+            console.log('index: ' + $scope.questionsArrIndex);
+            if ($scope.questionsArrIndex < 5) {
+              $scope.nextQuestion();
+            } else {
+              window.location.href = "#/results";
+            }
             $scope.nextQuestion();
-          } else {
-            window.location.href = "#/results";
-          }
-        }, 2200);
-        return false;
-      }
+          }, 2000);
+          return true;
+        } else {
+          $scope.isWrong = true; // adds "wrong" class to entire view card
+          this.isChosen = true;  // adds "chosen" class to selected button
+          this.runHinge = true;  // adds "hinge" class to selected button
+          $rootScope.wrong += 1;
+          $rootScope.scoreArr.push(false); 
+          console.log($rootScope.scoreArr);
+          setTimeout(function() {
+            $scope.questionsArrIndex += 1;
+            console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
+            console.log('index: ' + $scope.questionsArrIndex);
+            if ($scope.questionsArrIndex < 5) {
+              $scope.nextQuestion();
+            } else {
+              window.location.href = "#/results";
+            }
+          }, 2200);
+          return false;
+        }
+      };
     };
   }])
 };
