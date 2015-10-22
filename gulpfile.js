@@ -47,15 +47,15 @@ gulp.task('webpack:test', function() {
 
 gulp.task('staticfiles:dev', function() {
 	return gulp.src('./app/**/*html')
-		.pipe(gulp.dest('build/')); //to include html in static page
+		.pipe(gulp.dest('build/')); 
 });
 
 gulp.task('servertests', function() {
-	return gulp.src('./test/server/*test.js') // name server and auth test
+	return gulp.src('./test/server/*test.js')
 		.pipe(mocha({reporter: 'nyan'}))
 		.once('error', function(err) {
 			console.log(err);
-			process.exit(1); //what is this for again?
+			process.exit(1); 
 		})
 		.once('end', function() {
 			if (this.seq.length === 1 && this.seq[0] === 'servertests')
@@ -73,5 +73,6 @@ gulp.task("watch:css", ["build:css"], function() {
   gulp.watch("./app/**/*.html", ["build:css"]);
   gulp.watch("./app/style/**/*.scss", ["build:css"]);
 });
+
 gulp.task('build:dev', ['staticfiles:dev', 'webpack:dev', 'build:css', 'build:fonts', 'build:images']);
 gulp.task('default', ['build:dev']);

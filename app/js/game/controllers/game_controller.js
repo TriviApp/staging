@@ -26,6 +26,8 @@ module.exports = function(app) {
     // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
     // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
     // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
+    
+    //hard coding versions
     $scope.categoryName = gameData.category;
     $scope.questionsArr = gameData.questions;
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
