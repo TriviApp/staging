@@ -5,11 +5,15 @@ module.exports = function(app) {
 
     var gameTimer = setTimeout(function() {
       console.log('inside timeout');
+      angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
       // $scope.questionsArrIndex += 1;
       // $rootScope.wrong += 1;
-      // $rootScope.scoreArr.push(false); 
-      $scope.nextQuestion();
-    }, 10000);
+      // $rootScope.scoreArr.push(false);
+      setTimeout(function() {
+        angular.element(document.getElementById("q-card")).removeClass("wrong animated shake"); 
+        $scope.nextQuestion();
+      }, 2500);
+    }, 2500);
     //then, store when you create them
     timeouts.push(gameTimer);
 
@@ -69,7 +73,11 @@ module.exports = function(app) {
         $rootScope.scoreArr.push(false); 
         // console.log($rootScope.scoreArr);
         if ($scope.questionsArrIndex < 5) {
-            $scope.nextQuestion();
+            angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
+            setTimeout(function() {
+              angular.element(document.getElementById("q-card")).removeClass("wrong animated shake");
+              $scope.nextQuestion();
+            }, 2500);
           } else {
             window.location.href = "#/results";
         }
