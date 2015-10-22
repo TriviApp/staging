@@ -6,6 +6,9 @@ module.exports = function(app) {
 
     $scope.timer = function() {
       $scope.timeout = setTimeout(function() {
+        if ($scope.inBetweenQuestions === true) {
+          return;
+        }
         $scope.inBetweenQuestions = true;
         console.log('inside timeout');
         angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
@@ -85,8 +88,8 @@ module.exports = function(app) {
         console.log("bouncing out of checkAnswer")
         return;
       } else {
-        clearTimeout($scope.timeout);
         $scope.inBetweenQuestions = true;
+        clearTimeout($scope.timer);
         $scope.chosen = answer;
         $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
         $scope.isAnimated = true;   // adds "animated" class to all buttons
@@ -110,6 +113,7 @@ module.exports = function(app) {
             } else {
               window.location.href = "#/results";
             }
+            $scope.inBetweenQuestions = false;
             $scope.nextQuestion();
           }, 2000);
           return true;
@@ -125,6 +129,7 @@ module.exports = function(app) {
             console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
             console.log('index: ' + $scope.questionsArrIndex);
             if ($scope.questionsArrIndex < 5) {
+              $scope.inBetweenQuestions = false;
               $scope.nextQuestion();
             } else {
               window.location.href = "#/results";
