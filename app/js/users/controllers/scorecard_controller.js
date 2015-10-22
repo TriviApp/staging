@@ -12,7 +12,6 @@ module.exports = function(app) {
     var scoreArr = $rootScope.scoreArr;
     $scope.right = $rootScope.right;
     $scope.wrong = $rootScope.wrong;
-    // var scoreArr = [true,true,false,true,true];
 
     var gameData = {
       "category": "sports",
@@ -40,10 +39,22 @@ module.exports = function(app) {
     $scope.question = gameData.questions[$scope.questionsArrIndex].question;
     $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
 
-    // $scope.right = 3;
-    // $scope.wrong = 2;
     $scope.incorrectArr = [];
     $scope.correctArr = [];
+
+    var statPack = { $scope.categoryName: 
+      {
+        correct: $rootScope.user.sports.correct += $scope.right,
+        total: $rootScope.user.sports.total += 5
+      }
+    };
+
+    $scope.saveResults = function() {
+      $http.put('/statupdate', statPack)
+      .then(function(res) {
+        
+      })
+    };
 
     $scope.showResults = function() {
       for (var i = 0; i < scoreArr.length; i++) {
@@ -78,6 +89,9 @@ module.exports = function(app) {
           $scope.gotNone = true;
       }
     };
+
+
+
     $scope.showResults();
   }])
 };
