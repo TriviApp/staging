@@ -13,8 +13,8 @@ $duration: 10s;
 }
 
 .timer {
-  width: 4em;
-  height: 4em;
+  width: 2em;
+  height: 2em;
 }
 
 .timer .pie {
@@ -22,15 +22,15 @@ $duration: 10s;
   height: 100%;
   transform-origin: 100% 50%;
   position: absolute;
-  background: #08C;
-  border: 0.25em solid rgba(0,0,0,0.5);
+  background: $background-color-theme;
+  border: 0.25em solid rgba($background-color-dark,0.5);
 }
 
 .timer .spinner {
   border-radius: 100% 0 0 100% / 50% 0 0 50%;
   z-index: 200;
   border-right: none;
-  animation: rota $duration linear infinite;
+  animation: rota $duration linear;
 }
 
 .timer:hover .spinner,
@@ -44,7 +44,7 @@ $duration: 10s;
   left: 50%;
   opacity: 0;
   z-index: 100;
-  animation: opa $duration steps(1, end) infinite reverse;
+  animation: opa $duration steps(1, end) reverse;
   border-left: none;
 }
 
@@ -55,7 +55,7 @@ $duration: 10s;
   background: inherit;
   opacity: 1;
   z-index: 300;
-  animation: opa $duration steps(1, end) infinite;
+  animation: opa $duration steps(1, end);
 }
 
 @keyframes rota {
