@@ -6,16 +6,16 @@
   <section class="cat-card">
     <ul>
 
-      <li class="big-button" data-ng-click="newGame('sports')">Sports</li>
-      <li class="big-button" data-ng-click="newGame('entertainment')">Entertainment</li>
-      <li class="big-button" data-ng-click="newGame('history')">History</li>
-      <li class="big-button" data-ng-click="newGame('science')">Science</li>
+      <li class="big-button" tabindex="1" data-ng-click="newGame('sports')">Sports</li>
+      <li class="big-button" tabindex="2" data-ng-click="newGame('entertainment')">Entertainment</li>
+      <li class="big-button" tabindex="3" data-ng-click="newGame('history')">History</li>
+      <li class="big-button" tabindex="4" data-ng-click="newGame('science')">Science</li>
 
     </ul>
   </section>
   <div class="button-wrap">
-    <a class="small-button" href="#/profile">Profile</a>
-    <a class="small-button" href="#/signin">Quit</a>
+    <a class="small-button" href="#/signin" tabindex="5">Quit</a>
+    <a class="small-button" href="#/profile" tabindex="6">Profile</a>
   </div>
 </section>
 <footer>
@@ -24,3 +24,4 @@
     <li>Molly Kent, Clare Monahan, William Shull, Monica Wu, Lyle Charles Scott</li>
   </ul>
 </footer>
+

@@ -52,7 +52,12 @@
   display: block;
   margin: 0.25em auto;
   padding: 0.5em;
-  width: 25%; 
+  width: 25%;
+  &:focus {
+    -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
+    -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
+      box-shadow: 1px 1px 10px 6px $background-color-theme;
+  }
 }
 
 %navigate-forward-button-uppercase {

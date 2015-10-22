@@ -52,13 +52,13 @@
 
 	__webpack_require__(2);
 	__webpack_require__(19);
-	console.log('in karmatests~~~~~~~~~~~~~~~~~~~');
+
 	describe('game controller', function () {
 	  var $httpBackend;
 	  var $ControllerConstructor;
 	  var $scope;
 
-	  beforeEach(angular.mock.module('TriviApp'));
+	  beforeEach(angular.mock.module('triviApp'));
 
 	  beforeEach(angular.mock.inject(function ($rootScope, $controller) {
 	    $scope = $rootScope.$new();
@@ -66,17 +66,16 @@
 	  }));
 
 	  it('should be able to create a controller', function () {
-	    var controller = new $ControllerConstructor('GameController', {$scope: $scope});
+	    var controller = new $ControllerConstructor('HomeController', {$scope: $scope});
 	    expect(typeof $scope).toBe('object');
 	    expect(typeof controller).toBe('object');
-	    expect(Array.isArray($scope.questionsArr)).toBe(true);
 	  });
 
-	  describe('REST request', function () {
+	  describe('REST request in Game', function () {
 	    beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
 	      $httpBackend = _$httpBackend_;
 	      $scope = $rootScope.$new();
-	      $ControllerConstructor('GameController', {$scope: $scope});
+	      $ControllerConstructor('HomeController', {'$scope': $scope});
 	    }));
 
 	    afterEach(function () {
@@ -84,22 +83,24 @@
 	      $httpBackend.verifyNoOutstandingRequest();
 	    });
 
-	    it ('should be able to make a get request when a category is selected', function() {
-	      $httpBackend.expectGET('/api/categories')
-	                  .respond(200, [{"category": "sports",
+	    it ('should be able to select a category', function() {
+	      $httpBackend.expectGET('/api/categories/sports')
+	                  .respond(200, {"category": "sports",
 	                                 "questions": [{
-	                                  "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
-	                                  "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
-	                                  "correctAnswer": "Arizona"
+	                                 "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
+	                                 "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
+	                                 "correctAnswer": "Arizona"
 	                                  }]
-	                                }]);
+	                                });          
 	        $scope.newGame('sports');
 	        $httpBackend.flush();
-	        expect($scope.category).toBe('sports');
-	        expect($scope.questions[0].question).toBe("Which NHL Team are nicknamed the 'Coyotes'?");
-	        expect(Array.isArray($scope.questions[0].answers)).toBe(true);
-	        expect($scope.questions[0].correctAnswer).toBe('Arizona');  
-	        expect(res.status).toBe(200);                
+	        console.log($scope.gameData); //undefined
+	        // console.log($rootScope.gameData);
+	        //these get determined in Game Contoller
+	        expect($scope.gameData.category).toBe('sports');
+	        expect($scope.gameData.questions[0].question).toBe("Which NHL Team are nicknamed the 'Coyotes'?");
+	        expect(Array.isArray($scope.gameData.questions[0].answers)).toBe(true);
+	        expect($scope.gameData.questions[0].correctAnswer).toBe('Arizona');                 
 	    });
 	  });
 	});
@@ -109,11 +110,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(3);
-	__webpack_require__(4); // for router
-	__webpack_require__(6); //for encoding
-	var angular = window.angular; //appease the jshint gods
+	__webpack_require__(4);
+	__webpack_require__(6); 
+	var angular = window.angular; 
 
-	var triviApp = angular.module('triviApp', ['ngRoute', 'base64']); // injecting files from above
+	var triviApp = angular.module('triviApp', ['ngRoute', 'base64']); 
 
 	__webpack_require__(7)(triviApp);
 	__webpack_require__(9)(triviApp);
@@ -30221,29 +30222,56 @@
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-	  app.factory('AuthService', ['$q', '$rootScope', '$http', '$window',
-	    function($q, $rootScope, $http, $window) {
+	  app.factory('AuthService', ['$q', '$rootScope', '$http', '$window', '$location',
+	    function($q, $rootScope, $http, $window, $location) {
+	      var sessionStorage = $window.sessionStorage;
 
 	      var setHeader = function(token) {
 	        if (!token) {
 	          $http.defaults.headers.common['Authorization'] = '';
-	          return;
 	        } else {
 	          $http.defaults.headers.common['Authorization'] = 'BEARER ' + token;
+	          return true;
 	        }
 	      }
 
 	      var setToken = function(token) {
-	        var sessionStorage = $window.sessionStorage;
 
 	        if (!token) {
+	          $rootScope.user = {};
 	          sessionStorage.removeItem('userToken');
 	        } else {
 	          sessionStorage.setItem('userToken', token);
 	        }
-	        setHeader(token);
+	        return setHeader(token);
 	      }
-	      return setToken;
+
+	      var restoreSession = function() {
+	        var token = sessionStorage.getItem('userToken');
+	        var deferred = $q.defer();
+	        if (token) {
+	          setHeader(token);
+
+	          $http.get('/api/username')
+	            .then(function(res) {
+	              $rootScope.user = res.data.user;
+	              deferred.resolve();
+	            }, function(res) {
+	              console.log(res);
+	              deferred.reject();
+	              $location.path('/signin');
+	            });
+	        } else {
+	          deferred.reject();
+	          $location.path('/signin');
+	        }
+	        return true;
+	      }
+
+	      return {
+	        setToken: setToken,
+	        restoreSession: restoreSession
+	      };
 	    }
 	  ]);
 	};
@@ -30442,7 +30470,7 @@
 	        .then(function(res) {
 	          console.log(res.data);
 	          $rootScope.user = res.data;
-	          AuthService($rootScope.user.token);
+	          AuthService.setToken($rootScope.user.token);
 	          $location.path('/main');
 	        }, function(res) {
 	          console.log(res);
@@ -30467,7 +30495,7 @@
 
 	      if (!$rootScope.user){
 	        $rootScope.user = null;
-	        AuthService();
+	        AuthService.setToken();
 	      }
 
 	      $scope.newUserSignup = function() {
@@ -30489,10 +30517,10 @@
 	        })
 	        .then(function(res) {
 	          $rootScope.user = res.data.msg;
-	          AuthService($rootScope.user.token);
+	          AuthService.setToken($rootScope.user.token);
 	          $location.path('/home');
 	        }, function(res) {
-	          AuthService();
+	          AuthService.setToken();
 	          $scope.wrongPass = true;
 	          console.log(res);
 	        });
@@ -30508,21 +30536,30 @@
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-	  app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
-	    $scope.user = $rootScope.user;
-	    // start a game/pick a category
+	  app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', 'AuthService',
+	   function($rootScope, $scope, $location, $http, AuthService) {
+
+	    if (!$rootScope.user) AuthService.restoreSession();
+
 	    $scope.newGame = function(category) {
 	      //request category data
-	      $http.get('/api/getCategory/' + category)
+	      $http.get('/api/categories/' + category)
 	      .then(function(res){
 	        // res will have the category data
 	        $rootScope.gameData = res.data;
 	        $location.path('/newGame');
-	      })
-	    }
-	    // view profile
-	    // logout
-	  }])
+	      });
+	    };
+
+	    $scope.viewProfile = function() {
+	      $location.path('/profile');
+	    };
+
+	    $scope.logout = function() {
+	      AuthService.setToken();
+	      $location.path('/signin');
+	    };
+	  }]);
 	};
 
 
@@ -30583,22 +30620,22 @@
 
 	      switch ($scope.right) {
 	        case 1:
-	          $scope.one = true;
+	          $scope.gotOne = true;
 	          break;
 	        case 2:
-	          $scope.two = true;
+	          $scope.gotTwo = true;
 	          break;
 	        case 3:
-	          $scope.three = true;
+	          $scope.gotThree = true;
 	          break;
 	        case 4:
-	          $scope.four = true;
+	          $scope.gotFour = true;
 	          break;
 	        case 5:
-	          $scope.five = true;
+	          $scope.gotFive = true;
 	          break;
 	        default:
-	          $scope.none = true;
+	          $scope.gotNone = true;
 	      }
 	    };
 	    $scope.showResults();
@@ -30615,12 +30652,12 @@
 	    $httpProvider.interceptors.push(function($q, $location) {
 	      return {
 	        response: function(response) {
-	          console.log('Response Interceptor: ', response);
+	          console.log(response);
 	          return response;
 	        },
 	        responseError: function(response) {
 	          if (response.status === 401 || response.status === 403) $location.url('/login');
-	          console.log('res from interceptor responseError:  ', response);
+	          console.log('interceptor responseError:  ', response);
 	          return $q.reject(response);
 	        }
 	      }
@@ -30651,10 +30688,10 @@
 	      templateUrl: '/templates/views/scorecard_view.html',
 	      controller: 'ScorecardController'
 	    })
-	    .when('/endgame', {
-	      templateUrl: '/templates/views/endgame_view.html',
-	      controller: 'EndgameController'
-	    })
+	    // .when('/endgame', {
+	    //   templateUrl: '/templates/views/endgame_view.html',
+	    //   controller: 'EndgameController'
+	    // })
 	    .otherwise({
 	      redirectTo: '/signin'
 	    });

@@ -6,11 +6,6 @@
     @include set-font ($text-color-light, $main-font-light-italic, $font-size-large);
     margin-bottom: 0.5em;
   }
-  .button {
-    @include button($text-color-light, $background-color-theme, $border-color-med, $main-font-regular, $font-size-regular, $background-color-theme, $text-color-light, uppercase);
-    width: 50%;
-    margin-top: 1em;
-  }
   input {
     @include set-font;
     display: block;
@@ -19,13 +14,6 @@
     border: none;
     background-color: $background-color-light;
     color: $text-color-theme;
-  }
-}
-
-.away-button {
-  @extend %navigate-away-button;
-  @media (max-width: 610px) {
-    width: 40%;
   }
 }
 
@@ -42,6 +30,12 @@
     min-width: 5em;
     min-height: 5em;
     position: relative;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s;  
+    &:hover {
+      background: $background-color-theme;
+    }
   }
   img {
     width: 80%;
@@ -67,6 +61,11 @@
     z-index: 90;
     -webkit-transition: background-color 0.3s;
       transition: background-color 0.3s;
+    &:focus {
+      -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
+      -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
+        box-shadow: 1px 1px 10px 6px $background-color-theme;
+    }
   }
   input[type="radio"]:checked + label {
     background: $background-color-theme;
