@@ -1,0 +1,8 @@
+[
+	{"category": "sports",
+	 "questions": [
+	 		{"question":"Which NHL Team are nicknamed the 'Coyotes'?", "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], "correctAnswer": "Arizona"},
+	 		{"question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"], "correctAnswer": "Bobby Jones"},
+	 	]
+	}
+]	 		

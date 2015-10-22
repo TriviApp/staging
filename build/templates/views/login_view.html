@@ -1,0 +1,74 @@
+<header>
+  <h1 class="icon-avatar-bw">TriviApp</h1>
+</header>
+<section class="last-content" data-ng-if="!newUser">
+  <form class="login" id="login" data-ng-submit="signin(user)">
+    <fieldset class="slide-in-down">
+      <legend>Login</legend>
+      <input name="username" type="text" placeholder="username" data-ng-model="user.username"/>
+      <input name="password" type="password" placeholder="password" data-ng-model="user.password"/>
+      <input class="button" type="submit" value="Let's play now!"/>
+    </fieldset>
+  </form>
+  <input data-ng-click="newUserSignup()" class="away-button" type="submit" value="create new account"/>
+</section>
+
+<section class="last-content" data-ng-if="newUser">
+  <form class="login slide-in-up" id="signup" data-ng-submit="signup(user)">
+    <fieldset>
+      <legend>New User</legend>
+      <input name="username" type="text" placeholder="username" data-ng-model="user.username"/>
+      <input name="password" type="password" placeholder="password" data-ng-model="user.password"/>
+      <input name="password" type="password" placeholder="re-enter password" data-ng-model="user.confirmPassword"/>
+      <fieldset class="user-avatar-selector">
+        <legend>Select your avatar</legend>
+        <ul>
+          <li class="slide-in-right">
+            <input name="avatar" type="radio" value="imgs/avatar1.svg" data-ng-model="user.avatar"/>
+            <label>
+              <img src="imgs/avatar1.svg">
+            </label>
+          </li>
+          <li class="slide-in-left">
+            <input name="avatar" type="radio" value="imgs/avatar2.svg" data-ng-model="user.avatar"/>
+            <label>
+              <img src="imgs/avatar2.svg">
+            </label>
+          </li>
+          <li class="slide-in-right">
+            <input name="avatar" type="radio" value="imgs/avatar3.svg" data-ng-model="user.avatar"/>
+            <label>
+              <img src="imgs/avatar3.svg">
+            </label>
+          </li>
+          <li class="slide-in-left">
+            <input name="avatar" type="radio" value="imgs/avatar4.svg" data-ng-model="user.avatar"/>
+            <label>
+              <img src="imgs/avatar4.svg">
+            </label>
+          </li>
+          <li class="slide-in-right">
+            <input name="avatar" type="radio" value="imgs/avatar6.svg" data-ng-model="user.avatar"/>
+            <label>
+              <img src="imgs/avatar6.svg">
+            </label>
+          </li>
+          <li class="slide-in-left">
+            <input name="avatar" type="radio" value="imgs/avatar7.svg" data-ng-model="user.avatar"/>
+            <label>
+              <img src="imgs/avatar7.svg">
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+      <input class="button" type="submit" value="Add Player"/>
+    </fieldset>
+  </form>
+  <input data-ng-click="oldUserSignin()" class="away-button" type="submit" value="return to login"/>
+</section>
+<footer>
+  <ul>
+    <li>&copy; Copyright 2015. All Rights Reserved.</li>
+    <li>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</li>
+  </ul>         
+</footer>
