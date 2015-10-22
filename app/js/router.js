@@ -3,7 +3,7 @@ module.exports = function(app) {
     $httpProvider.interceptors.push(function($q, $location) {
       return {
         response: function(response) {
-          console.log(response);
+          console.log('interceptor response: ', response);
           return response;
         },
         responseError: function(response) {
