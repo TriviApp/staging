@@ -43,6 +43,7 @@ module.exports = function(app) {
     $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
+      angular.element(document.getElementById("q-card")).removeClass("wrong");
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
       $scope.isChosen = false; 
@@ -57,27 +58,23 @@ module.exports = function(app) {
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
     };
 
-      // $scope.isWrong = true;
-    $scope.gameTimer = function() {
-      console.log('i hear you');
-      console.log($scope.isWrong);
-      $scope.isWrong = true; // adds "wrong" class to entire view card
-    };
-    
-    setTimeout(function() {
-      // $scope.gameTimer();
+    $scope.timer = setTimeout(function() {
       $scope.questionsArrIndex += 1;
-      $scope.isWrong;
-      console.log($scope.isWrong);
+      $scope.isWrong = false;
+      angular.element(document.getElementById("q-card")).addClass("wrong");
+      console.log("timout iswrong", $scope.isWrong);
       $rootScope.wrong += 1;
       $rootScope.scoreArr.push(false); 
       console.log($rootScope.scoreArr);
-      $scope.nextQuestion();
+      setTimeout(function() {
+        $scope.nextQuestion(); 
+      }, 2200);
     }, 2000);
     
     // $scope.gameTimer();
 
     $scope.checkAnswer = function(answer) {
+      clearTimeout($scope.timer);
       $scope.chosen = answer;
       $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
       $scope.isAnimated = true;   // adds "animated" class to all buttons
