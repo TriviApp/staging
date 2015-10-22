@@ -29,7 +29,7 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
       newUser.token = token;
       newUser.save(function(err, data) {
         if (err) return handleError.err500(err, res);
-        delete data.password;
+        data.password = '';
         handleResponse.send201(res, data);
       });
     });
@@ -37,13 +37,13 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
 });
 
 usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
-  var user = req.user;
-  delete user.password;
-  handleResponse.send200(res, user);
+  req.user.password = '';
+  handleResponse.send200(res, req.user);
 });
 
 usersRouter.get('/username', bearerAuth.bearerAuthentication, function(req, res) {
-  res.json({user: req.user});
+  req.user.password = '';
+  handleResponse.send200(res, req.user)
 });
 
 usersRouter.get('/errRoute', function(req, res) {
