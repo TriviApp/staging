@@ -26,6 +26,7 @@ module.exports = function(app) {
       var restoreSession = function() {
         var token = sessionStorage.getItem('userToken');
         var deferred = $q.defer();
+
         if (token) {
           setHeader(token);
 

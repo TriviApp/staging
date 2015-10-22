@@ -18,7 +18,7 @@ module.exports = function(app) {
           console.log(res.data);
           $rootScope.user = res.data;
           AuthService.setToken($rootScope.user.token);
-          $location.path('/main');
+          $location.path('/home');
         }, function(res) {
           console.log(res);
         });
