@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/TriviApp_dev');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://heroku_vfw504rw:bjmrfolccnnhu8g37a74am7g4@ds041934.mongolab.com:41934/heroku_vfw504rw');
 process.env.APP_SECRET = process.env.APP_SECRET || 'changemechangemechangeme';
 
 app.use(express.static(__dirname + '/build'));
