@@ -1,7 +1,7 @@
 require(__dirname + '/../../app/js/client');
 require('angular-mocks');
 
-describe('game controller', function () {
+describe('home and game controller', function () {
   var $httpBackend;
   var $ControllerConstructor;
   var $scope;
@@ -13,7 +13,7 @@ describe('game controller', function () {
     $ControllerConstructor = $controller;
   }));
 
-  it('should be able to create a controller', function () {
+  it('should be able to request a new game', function () {
     var controller = new $ControllerConstructor('HomeController', {$scope: $scope});
     expect(typeof $scope).toBe('object');
     expect(typeof controller).toBe('object');

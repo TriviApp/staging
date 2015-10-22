@@ -8,12 +8,10 @@
 @import "modules/icons.scss";
 @import "modules/button.scss";
 @import "modules/animations.scss";
-@import "modules/spinner.scss";
 
 // PARTIALS
 @import "partials/login-screen.scss";
 @import "partials/login-form.scss";
-@import "partials/answers.scss";
 @import "partials/percentage-stars.scss";
 @import "partials/header.scss";
 @import "partials/footer.scss";
@@ -28,6 +26,7 @@
 @import "partials/player-profile.scss";
 @import "partials/opponents-card.scss";
 @import "partials/individual-opponent-console.scss";
+@import "partials/spinner.scss";
   // buttons
   @import "partials/buttons/button-wrap.scss";
   @import "partials/buttons/small-button.scss";

@@ -12,12 +12,14 @@ module.exports = function(app) {
         $scope.inBetweenQuestions = true;
         console.log('inside timeout');
         angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
+        angular.element(document.getElementsByClassName("big-button")).addClass("wrong");
         angular.element(document.getElementById("timer")).addClass("hidden");
         $scope.questionsArrIndex += 1;
         $rootScope.wrong += 1;
         $rootScope.scoreArr.push(false);
         setTimeout(function() {
           angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
+          angular.element(document.getElementsByClassName("big-button")).removeClass("wrong");
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {

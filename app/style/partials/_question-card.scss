@@ -15,13 +15,17 @@
   h2 {
     @include set-font($text-color-dark, $main-font-regular, $font-size-large, "auto");
     margin-bottom: 0.35em;
-    border-bottom: 1px solid rgba($border-color-theme, 0.5);
     padding-bottom: 0.35em;
     text-align: center;
     line-height: 1.5; 
   }
+  .answers {
+    border-top: 1px solid rgba($border-color-dark, 0.5);
+    padding-top: 1em;
+    width: 100%;
+    margin: 0 auto;
+  }
   .countdown {
-    // position: relative;
     display: inline-block;
     height: 1.5em;
     width: 100%;
@@ -32,6 +36,10 @@
     border-color: $border-color-correct;
   }
   &.wrong {
+    background-color: $background-color-wrong;
+    border-color: $border-color-wrong;
+  }
+  .wrong {
     background-color: $background-color-wrong;
     border-color: $border-color-wrong;
   }
