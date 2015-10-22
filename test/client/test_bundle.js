@@ -30311,34 +30311,61 @@
 
 	module.exports = function(app) {
 	  app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+	    var duration = 2500;
+	    $scope.timeout;
+	    $scope.inBetweenQuestions = false;
+
+	    $scope.timer = function() {
+	      $scope.timeout = setTimeout(function() {
+	        if ($scope.inBetweenQuestions === true) {
+	          return;
+	        }
+	        $scope.inBetweenQuestions = true;
+	        console.log('inside timeout');
+	        angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
+	        $scope.questionsArrIndex += 1;
+	        $rootScope.wrong += 1;
+	        $rootScope.scoreArr.push(false);
+	        setTimeout(function() {
+	          angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
+	          if ($scope.questionsArrIndex < 5) {
+	            $scope.nextQuestion();
+	          } else {
+	            window.location.href = "#/results";
+	          }
+	        }, 1000);
+	      }, duration);
+	    };
+
+	    $scope.timer();
+	    
 	    var gameData = {
 	      "category": "sports",
 	      "questions": [
 	        { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
 	          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
-	          "correctAnswer": "Arizona"},
+	          "correctAnswer": "Arizona"
+	        },
 	        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
 	          "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-	          "correctAnswer": "Bobby Jones"},
+	          "correctAnswer": "Bobby Jones"
+	        },
 	        { "question":"Chukkas is the term given to periods played in what sport?", 
 	          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
-	          "correctAnswer": "Polo"},
+	          "correctAnswer": "Polo"
+	        },
 	        { "question":"How many goose feathers does it take to make a shuttlecock?", 
 	          "answers": ["16", "60", "21", "32"], 
-	          "correctAnswer": "16"},
+	          "correctAnswer": "16"
+	        },
 	        { "question":"In Olympic Archery, how far is the competitor from the target?", 
 	          "answers": ["50m", "120m", "70m", "100m"], 
-	          "correctAnswer": "70m"}
-	          ]
+	          "correctAnswer": "70m"
 	        }
+	      ]
+	    };
+
 	    $scope.questionsArrIndex = 0;
-	    // $scope.categoryName = $rootScope.gameData.category;
-	    // $scope.questionsArr = $rootScope.gameData.questions;
-	    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
-	    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
-	    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
-	    
-	    //hard coding versions
 	    $scope.categoryName = gameData.category;
 	    $scope.questionsArr = gameData.questions;
 	    $scope.question = gameData.questions[$scope.questionsArrIndex].question;
@@ -30350,6 +30377,8 @@
 	    $rootScope.wrong = 0;
 
 	    $scope.nextQuestion = function() {
+	      // clearTimeout($scope.timeout);
+	      $scope.timer();
 	      $scope.isIncorrect = false;
 	      $scope.isAnimated = false;
 	      $scope.isChosen = false; 
@@ -30361,58 +30390,65 @@
 	      $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
 	      $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
 	      $scope.$apply();
+	      $scope.inBetweenQuestions = false;
 	      return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
 	    };
 
 	    $scope.checkAnswer = function(answer) {
-	      $scope.chosen = answer;
-	      $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
-	      $scope.isAnimated = true;   // adds "animated" class to all buttons
-	      // if (answer === $rootScope
-	      //                 .gameData
-	      //                 .questions[$scope.questionsArrIndex]
-	      //                 .correctAnswer) {
-	      if (answer === gameData
-	                     .questions[$scope.questionsArrIndex]
-	                     .correctAnswer) {
-	        $scope.isRight = true;      // adds "right" class to entire view card
-	        this.isChosen = true;       // adds "chosen" class to selected button
-	        this.isCorrect = true;      // adds "correct" class to selected button
-	        this.runRubberBand = true;  // adds "rubberBand" class to selected button
-	        $rootScope.right += 1;
-	        $rootScope.scoreArr.push(true);
-	        console.log($rootScope.scoreArr);
-	        setTimeout(function() {
-	          $scope.questionsArrIndex += 1;
-	          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
-	          console.log('index: ' + $scope.questionsArrIndex);
-	          if ($scope.questionsArrIndex < 5) {
-	            $scope.nextQuestion();
-	          } else {
-	            window.location.href = "#/results";
-	          }
-	          $scope.nextQuestion();
-	        }, 2000);
-	        return true;
+	      if ($scope.inBetweenQuestions === true) {
+	        console.log("bouncing out of checkAnswer")
+	        return;
 	      } else {
-	        $scope.isWrong = true; // adds "wrong" class to entire view card
-	        this.isChosen = true;  // adds "chosen" class to selected button
-	        this.runHinge = true;  // adds "hinge" class to selected button
-	        $rootScope.wrong += 1;
-	        $rootScope.scoreArr.push(false); 
-	        console.log($rootScope.scoreArr);
-	        setTimeout(function() {
-	          $scope.questionsArrIndex += 1;
-	          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
-	          console.log('index: ' + $scope.questionsArrIndex);
-	          if ($scope.questionsArrIndex < 5) {
+	        $scope.inBetweenQuestions = true;
+	        clearTimeout($scope.timer);
+	        $scope.chosen = answer;
+	        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
+	        $scope.isAnimated = true;   // adds "animated" class to all buttons
+	        if (answer === gameData
+	                       .questions[$scope.questionsArrIndex]
+	                       .correctAnswer) {
+	          
+	          $scope.isRight = true;      // adds "right" class to entire view card
+	          this.isChosen = true;       // adds "chosen" class to selected button
+	          this.isCorrect = true;      // adds "correct" class to selected button
+	          this.runRubberBand = true;  // adds "rubberBand" class to selected button
+	          $rootScope.right += 1;
+	          $rootScope.scoreArr.push(true);
+	          console.log($rootScope.scoreArr);
+	          setTimeout(function() {
+	            $scope.questionsArrIndex += 1;
+	            console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
+	            console.log('index: ' + $scope.questionsArrIndex);
+	            if ($scope.questionsArrIndex < 5) {
+	              $scope.nextQuestion();
+	            } else {
+	              window.location.href = "#/results";
+	            }
+	            $scope.inBetweenQuestions = false;
 	            $scope.nextQuestion();
-	          } else {
-	            window.location.href = "#/results";
-	          }
-	        }, 2200);
-	        return false;
-	      }
+	          }, 2000);
+	          return true;
+	        } else {
+	          $scope.isWrong = true; // adds "wrong" class to entire view card
+	          this.isChosen = true;  // adds "chosen" class to selected button
+	          this.runHinge = true;  // adds "hinge" class to selected button
+	          $rootScope.wrong += 1;
+	          $rootScope.scoreArr.push(false); 
+	          console.log($rootScope.scoreArr);
+	          setTimeout(function() {
+	            $scope.questionsArrIndex += 1;
+	            console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
+	            console.log('index: ' + $scope.questionsArrIndex);
+	            if ($scope.questionsArrIndex < 5) {
+	              $scope.inBetweenQuestions = false;
+	              $scope.nextQuestion();
+	            } else {
+	              window.location.href = "#/results";
+	            }
+	          }, 2200);
+	          return false;
+	        }
+	      };
 	    };
 	  }])
 	};
@@ -30468,14 +30504,13 @@
 	      };
 
 	      $scope.signup = function(user) {
-	        $http.post('/api/signup', $scope.user)
+	        $http.post('/api/signup', user)
 	        .then(function(res) {
-	          console.log(res.data);
-	          $rootScope.user = res.data;
+	          $rootScope.user = res.data.msg;
 	          AuthService.setToken($rootScope.user.token);
 	          $location.path('/home');
 	        }, function(res) {
-	          console.log(res);
+	          console.log('signup failure res: ', res);
 	        });
 	      };
 
@@ -30502,10 +30537,6 @@
 
 	      $scope.newUserSignup = function() {
 	        $rootScope.newUser = true;
-	        console.log("signin", {
-	          username: $scope.user.username,
-	          password: $scope.user.password
-	        });
 	        return $location.path('/signup');
 	      };
 
@@ -30524,7 +30555,7 @@
 	        }, function(res) {
 	          AuthService.setToken();
 	          $scope.wrongPass = true;
-	          console.log(res);
+	          console.log('signin res error: ', res);
 	        });
 	      };
 
@@ -30673,7 +30704,7 @@
 	    $httpProvider.interceptors.push(function($q, $location) {
 	      return {
 	        response: function(response) {
-	          console.log(response);
+	          console.log('interceptor response: ', response);
 	          return response;
 	        },
 	        responseError: function(response) {
@@ -33236,7 +33267,7 @@
 	  it('should be able to sign up a user', function() {
 	  	$httpBackend.expectPOST('/api/signup', {username:'dexter'}).respond(200, {username:'dexter'});
 	  	console.log('before flush', $scope.user);
-	  	$scope.signup('dexter');
+	  	$scope.signup({username:'dexter'});
 	  	$httpBackend.flush();
 	  	console.log('after flush', $scope.user);
 	  	expect(null).toBe(null);
