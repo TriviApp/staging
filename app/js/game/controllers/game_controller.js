@@ -1,6 +1,6 @@
 module.exports = function(app) {
   app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
-    var duration = 2500;
+    var duration = 15000;
     $scope.timeout;
     $scope.inBetweenQuestions = false;
 
