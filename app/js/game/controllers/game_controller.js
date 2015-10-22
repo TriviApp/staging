@@ -12,6 +12,7 @@ module.exports = function(app) {
         $scope.inBetweenQuestions = true;
         console.log('inside timeout');
         angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
+        angular.element(document.getElementById("timer")).addClass("hidden");
         $scope.questionsArrIndex += 1;
         $rootScope.wrong += 1;
         $rootScope.scoreArr.push(false);
@@ -66,7 +67,7 @@ module.exports = function(app) {
     $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
-      // clearTimeout($scope.timeout);
+      angular.element(document.getElementById("timer")).removeClass("hidden");
       $scope.timer();
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
@@ -96,7 +97,7 @@ module.exports = function(app) {
         if (answer === gameData
                        .questions[$scope.questionsArrIndex]
                        .correctAnswer) {
-          
+          angular.element(document.getElementById("timer")).addClass("hidden");
           $scope.isRight = true;      // adds "right" class to entire view card
           this.isChosen = true;       // adds "chosen" class to selected button
           this.isCorrect = true;      // adds "correct" class to selected button
@@ -118,6 +119,7 @@ module.exports = function(app) {
           }, 2000);
           return true;
         } else {
+          angular.element(document.getElementById("timer")).addClass("hidden");
           $scope.isWrong = true; // adds "wrong" class to entire view card
           this.isChosen = true;  // adds "chosen" class to selected button
           this.runHinge = true;  // adds "hinge" class to selected button
