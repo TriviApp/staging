@@ -14,11 +14,14 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
   var newUser = new User();
   newUser.username = req.body.username;
   newUser.avatar = req.body.avatar;
-  newUser.category1 = {};
-  newUser.category2 = {};
-  newUser.category3 = {};
-  newUser.category4 = {};
-  newUser.category5 = {};
+  var winLoss = {
+    correct: 0,
+    total: 0
+  };
+  newUser.category1 = winLoss;
+  newUser.category2 = winLoss;
+  newUser.category3 = winLoss;
+  newUser.category4 = winLoss;
   newUser.generateHash(req.body.password, function(err, hash) {
     if (err) return handleError.err500(err, res);
     newUser.generateToken(function(err, token) {
