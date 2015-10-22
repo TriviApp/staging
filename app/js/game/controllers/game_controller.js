@@ -4,34 +4,6 @@ module.exports = function(app) {
     var clock;
     $scope.timeout;
     $scope.inBetweenQuestions = false;
-
-    $scope.timer = function() {
-      clock = setTimeout(function() {
-        if ($scope.inBetweenQuestions === true) {
-          return;
-        };
-          $scope.inBetweenQuestions = true;
-          console.log('inside timeout');
-          angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
-          angular.element(document.getElementsByClassName("big-button")).addClass("wrong");
-          angular.element(document.getElementById("timer")).addClass("hidden");
-          $scope.questionsArrIndex += 1;
-          $rootScope.wrong += 1;
-          $rootScope.scoreArr.push(false);
-          setTimeout(function() {
-            angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
-            angular.element(document.getElementsByClassName("big-button")).removeClass("wrong");
-            if ($scope.questionsArrIndex < 5) {
-              $scope.nextQuestion();
-            } else {
-              window.location.href = "#/results";
-            }
-        }, 1000);
-      }, duration);
-    };
-
-    $scope.timer();
-    
     var gameData = {
       "category": "sports",
       "questions": [
@@ -58,6 +30,33 @@ module.exports = function(app) {
       ]
     };
 
+    $scope.startRound = function() {
+      clock = setTimeout(function() {
+        if ($scope.inBetweenQuestions === true) {
+          return;
+        };
+          $scope.inBetweenQuestions = true;
+          console.log('inside timeout');
+          angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
+          angular.element(document.getElementsByClassName("big-button")).addClass("wrong");
+          angular.element(document.getElementById("timer")).addClass("hidden");
+          $scope.questionsArrIndex += 1;
+          $rootScope.wrong += 1;
+          $rootScope.scoreArr.push(false);
+          setTimeout(function() {
+            angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
+            angular.element(document.getElementsByClassName("big-button")).removeClass("wrong");
+            if ($scope.questionsArrIndex < 5) {
+              $scope.nextQuestion();
+            } else {
+              window.location.href = "#/results";
+            }
+        }, 1000);
+      }, duration);
+    };
+
+    $scope.startRound();
+    
     $scope.questionsArrIndex = 0;
     $scope.categoryName = gameData.category;
     $scope.questionsArr = gameData.questions;
@@ -71,7 +70,7 @@ module.exports = function(app) {
 
     $scope.nextQuestion = function() {
       angular.element(document.getElementById("timer")).removeClass("hidden");
-      $scope.timer();
+      $scope.startRound();
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
       $scope.isChosen = false; 
