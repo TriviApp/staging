@@ -64,11 +64,16 @@ module.exports = function(app) {
       $scope.isWrong = true; // adds "wrong" class to entire view card
     };
     
-    console.log('hi there');
-    
     setTimeout(function() {
-      $scope.gameTimer()
-    }, 10000);
+      // $scope.gameTimer();
+      $scope.questionsArrIndex += 1;
+      $scope.isWrong;
+      console.log($scope.isWrong);
+      $rootScope.wrong += 1;
+      $rootScope.scoreArr.push(false); 
+      console.log($rootScope.scoreArr);
+      $scope.nextQuestion();
+    }, 2000);
     
     // $scope.gameTimer();
 
