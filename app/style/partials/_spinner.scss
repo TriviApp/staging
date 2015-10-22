@@ -1,8 +1,8 @@
 // modified from Codepen: http://codepen.io/HugoGiraudel/pen/BHEwo
 
-$duration: 2.5s;
+$duration: 10s;
 
-.timer {
+.timer, .timer-space {
   position: relative;
   margin: 0.5em auto;
   background: $background-color-light;
@@ -10,10 +10,14 @@ $duration: 2.5s;
   height: 2em;
 }
 
-.timer, .timer * {
+.timer, .timer *, .timer-space {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.timer-space {
+  background: none;
 }
 
 .timer .pie {
