@@ -4,24 +4,24 @@
 <section class="last-content" data-ng-if="!newUser">
   <form class="login" id="login" data-ng-submit="signin(user)">
     <fieldset class="slide-in-down">
-      <legend>Login</legend>
+      <h2>Login</h2>
       <input name="username" type="text" placeholder="username" data-ng-model="user.username"/>
       <input name="password" type="password" placeholder="password" data-ng-model="user.password"/>
-      <input class="button" type="submit" value="Let's play now!"/>
+      <input class="button" type="submit" value="Play now!"/>
     </fieldset>
   </form>
-  <input data-ng-click="newUserSignup()" class="away-button" type="submit" value="create new account"/>
+  <input data-ng-click="newUserSignup()" class="away-button" type="submit" value="New user"/>
 </section>
 
 <section class="last-content" data-ng-if="newUser">
   <form class="login slide-in-up" id="signup" data-ng-submit="signup(user)">
     <fieldset>
-      <legend>New User</legend>
+      <h2>New User</h2>
       <input name="username" type="text" placeholder="username" data-ng-model="user.username"/>
       <input name="password" type="password" placeholder="password" data-ng-model="user.password"/>
       <input name="password" type="password" placeholder="re-enter password" data-ng-model="user.confirmPassword"/>
       <fieldset class="user-avatar-selector">
-        <legend>Select your avatar</legend>
+        <h2>Select your avatar</h2>
         <ul>
           <li class="slide-in-right">
             <input name="avatar" type="radio" value="imgs/avatar1.svg" data-ng-model="user.avatar"/>
@@ -61,10 +61,10 @@
           </li>
         </ul>
       </fieldset>
-      <input class="button" type="submit" value="Add Player"/>
+      <input class="button" type="submit" value="Go!"/>
     </fieldset>
   </form>
-  <input data-ng-click="oldUserSignin()" class="away-button" type="submit" value="return to login"/>
+  <input data-ng-click="oldUserSignin()" class="away-button" type="submit" value="Back"/>
 </section>
 <footer>
   <ul>

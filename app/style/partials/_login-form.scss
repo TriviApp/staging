@@ -2,9 +2,9 @@
   width: 75%;
   margin: auto;
   text-align: center;
-  legend {
+  h2 {
     @include set-font ($text-color-light, $main-font-light-italic, $font-size-large);
-    margin-bottom: 0.5em;
+    margin: 0.5em auto;
   }
   input {
     @include set-font;
@@ -16,6 +16,7 @@
     color: $text-color-theme;
   }
 }
+
 
 .user-avatar-selector {
   list-style-type: none;
