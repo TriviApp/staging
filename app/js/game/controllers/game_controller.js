@@ -10,47 +10,49 @@ module.exports = function(app) {
           return;
         }
         $scope.inBetweenQuestions = true;
-        angular.element(document.getElementById("countdown")).addClass("hidden");
+        angular.element(document.getElementById('countdown')).addClass('hidden');
         console.log('inside timeout');
-        angular.element(document.getElementById("q-card")).addClass("wrong animated shake");
+        angular.element(document.getElementById('q-card')).addClass('wrong animated shake');
+        angular.element(document.getElementsByClassName('big-button')).addClass('wrong');
         $scope.questionsArrIndex += 1;
         $rootScope.wrong += 1;
         $rootScope.scoreArr.push(false);
         setTimeout(function() {
-          angular.element(document.getElementById("q-card")).removeClass("wrong animated shake");
+          angular.element(document.getElementById('q-card')).removeClass('wrong animated shake');
+          angular.element(document.getElementsByClassName('big-button')).removeClass('wrong');
           if ($scope.questionsArrIndex < 5) {
             $scope.nextQuestion();
           } else {
-            window.location.href = "#/results";
+            window.location.href = '#/results';
           }
-        }, 2500);
+        }, duration);
       }, duration);
     };
 
     $scope.timer();
     
     var gameData = {
-      "category": "sports",
-      "questions": [
-        { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
-          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
-          "correctAnswer": "Arizona"
+      'category': 'sports',
+      'questions': [
+        { 'question':'Which NHL Team are nicknamed the "Coyotes"?', 
+          'answers': ['Calgary', 'Vancouver', 'Ottawa', 'Arizona'], 
+          'correctAnswer': 'Arizona'
         },
-        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
-          "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-          "correctAnswer": "Bobby Jones"
+        { 'question':'Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?', 
+          'answers': ['Tiger Woods', 'Tony Jacklin', 'Bobby Jones', 'Arnold Palmer'],
+          'correctAnswer': 'Bobby Jones'
         },
-        { "question":"Chukkas is the term given to periods played in what sport?", 
-          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
-          "correctAnswer": "Polo"
+        { 'question':'Chukkas is the term given to periods played in what sport?', 
+          'answers': ['Polo', 'Ice Hockey', 'Hockey', 'Curling'], 
+          'correctAnswer': 'Polo'
         },
-        { "question":"How many goose feathers does it take to make a shuttlecock?", 
-          "answers": ["16", "60", "21", "32"], 
-          "correctAnswer": "16"
+        { 'question':'How many goose feathers does it take to make a shuttlecock?', 
+          'answers': ['16', '60', '21', '32'], 
+          'correctAnswer': '16'
         },
-        { "question":"In Olympic Archery, how far is the competitor from the target?", 
-          "answers": ["50m", "120m", "70m", "100m"], 
-          "correctAnswer": "70m"
+        { 'question':'In Olympic Archery, how far is the competitor from the target?', 
+          'answers': ['50m', '120m', '70m', '100m'], 
+          'correctAnswer': '70m'
         }
       ]
     };
@@ -67,7 +69,6 @@ module.exports = function(app) {
     $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
-      // clearTimeout($scope.timeout);
       $scope.timer();
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
@@ -81,28 +82,29 @@ module.exports = function(app) {
       $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
       $scope.$apply();
       $scope.inBetweenQuestions = false;
-      angular.element(document.getElementById("countdown")).removeClass("hidden");
+      angular.element(document.getElementById('countdown')).removeClass('hidden');
       return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
     };
 
     $scope.checkAnswer = function(answer) {
       if ($scope.inBetweenQuestions === true) {
-        console.log("bouncing out of checkAnswer")
+        console.log('bouncing out of checkAnswer')
         return;
       } else {
         $scope.inBetweenQuestions = true;
         clearTimeout($scope.timer);
+        angular.element(document.getElementById('countdown')).addClass('hidden');
         $scope.chosen = answer;
-        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
-        $scope.isAnimated = true;   // adds "animated" class to all buttons
+        $scope.isIncorrect = true;  // adds 'incorrect' class to all buttons 
+        $scope.isAnimated = true;   // adds 'animated' class to all buttons
         if (answer === gameData
                        .questions[$scope.questionsArrIndex]
                        .correctAnswer) {
           
-          $scope.isRight = true;      // adds "right" class to entire view card
-          this.isChosen = true;       // adds "chosen" class to selected button
-          this.isCorrect = true;      // adds "correct" class to selected button
-          this.runRubberBand = true;  // adds "rubberBand" class to selected button
+          $scope.isRight = true;      // adds 'right' class to entire view card
+          this.isChosen = true;       // adds 'chosen' class to selected button
+          this.isCorrect = true;      // adds 'correct' class to selected button
+          this.runRubberBand = true;  // adds 'rubberBand' class to selected button
           $rootScope.right += 1;
           $rootScope.scoreArr.push(true);
           console.log($rootScope.scoreArr);
@@ -113,16 +115,16 @@ module.exports = function(app) {
             if ($scope.questionsArrIndex < 5) {
               $scope.nextQuestion();
             } else {
-              window.location.href = "#/results";
+              window.location.href = '#/results';
             }
             $scope.inBetweenQuestions = false;
             $scope.nextQuestion();
           }, 2000);
           return true;
         } else {
-          $scope.isWrong = true; // adds "wrong" class to entire view card
-          this.isChosen = true;  // adds "chosen" class to selected button
-          this.runHinge = true;  // adds "hinge" class to selected button
+          $scope.isWrong = true; // adds 'wrong' class to entire view card
+          this.isChosen = true;  // adds 'chosen' class to selected button
+          this.runHinge = true;  // adds 'hinge' class to selected button
           $rootScope.wrong += 1;
           $rootScope.scoreArr.push(false); 
           console.log($rootScope.scoreArr);
@@ -134,7 +136,7 @@ module.exports = function(app) {
               $scope.inBetweenQuestions = false;
               $scope.nextQuestion();
             } else {
-              window.location.href = "#/results";
+              window.location.href = '#/results';
             }
           }, 2200);
           return false;
