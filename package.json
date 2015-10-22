@@ -30,6 +30,7 @@
     "mongoose": "^4.1.11",
     "passport": "^0.3.0",
     "passport-http": "^0.3.0",
+    "bcrypt": "^0.8.5",
     "passport-http-bearer": "^1.0.1"
   },
   "devDependencies": {
@@ -38,7 +39,6 @@
     "angular-cookies": "^1.4.7",
     "angular-mocks": "^1.4.7",
     "angular-route": "^1.4.7",
-    "bcrypt": "^0.8.5",
     "chai": "^3.3.0",
     "chai-http": "^1.0.0",
     "eat": "^0.1.1",
