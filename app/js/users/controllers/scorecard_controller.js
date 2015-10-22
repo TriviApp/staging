@@ -3,7 +3,7 @@ module.exports = function(app) {
     function($rootScope, $scope, $location, $http, AuthService) {
 
     if (!$rootScope.user) {
-      AuthService.restoreSession();
+      AuthService.verifySession();
       $scope.user = $rootScope.user;
     } else {
       $scope.user = $rootScope.user;
