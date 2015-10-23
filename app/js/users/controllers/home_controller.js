@@ -6,6 +6,7 @@ module.exports = function(app) {
 
     $scope.newGame = function(category) {
       //request category data
+      console.log('req', req);
       $http.get('/api/categories/' + category)
       .then(function(res){
         // res will have the category data

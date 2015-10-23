@@ -33,7 +33,7 @@ describe('the categories resource', function () {
       .end(function(err, res) {
         // console.log(category);
         expect(err).to.eql(null);
-        console.log('res.body.category', res.body.category);
+        console.log('res.body.category', res);
         // expect(res).to.have.status(200);
         expect(res.body.category).to.eql('sports');
         done();
@@ -60,8 +60,9 @@ describe('the categories resource', function () {
       .get('/categories/' + category_id)
       .end(function (err, res) {
         expect(err).to.eql(null);
+        
         console.log(res.category);
-        expect(Array.isArray(res.body)).to.eql(false);
+        expect(Array.isArray(res.questions)).to.eql(true);
         done();
       });
   });
