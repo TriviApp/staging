@@ -30323,6 +30323,7 @@
 	    $rootScope.wrong = 0;
 
 	    $scope.nextQuestion = function() {
+	      clearTimeout(clock);
 	      angular.element(document.getElementById("timer")).removeClass("hidden");
 	      $scope.timer();
 	      $scope.isIncorrect = false;
@@ -30568,36 +30569,13 @@
 	    var scoreArr = $rootScope.scoreArr;
 	    $scope.right = $rootScope.right;
 	    $scope.wrong = $rootScope.wrong;
-	    // var scoreArr = [true,true,false,true,true];
 
-	    var gameData = {
-	      "category": "sports",
-	      "questions": [
-	        { "question":"Which NHL Team are nicknamed the 'Coyotes'?",
-	          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"],
-	          "correctAnswer": "Arizona"},
-	        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?",
-	          "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-	          "correctAnswer": "Bobby Jones"},
-	        { "question":"Chukkas is the term given to periods played in what sport?",
-	          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"],
-	          "correctAnswer": "Polo"},
-	        { "question":"How many goose feathers does it take to make a shuttlecock?",
-	          "answers": ["16", "60", "21", "32"],
-	          "correctAnswer": "16"},
-	        { "question":"In Olympic Archery, how far is the competitor from the target?",
-	          "answers": ["50m", "120m", "70m", "100m"],
-	          "correctAnswer": "70m"}
-	          ]
-	        }
-	    $scope.categoryName = gameData.category;
+	    $scope.categoryName = $rootScope.gameData.category;
 	    $scope.questionsArrIndex = 0;
-	    $scope.questionsArr = gameData.questions;
-	    $scope.question = gameData.questions[$scope.questionsArrIndex].question;
-	    $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
+	    $scope.questionsArr = $rootScope.gameData.questions;
+	    $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
+	    $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
 
-	    // $scope.right = 3;
-	    // $scope.wrong = 2;
 	    $scope.incorrectArr = [];
 	    $scope.correctArr = [];
 
