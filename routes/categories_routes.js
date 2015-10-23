@@ -15,8 +15,8 @@ categoryRouter.get('/categories/:category', bearerAuth.bearerAuthentication, fun
   Category.findOne({category: req.params.category}, function (err, data) {
     if (err) return (err, res);
     console.log('cat', req.params.category);
-    console.log('data pre sample', data.questions);
-    var data = [
+    console.log('data pre sample', data);
+        var data = [
 	 		{"question":"Which NHL Team are nicknamed the 'Coyotes'?", "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], "correctAnswer": "Arizona"},
 	 		{"question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"], "correctAnswer": "Bobby Jones"},
 	 		{"question":"Chukkas is the term given to periods played in what sport?", "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], "correctAnswer": "Polo"},

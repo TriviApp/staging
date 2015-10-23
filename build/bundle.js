@@ -30310,6 +30310,10 @@
 	    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
 	    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
 	    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
+	    // $rootScope.gameData.category = "hello world";
+	    // $rootScope.gameData.questions = ["hello ", "world"];
+	    // var question = {question: "hello world", answers:["boyya,", "madude"], correctAnswer: "yes"}
+	    // $rootScope.gameData.questions = question
 
 	    $scope.questionsArrIndex = 0;
 	    $scope.categoryName = $rootScope.gameData.category;
