@@ -20,9 +20,6 @@ describe('the categories resource', function () {
   it('should be able to get categories', function (done) {
     chai.request(url)
       .get('/categories')
-      .then(function (res) {
-        expect(res).to.eql(data);
-      })
       .end(function (err, res) {
         expect(err).to.eql(null);
         expect(Array.isArray(res.body)).to.eql(true);
