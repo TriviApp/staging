@@ -51,7 +51,7 @@ gulp.task('staticfiles:dev', function() {
 });
 
 gulp.task('servertests', function() {
-	return gulp.src('./test/server/*test.js')
+	return gulp.src('/test/server/*test.js')
 		.pipe(mocha({reporter: 'nyan'}))
 		.once('error', function(err) {
 			console.log(err);
