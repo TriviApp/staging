@@ -6,11 +6,12 @@ module.exports = function(app) {
 
     $scope.newGame = function(category) {
       //request category data
-      console.log('req', req);
+      console.log('category', category);
+
       $http.get('/api/categories/' + category)
       .then(function(res){
         // res will have the category data
-        $rootScope.gameData = res.data;
+        $rootScope.gameData = res.data.msg;
         $location.path('/newgame');
       }, function(res) {
         console.log(res);
