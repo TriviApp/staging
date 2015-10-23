@@ -14,6 +14,8 @@ categoryRouter.use(passport.initialize());
 categoryRouter.get('/categories/:category', bearerAuth.bearerAuthentication, function (req, res) {
   Category.find({category: req.params.category}, function (err, data) {
     if (err) return handleError.err500(err, res);
+    console.log('cat', req.params.category);
+    console.log('questions', data);
     var questions = _.sample(data, 5);
     res.json({msg: questions});
   });
