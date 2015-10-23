@@ -31,28 +31,28 @@ module.exports = function(app) {
     };
 
     $scope.timer();
-    
+
     // var gameData = {
     //   "category": "sports",
     //   "questions": [
-    //     { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
-    //       "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
+    //     { "question":"Which NHL Team are nicknamed the 'Coyotes'?",
+    //       "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"],
     //       "correctAnswer": "Arizona"
     //     },
-    //     { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
+    //     { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?",
     //       "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
     //       "correctAnswer": "Bobby Jones"
     //     },
-    //     { "question":"Chukkas is the term given to periods played in what sport?", 
-    //       "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
+    //     { "question":"Chukkas is the term given to periods played in what sport?",
+    //       "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"],
     //       "correctAnswer": "Polo"
     //     },
-    //     { "question":"How many goose feathers does it take to make a shuttlecock?", 
-    //       "answers": ["16", "60", "21", "32"], 
+    //     { "question":"How many goose feathers does it take to make a shuttlecock?",
+    //       "answers": ["16", "60", "21", "32"],
     //       "correctAnswer": "16"
     //     },
-    //     { "question":"In Olympic Archery, how far is the competitor from the target?", 
-    //       "answers": ["50m", "120m", "70m", "100m"], 
+    //     { "question":"In Olympic Archery, how far is the competitor from the target?",
+    //       "answers": ["50m", "120m", "70m", "100m"],
     //       "correctAnswer": "70m"
     //     }
     //   ]
@@ -70,7 +70,7 @@ module.exports = function(app) {
     $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
     $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
     $rootScope.scoreArr = [];
-    
+
     $rootScope.right = 0;
     $rootScope.wrong = 0;
 
@@ -79,7 +79,7 @@ module.exports = function(app) {
       $scope.timer();
       $scope.isIncorrect = false;
       $scope.isAnimated = false;
-      $scope.isChosen = false; 
+      $scope.isChosen = false;
       $scope.isCorrect = false;
       $scope.runRubberBand = false;
       $scope.isRight = false;
@@ -100,9 +100,9 @@ module.exports = function(app) {
         $scope.inBetweenQuestions = true;
         clearTimeout(clock);
         $scope.chosen = answer;
-        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
+        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons
         $scope.isAnimated = true;   // adds "animated" class to all buttons
-        if (answer === gameData
+        if (answer === $rootScope.gameData
                        .questions[$scope.questionsArrIndex]
                        .correctAnswer) {
           angular.element(document.getElementById("timer")).addClass("hidden");
@@ -132,10 +132,10 @@ module.exports = function(app) {
           this.isChosen = true;  // adds "chosen" class to selected button
           this.runHinge = true;  // adds "hinge" class to selected button
           $rootScope.wrong += 1;
-          $rootScope.scoreArr.push(false); 
+          $rootScope.scoreArr.push(false);
           console.log($rootScope.scoreArr);
+          $scope.questionsArrIndex += 1;
           setTimeout(function() {
-            $scope.questionsArrIndex += 1;
             console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
             console.log('index: ' + $scope.questionsArrIndex);
             if ($scope.questionsArrIndex < 5) {
