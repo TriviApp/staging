@@ -1,34 +1,32 @@
 progress {
   position: relative;
-  background-color: $background-color-med;
+  background-color: $background-color-light;
   border: 0;
-  height: 1.85em;
+  height: 16px;
+  width: 70px;
   border-radius: 0;
 }
 progress::-webkit-progress-bar {
   position: relative;
-  background-color: $background-color-med;
+  background-color: $background-color-light;
   border: 0;
-  height: 1.85em;
+  height: 16px;
+  width: 70px;
   border-radius: 0;
 }
 progress::-webkit-progress-value {
   position: relative;
   background-color: $background-color-theme;
   border: 0;
-  height: 1.85em;
+  height: 16px;
+  width: 70px;
   border-radius: 0;
 }
 progress::-moz-progress-bar {
   position: relative;
   background-color: $background-color-theme;
   border: 0;
-  height: 1.85em;
+  height: 16px;
+  width: 70px;
   border-radius: 0;
-}
-.icon-starbar::before {
-  position: absolute;
-  z-index: 1;
-  top: -64px;
-  left: 0;
 }
