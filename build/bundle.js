@@ -30527,7 +30527,6 @@
 
 	      $http.get('/api/categories/' + category)
 	      .then(function(res){
-	        console.log(res);
 	        // res will have the category data
 	        $rootScope.gameData = res.data.msg;
 	        $location.path('/newgame');
