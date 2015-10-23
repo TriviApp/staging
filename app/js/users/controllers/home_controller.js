@@ -13,6 +13,7 @@ module.exports = function(app) {
         // res will have the category data
         $rootScope.gameData = res.data.msg;
         $location.path('/newgame');
+        console.log('gamedata', $rootScope.gameData);
       }, function(res) {
         console.log(res);
       });
