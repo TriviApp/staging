@@ -1,4 +1,4 @@
-[
+
 	{"category": "sports",
 	 "questions": [
 	 		{"question":"Which NHL Team are nicknamed the 'Coyotes'?", "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], "correctAnswer": "Arizona"},
@@ -44,9 +44,10 @@
 	 		{"question":"Which throwing event provides athletes with a runway?", "answers": ["Discuss", "Javelin", "Hammer", "Shot Put"], "correctAnswer": "Javelin"},
 	 		{"question":"What is the name of the NHL franchise in Calgary?", "answers": ["The Flames", "The Braves", "The Canadians", "The Canucks"], "correctAnswer": "The Flames"},
 	 		{"question":"How old was golfer Morgan Pressel when she turned professional?", "answers": ["17", "24", "28", "14"], "correctAnswer": "17"},
-	 		{"question":"In what year did Sarah Hughes win the gold medal in women's figure skating?", "answers": ["2002", "1980", "1994", "1988"], "correctAnswer": "2002"},	 			 			 			 	
+	 		{"question":"In what year did Sarah Hughes win the gold medal in women's figure skating?", "answers": ["2002", "1980", "1994", "1988"], "correctAnswer": "2002"}	 			 			 			 	
 		]
-	},
+	}
+
 	{"category": "history",
 	 "questions": [
 	 		{"question":"Conducted through the state of Georgia in 1864, who lead the 'March to the Sea'?", "answers": ["Sherman", "Jackson", "MacArther", "Custer"], "correctAnswer": "Sherman"},
@@ -87,9 +88,10 @@
 	 		{"question":"Which ancient people were the first to use ships with sails?", "answers": ["Aztecs", "Incans", "Egyptians", "Vikings"], "correctAnswer": "Egyptians"},
 	 		{"question":"Which nation was the first to grant women the right to vote?", "answers": ["Great Britian", "New Zealand", "America", "Canada"], "correctAnswer": "New Zealand"},
 	 		{"question":"In 1918, Wilhelm II abdicated from which country?", "answers": ["Cuba", "Spain", "Mexico", "Germany"], "correctAnswer": "Germany"},
-	 		{"question":"The Peloponnesian War was a battle between whom?", "answers": ["Sparta and Athens", "China and Nepal", "Argentina and Peru", "Spain and Portugal"], "correctAnswer": "Spain and Athens"},	 			 		
+	 		{"question":"The Peloponnesian War was a battle between whom?", "answers": ["Sparta and Athens", "China and Nepal", "Argentina and Peru", "Spain and Portugal"], "correctAnswer": "Spain and Athens"}	 			 		
 		]
-	},	
+	}	
+
 	{"category": "entertainment",
 	 "questions": [
 	 		{"question":"How many pieces are on the board at the start of a game of chess?", "answers": ["28", "32", "36", "40"], "correctAnswer": "32"},
@@ -138,9 +140,10 @@
 	 		{"question":"What is the name of the icy planet on which the rebels have made their base in 'The Empire Strikes Back'? ", "answers": ["Loth", "Hoth", "Toth", "Goth"], "correctAnswer": "Hoth"},
 	 		{"question":"Which of the following movies from 2014 was based on a 2009 James Dashner novel?", "answers": ["The Maze Runner", "The Theory of Everything", "The Equalizer", "Divergent"], "correctAnswer": "The Maze Runner"},
 	 		{"question":"Complete Buzz Lightyear's catchphrase 'To Infinity and...'?", "answers": ["Away", "Fly", "Zoom", "Beyond"], "correctAnswer": "Beyond"},
-	 		{"question":"What is the name of Aladdin's mischievous monkey friend?", "answers": ["Abu", "Rafiki", "Curious George", "Kong"], "correctAnswer": "Abu"},		 			 		
+	 		{"question":"What is the name of Aladdin's mischievous monkey friend?", "answers": ["Abu", "Rafiki", "Curious George", "Kong"], "correctAnswer": "Abu"}		 			 		
 		]
-	},	
+	}
+
 	{"category": "science",
 	 "questions": [
 	 		{"question":"test?", "answers": ["a", "b", "c", "d"], "correctAnswer": "d"},
@@ -190,7 +193,7 @@
 	 		{"question":"test?", "answers": ["a", "b", "c", "d"], "correctAnswer": "d"},
 	 		{"question":"test?", "answers": ["a", "b", "c", "d"], "correctAnswer": "d"},
 	 		{"question":"test?", "answers": ["a", "b", "c", "d"], "correctAnswer": "d"},
-	 		{"question":"test?", "answers": ["a", "b", "c", "d"], "correctAnswer": "d"},	 
+	 		{"question":"test?", "answers": ["a", "b", "c", "d"], "correctAnswer": "d"}	 
 		]
 	}	
-]	
+

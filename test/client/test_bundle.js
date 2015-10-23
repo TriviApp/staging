@@ -30244,7 +30244,7 @@
 	        return setHeader(token);
 	      }
 
-	      var restoreSession = function() {
+	      var verifySession = function() {
 	        var token = sessionStorage.getItem('userToken');
 	        var deferred = $q.defer();
 
@@ -30253,7 +30253,7 @@
 
 	          $http.get('/api/username')
 	            .then(function(res) {
-	              $rootScope.user = res.data.user;
+	              $rootScope.user = res.data.msg;
 	              deferred.resolve();
 	            }, function(res) {
 	              console.log(res);
@@ -30269,7 +30269,7 @@
 
 	      return {
 	        setToken: setToken,
-	        restoreSession: restoreSession
+	        verifySession: verifySession
 	      };
 	    }
 	  ]);
@@ -30311,34 +30311,65 @@
 
 	module.exports = function(app) {
 	  app.controller('GameController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+	    var duration = 15000;
+	    var clock;
+	    $scope.timeout;
+	    $scope.inBetweenQuestions = false;
+
+	    $scope.timer = function() {
+	      clock = setTimeout(function() {
+	        if ($scope.inBetweenQuestions === true) {
+	          return;
+	        };
+	          $scope.inBetweenQuestions = true;
+	          console.log('inside timeout');
+	          angular.element(document.getElementById("q-card")).addClass("wrong animated slideOutLeft");
+	          angular.element(document.getElementsByClassName("big-button")).addClass("wrong");
+	          angular.element(document.getElementById("timer")).addClass("hidden");
+	          $scope.questionsArrIndex += 1;
+	          $rootScope.wrong += 1;
+	          $rootScope.scoreArr.push(false);
+	          setTimeout(function() {
+	            angular.element(document.getElementById("q-card")).removeClass("wrong animated slideOutLeft");
+	            angular.element(document.getElementsByClassName("big-button")).removeClass("wrong");
+	            if ($scope.questionsArrIndex < 5) {
+	              $scope.nextQuestion();
+	            } else {
+	              window.location.href = "#/results";
+	            }
+	        }, 1000);
+	      }, duration);
+	    };
+
+	    $scope.timer();
+	    
 	    var gameData = {
 	      "category": "sports",
 	      "questions": [
 	        { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
 	          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
-	          "correctAnswer": "Arizona"},
+	          "correctAnswer": "Arizona"
+	        },
 	        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
 	          "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-	          "correctAnswer": "Bobby Jones"},
+	          "correctAnswer": "Bobby Jones"
+	        },
 	        { "question":"Chukkas is the term given to periods played in what sport?", 
 	          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
-	          "correctAnswer": "Polo"},
+	          "correctAnswer": "Polo"
+	        },
 	        { "question":"How many goose feathers does it take to make a shuttlecock?", 
 	          "answers": ["16", "60", "21", "32"], 
-	          "correctAnswer": "16"},
+	          "correctAnswer": "16"
+	        },
 	        { "question":"In Olympic Archery, how far is the competitor from the target?", 
 	          "answers": ["50m", "120m", "70m", "100m"], 
-	          "correctAnswer": "70m"}
-	          ]
+	          "correctAnswer": "70m"
 	        }
+	      ]
+	    };
+
 	    $scope.questionsArrIndex = 0;
-	    // $scope.categoryName = $rootScope.gameData.category;
-	    // $scope.questionsArr = $rootScope.gameData.questions;
-	    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
-	    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
-	    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
-	    
-	    //hard coding versions
 	    $scope.categoryName = gameData.category;
 	    $scope.questionsArr = gameData.questions;
 	    $scope.question = gameData.questions[$scope.questionsArrIndex].question;
@@ -30350,6 +30381,8 @@
 	    $rootScope.wrong = 0;
 
 	    $scope.nextQuestion = function() {
+	      angular.element(document.getElementById("timer")).removeClass("hidden");
+	      $scope.timer();
 	      $scope.isIncorrect = false;
 	      $scope.isAnimated = false;
 	      $scope.isChosen = false; 
@@ -30361,58 +30394,66 @@
 	      $scope.answers = $scope.questionsArr[$scope.questionsArrIndex].answers;
 	      $scope.correctAnswer = $scope.questionsArr[$scope.questionsArrIndex].correctAnswer;
 	      $scope.$apply();
+	      $scope.inBetweenQuestions = false;
 	      return $scope.question = $scope.questionsArr[$scope.questionsArrIndex].question;
 	    };
 
 	    $scope.checkAnswer = function(answer) {
-	      $scope.chosen = answer;
-	      $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
-	      $scope.isAnimated = true;   // adds "animated" class to all buttons
-	      // if (answer === $rootScope
-	      //                 .gameData
-	      //                 .questions[$scope.questionsArrIndex]
-	      //                 .correctAnswer) {
-	      if (answer === gameData
-	                     .questions[$scope.questionsArrIndex]
-	                     .correctAnswer) {
-	        $scope.isRight = true;      // adds "right" class to entire view card
-	        this.isChosen = true;       // adds "chosen" class to selected button
-	        this.isCorrect = true;      // adds "correct" class to selected button
-	        this.runRubberBand = true;  // adds "rubberBand" class to selected button
-	        $rootScope.right += 1;
-	        $rootScope.scoreArr.push(true);
-	        console.log($rootScope.scoreArr);
-	        setTimeout(function() {
-	          $scope.questionsArrIndex += 1;
-	          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
-	          console.log('index: ' + $scope.questionsArrIndex);
-	          if ($scope.questionsArrIndex < 5) {
-	            $scope.nextQuestion();
-	          } else {
-	            window.location.href = "#/results";
-	          }
-	          $scope.nextQuestion();
-	        }, 2000);
-	        return true;
+	      if ($scope.inBetweenQuestions === true) {
+	        console.log("bouncing out of checkAnswer")
+	        return;
 	      } else {
-	        $scope.isWrong = true; // adds "wrong" class to entire view card
-	        this.isChosen = true;  // adds "chosen" class to selected button
-	        this.runHinge = true;  // adds "hinge" class to selected button
-	        $rootScope.wrong += 1;
-	        $rootScope.scoreArr.push(false); 
-	        console.log($rootScope.scoreArr);
-	        setTimeout(function() {
-	          $scope.questionsArrIndex += 1;
-	          console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
-	          console.log('index: ' + $scope.questionsArrIndex);
-	          if ($scope.questionsArrIndex < 5) {
+	        $scope.inBetweenQuestions = true;
+	        clearTimeout(clock);
+	        $scope.chosen = answer;
+	        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons 
+	        $scope.isAnimated = true;   // adds "animated" class to all buttons
+	        if (answer === gameData
+	                       .questions[$scope.questionsArrIndex]
+	                       .correctAnswer) {
+	          angular.element(document.getElementById("timer")).addClass("hidden");
+	          $scope.isRight = true;      // adds "right" class to entire view card
+	          this.isChosen = true;       // adds "chosen" class to selected button
+	          this.isCorrect = true;      // adds "correct" class to selected button
+	          this.runRubberBand = true;  // adds "rubberBand" class to selected button
+	          $rootScope.right += 1;
+	          $rootScope.scoreArr.push(true);
+	          console.log($rootScope.scoreArr);
+	          setTimeout(function() {
+	            $scope.questionsArrIndex += 1;
+	            console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
+	            console.log('index: ' + $scope.questionsArrIndex);
+	            if ($scope.questionsArrIndex < 5) {
+	              $scope.nextQuestion();
+	            } else {
+	              window.location.href = "#/results";
+	            }
+	            $scope.inBetweenQuestions = false;
 	            $scope.nextQuestion();
-	          } else {
-	            window.location.href = "#/results";
-	          }
-	        }, 2200);
-	        return false;
-	      }
+	          }, 2000);
+	          return true;
+	        } else {
+	          angular.element(document.getElementById("timer")).addClass("hidden");
+	          $scope.isWrong = true; // adds "wrong" class to entire view card
+	          this.isChosen = true;  // adds "chosen" class to selected button
+	          this.runHinge = true;  // adds "hinge" class to selected button
+	          $rootScope.wrong += 1;
+	          $rootScope.scoreArr.push(false); 
+	          console.log($rootScope.scoreArr);
+	          setTimeout(function() {
+	            $scope.questionsArrIndex += 1;
+	            console.log('right: ' + $rootScope.right + ', wrong: ' + $rootScope.wrong);
+	            console.log('index: ' + $scope.questionsArrIndex);
+	            if ($scope.questionsArrIndex < 5) {
+	              $scope.inBetweenQuestions = false;
+	              $scope.nextQuestion();
+	            } else {
+	              window.location.href = "#/results";
+	            }
+	          }, 2200);
+	          return false;
+	        }
+	      };
 	    };
 	  }])
 	};
@@ -30468,14 +30509,13 @@
 	      };
 
 	      $scope.signup = function(user) {
-	        $http.post('/api/signup', $scope.user)
+	        $http.post('/api/signup', user)
 	        .then(function(res) {
-	          console.log(res.data);
-	          $rootScope.user = res.data;
+	          $rootScope.user = res.data.msg;
 	          AuthService.setToken($rootScope.user.token);
 	          $location.path('/home');
 	        }, function(res) {
-	          console.log(res);
+	          console.log('signup failure res: ', res);
 	        });
 	      };
 
@@ -30502,10 +30542,6 @@
 
 	      $scope.newUserSignup = function() {
 	        $rootScope.newUser = true;
-	        console.log("signin", {
-	          username: $scope.user.username,
-	          password: $scope.user.password
-	        });
 	        return $location.path('/signup');
 	      };
 
@@ -30524,7 +30560,7 @@
 	        }, function(res) {
 	          AuthService.setToken();
 	          $scope.wrongPass = true;
-	          console.log(res);
+	          console.log('signin res error: ', res);
 	        });
 	      };
 
@@ -30541,7 +30577,7 @@
 	  app.controller('HomeController', ['$rootScope', '$scope', '$location', '$http', 'AuthService',
 	   function($rootScope, $scope, $location, $http, AuthService) {
 
-	    if (!$rootScope.user) AuthService.restoreSession();
+	    if (!$rootScope.user) AuthService.verifySession();
 
 	    $scope.newGame = function(category) {
 	      //request category data
@@ -30572,7 +30608,16 @@
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-	  app.controller('ScorecardController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
+	  app.controller('ScorecardController', ['$rootScope', '$scope', '$location', '$http', 'AuthService',
+	    function($rootScope, $scope, $location, $http, AuthService) {
+
+	    if (!$rootScope.user) {
+	      AuthService.verifySession();
+	      $scope.user = $rootScope.user;
+	    } else {
+	      $scope.user = $rootScope.user;
+	    }
+
 	    var scoreArr = $rootScope.scoreArr;
 	    $scope.right = $rootScope.right;
 	    $scope.wrong = $rootScope.wrong;
@@ -30581,20 +30626,20 @@
 	    var gameData = {
 	      "category": "sports",
 	      "questions": [
-	        { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
-	          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
+	        { "question":"Which NHL Team are nicknamed the 'Coyotes'?",
+	          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"],
 	          "correctAnswer": "Arizona"},
-	        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
+	        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?",
 	          "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
 	          "correctAnswer": "Bobby Jones"},
-	        { "question":"Chukkas is the term given to periods played in what sport?", 
-	          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
+	        { "question":"Chukkas is the term given to periods played in what sport?",
+	          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"],
 	          "correctAnswer": "Polo"},
-	        { "question":"How many goose feathers does it take to make a shuttlecock?", 
-	          "answers": ["16", "60", "21", "32"], 
+	        { "question":"How many goose feathers does it take to make a shuttlecock?",
+	          "answers": ["16", "60", "21", "32"],
 	          "correctAnswer": "16"},
-	        { "question":"In Olympic Archery, how far is the competitor from the target?", 
-	          "answers": ["50m", "120m", "70m", "100m"], 
+	        { "question":"In Olympic Archery, how far is the competitor from the target?",
+	          "answers": ["50m", "120m", "70m", "100m"],
 	          "correctAnswer": "70m"}
 	          ]
 	        }
@@ -30603,7 +30648,7 @@
 	    $scope.questionsArr = gameData.questions;
 	    $scope.question = gameData.questions[$scope.questionsArrIndex].question;
 	    $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
-	    
+
 	    // $scope.right = 3;
 	    // $scope.wrong = 2;
 	    $scope.incorrectArr = [];
@@ -30652,17 +30697,24 @@
 /***/ function(module, exports) {
 
 	module.exports = function(app) {
-	  app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
-	    $scope.user = $rootScope.user;
+	  app.controller('ProfileController', ['$rootScope', '$scope', '$location', '$http', 'AuthService',
+	    function($rootScope, $scope, $location, $http, AuthService) {
+	      if (!$rootScope.user) {
+	        AuthService.verifySession();
+	        $scope.user = $rootScope.user;
+	      } else {
+	        $scope.user = $rootScope.user;
+	      }
 
-	    $scope.rankings = function(category) {
-	      var correct = $scope.user.category.correct;
-	      var total = $scope.user.category.total;
-	      return correct/total;
-	    };
+	      $scope.rankings = function(category) {
+	        var correct = $scope.user.category.correct;
+	        var total = $scope.user.category.total;
+	        return correct/total;
+	      };
 
 	  }])
 	}
+
 
 /***/ },
 /* 19 */
@@ -30673,7 +30725,7 @@
 	    $httpProvider.interceptors.push(function($q, $location) {
 	      return {
 	        response: function(response) {
-	          console.log(response);
+	          console.log('interceptor response: ', response);
 	          return response;
 	        },
 	        responseError: function(response) {
@@ -30709,10 +30761,6 @@
 	      templateUrl: '/templates/views/scorecard_view.html',
 	      controller: 'ScorecardController'
 	    })
-	    // .when('/endgame', {
-	    //   templateUrl: '/templates/views/endgame_view.html',
-	    //   controller: 'EndgameController'
-	    // })
 	    .otherwise({
 	      redirectTo: '/signin'
 	    });

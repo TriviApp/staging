@@ -32,38 +32,43 @@ module.exports = function(app) {
 
     $scope.timer();
     
-    var gameData = {
-      "category": "sports",
-      "questions": [
-        { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
-          "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
-          "correctAnswer": "Arizona"
-        },
-        { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
-          "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-          "correctAnswer": "Bobby Jones"
-        },
-        { "question":"Chukkas is the term given to periods played in what sport?", 
-          "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
-          "correctAnswer": "Polo"
-        },
-        { "question":"How many goose feathers does it take to make a shuttlecock?", 
-          "answers": ["16", "60", "21", "32"], 
-          "correctAnswer": "16"
-        },
-        { "question":"In Olympic Archery, how far is the competitor from the target?", 
-          "answers": ["50m", "120m", "70m", "100m"], 
-          "correctAnswer": "70m"
-        }
-      ]
-    };
+    // var gameData = {
+    //   "category": "sports",
+    //   "questions": [
+    //     { "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
+    //       "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
+    //       "correctAnswer": "Arizona"
+    //     },
+    //     { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?", 
+    //       "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
+    //       "correctAnswer": "Bobby Jones"
+    //     },
+    //     { "question":"Chukkas is the term given to periods played in what sport?", 
+    //       "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"], 
+    //       "correctAnswer": "Polo"
+    //     },
+    //     { "question":"How many goose feathers does it take to make a shuttlecock?", 
+    //       "answers": ["16", "60", "21", "32"], 
+    //       "correctAnswer": "16"
+    //     },
+    //     { "question":"In Olympic Archery, how far is the competitor from the target?", 
+    //       "answers": ["50m", "120m", "70m", "100m"], 
+    //       "correctAnswer": "70m"
+    //     }
+    //   ]
+    // };
+    // $scope.categoryName = $rootScope.gameData.category;
+    // $scope.questionsArr = $rootScope.gameData.questions;
+    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
+    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
+    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
 
     $scope.questionsArrIndex = 0;
-    $scope.categoryName = gameData.category;
-    $scope.questionsArr = gameData.questions;
-    $scope.question = gameData.questions[$scope.questionsArrIndex].question;
-    $scope.answers = gameData.questions[$scope.questionsArrIndex].answers;
-    $scope.correctAnswer = gameData.questions[$scope.questionsArrIndex].correctAnswer;
+    $scope.categoryName = $rootScope.gameData.category;
+    $scope.questionsArr = $rootScope.gameData.questions;
+    $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
+    $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
+    $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
     $rootScope.scoreArr = [];
     
     $rootScope.right = 0;
