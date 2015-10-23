@@ -6,24 +6,6 @@ process.env.MONGO_URL = 'mongodb://localhost/notes_test';
 require(__dirname + '/../server');
 var mongoose = require('mongoose');
 var User = require(__dirname + '/../models/user');
-var eatauth = require(__dirname + '/../lib/eat_auth');
-var httpBasic = require(__dirname + '/../lib/http_basic');
-
-describe('httpbasic', function() {
-  it('should be able to parse http basic auth', function() {
-    var req = {
-      headers: {
-        authorization: 'Basic ' + (new Buffer('test:foobar123')).toString('base64')
-      }
-    };
-
-    httpBasic(req, {}, function() {
-      expect(typeof req.auth).to.eql('object');
-      expect(req.auth.username).to.eql('test');
-      expect(req.auth.password).to.eql('foobar123');
-    });
-  });
-});
 
 describe('auth', function() {
   after(function(done){
@@ -38,7 +20,9 @@ describe('auth', function() {
       .send({username: 'testuser', password: 'foobar123'})
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.token).to.have.length.above(0);
+        expect(res.data.username).to.be('testuser');
+        expect(res.data.password).to.be('');
+        expect(res.data.token).to.have.length.above(0);
         done();
       });
   });
@@ -54,10 +38,10 @@ describe('auth', function() {
           if (err) throw err;
           user.generateToken(function(err, token) {
             if (err) throw err;
-            this.token = token; 
+            this.token = token;
             done();
           }.bind(this));
-        }.bind(this)); 
+        }.bind(this));
       }.bind(this));
     });
 
@@ -70,20 +54,6 @@ describe('auth', function() {
           expect(res.body.token).to.have.length.above(0);
           done();
         });
-    });
-
-    it('should be able to authenticate with eat auth', function(done) {
-      var token = this.token;
-      var req = {
-        headers: {
-          token: token
-        }
-      };
-
-      eatauth(req, {}, function() {
-        expect(req.user.username).to.eql('test');
-        done();
-      });
     });
   });
 });
