@@ -46,3 +46,17 @@ $font-size-regular: 100%;
 $font-size-large: 150%;
 $font-size-jumbo: 250%;
 
+// syntax: set font 
+  // ( text color optional,
+  // font optional
+  // font size optional
+  // uppercase optional (any value at all makes it uppercase)
+  // )
+@mixin set-font ($text-color: $text-color-dark, $font: $main-font-regular, $font-size: $font-size-regular, $uppercase: "auto") {
+  color: $text-color;
+  font-family: $font;
+  font-size: $font-size;
+  @if $uppercase != "auto" {
+    text-transform: uppercase;
+  }
+}

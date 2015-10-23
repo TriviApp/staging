@@ -1,7 +1,7 @@
 .button-wrap {
   @include flex-container(flex,row,nowrap,center,center,center);
   margin: 0.5em 0;
-}
-.button-wrap.current {
-  background-color: $background-color-dark;
+  &.current {
+    background-color: $background-color-dark;
+  }
 }

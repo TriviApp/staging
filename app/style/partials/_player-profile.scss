@@ -19,8 +19,12 @@
     border-radius: 0.5em;
     margin: 1%;
   }
-}
+  .icon-starbar:before {
+    color: $text-color-dark;
+    margin-top: 0;
+  }
   .rating-indicator-container {
     @include flex-container(flex,row,wrap,space-around,center,center);
     padding: 2%;
-  }    
+  }
+}
