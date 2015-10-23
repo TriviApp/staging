@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="../build/style/main.css">
+  </head>
+  <body>
+    <section class="component">
+      <h1 class="notes">Header:</h1>
+      <header>
+        <h1 class="icon-avatar-bw">TriviApp</h1>
+        <figure><img src="imgs/avatar2.svg"><figcaption>username</figcaption></figure>
+        <h3>Optional instructions:</h3>
+      </header>
+    </section>   
+    <section class="component">
+      <h1 class="notes">Login form:</h1>
+      <form class="login" id="login">
+        <fieldset class="slide-in-down">
+          <h2>Login</h2>
+          <input name="username" type="text" placeholder="username"/>
+          <input name="password" type="text" placeholder="password"/>
+          <input class="button" type="submit" value="Let's play"/>
+        </fieldset>
+      </form>
+    </section>
+    <section class="component">
+      <h1 class="notes">Signup form:</h1>
+      <form class="login slide-in-up" id="login">
+        <fieldset>
+          <h2>New User</h2>
+          <input name="username" type="text" placeholder="username"/>
+          <input name="password" type="text" placeholder="password"/>
+          <input name="password" type="text" placeholder="re-enter password"/>
+          <fieldset class="user-avatar-selector">
+            <h2>Select your avatar</h2>
+            <ul>
+              <li class="slide-in-right">
+                <input name="avatar" type="radio" value="red"/>
+                <label>
+                  <img src="imgs/avatar1.svg">
+                </label>
+              </li>
+              <li class="slide-in-left">
+                <input name="avatar" type="radio" value="orange"/>
+                <label>
+                  <img src="imgs/avatar2.svg">
+                </label>
+              </li>
+              <li class="slide-in-right">
+                <input name="avatar" type="radio" value="yellow"/>
+                <label>
+                  <img src="imgs/avatar3.svg">
+                </label>
+              </li>
+              <li class="slide-in-left">
+                <input name="avatar" type="radio" value="green"/>
+                <label>
+                  <img src="imgs/avatar4.svg">
+                </label>
+              </li>
+              <li class="slide-in-up">
+                <input name="avatar" type="radio" value="blue"/>
+                <label>
+                  <img src="imgs/avatar5.svg">
+                </label>
+              </li>
+              <li class="slide-in-right">
+                <input name="avatar" type="radio" value="purple"/>
+                <label>
+                  <img src="imgs/avatar6.svg">
+                </label>
+              </li>
+              <li class="slide-in-left">
+                <input name="avatar" type="radio" value="pink"/>
+                <label>
+                  <img src="imgs/avatar7.svg">
+                </label>
+              </li>
+            </ul>
+          </fieldset>
+          <input class="button" type="submit" value="New Player"/>
+        </fieldset>
+      </form>
+    </section>
+    <section class="component">
+      <h1 class="notes">User profile card:</h1>
+      <section class="card player-profile">
+        <ul>
+          <li>Stats</li>
+          <li>Stats</li>
+        </ul>
+        <figure><img src="imgs/avatar5.svg"><figcaption>username</figcaption></figure>
+        <ul>
+          <li>Stats</li>
+          <li>Stats</li>
+        </ul>
+      </section>
+      <a class="logout-button" href="/signin">Log Out</a>
+      <a class="play-button">Play Button</a>
+    </section>
+    <section class="component">
+      <h1 class="notes">Countdown timer:</h1>
+      <div id="timer" class="timer" ng-if="!inBetweenQuestions">
+        <div class="pie spinner" ng-if="!inBetweenQuestions"></div>
+        <div class="pie filler" ng-if="!inBetweenQuestions"></div>
+        <div class="mask" ng-if="!inBetweenQuestions"></div>
+      </div>
+    </section>
+    <section class="component">
+      <h1 class="notes">Category list:</h1>
+      <section class="cat-card">
+        <ul>
+          <li class="big-button">Sports</li>
+          <li class="big-button">Entertainment</li>
+          <li class="big-button">History</li>
+          <li class="big-button">Science</li>
+        </ul>
+      </section>
+    </section>    
+    <section class="component">
+      <h1 class="notes">Question Card:</h1>
+      <section class="card q-card">
+        <h1>History</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <ul class="answers">
+          <li class="big-button">Marie Antoinette</li>
+          <li class="big-button">Birds</li>
+          <li class="big-button">The Hundred-Years' War</li>
+          <li class="big-button">San Francisco 49er's</li>
+        </ul>
+      </section>
+    </section>
+    <section class="component">
+      <h1 class="notes">Answer Card (correct):</h1>
+      <section class="card q-card right">
+        <h1>History</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <ul class="answers correct">
+          <li class="big-button incorrect">Marie Antoinette</li>
+          <li class="big-button correct chosen animated rubberBand">Birds</li>
+          <li class="big-button incorrect">The Hundred-Years' War</li>
+          <li class="big-button incorrect">San Francisco 49er's</li>
+          <li class="big-button incorrect">1945</li>
+        </ul>
+      </section>
+    </section>
+    <section class="component">
+      <h1 class="notes">Answer Card (incorrect):</h1>
+      <section class="card q-card wrong">
+        <h1>History</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <ul class="answers wrong">
+          <li class="big-button incorrect">Marie Antoinette</li>
+          <li class="big-button incorrect">Birds</li>
+          <li class="big-button incorrect chosen animated hinge">The Hundred-Years' War</li>
+          <li class="big-button incorrect">San Francisco 49er's</li>
+        </ul>
+      </section>
+    </section>
+    <section class="component">
+      <h1 class="notes">Buttons:</h1>
+      <a class="big-button">Category Button</a>
+      <a class="big-button">Play Button</a>
+      <a class="small-button">Log Out</a>
+      <a class="small-button">Quit</a>
+      <a class="small-button">To Profile</a>
+    </section>
+    <section class="component">
+      <h1 class="notes">Avatars:</h1>
+      <img src="imgs/avatar1.svg">
+      <img src="imgs/avatar2.svg">
+      <img src="imgs/avatar3.svg">
+      <img src="imgs/avatar4.svg">
+      <img src="imgs/avatar5.svg">
+      <img src="imgs/avatar6.svg">
+      <img src="imgs/avatar7.svg">
+    </section>
+    <section class="component">
+      <h1 class="notes last-content">Footer:</h1>
+      <footer>
+        <ul>
+          <li><small>&copy; Copyright 2015. All Rights Reserved.</small></li>
+          <li><small>Molly Kent, Clare Monahan, Will Schull, Monica Wu, Lyle Charles Scott</small></li>
+        </ul>         
+      </footer>
+    </section>
+  </body>
+</html>
