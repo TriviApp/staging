@@ -44,6 +44,7 @@ module.exports = function(app) {
     $rootScope.wrong = 0;
 
     $scope.nextQuestion = function() {
+      clearTimeout(clock);
       angular.element(document.getElementById("timer")).removeClass("hidden");
       $scope.timer();
       $scope.isIncorrect = false;
