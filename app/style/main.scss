@@ -10,6 +10,7 @@
 @import "modules/animations.scss";
 
 // PARTIALS
+@import "partials/component-library.scss";
 @import "partials/login-screen.scss";
 @import "partials/login-form.scss";
 @import "partials/percentage-stars.scss";
@@ -24,23 +25,23 @@
 @import "partials/games-card.scss";
 @import "partials/rank-indicator.scss";
 @import "partials/player-profile.scss";
-@import "partials/opponents-card.scss";
+// @import "partials/opponents-card.scss";
 @import "partials/individual-opponent-console.scss";
 @import "partials/spinner.scss";
   // buttons
   @import "partials/buttons/button-wrap.scss";
   @import "partials/buttons/small-button.scss";
   @import "partials/buttons/big-button.scss";
-  @import "partials/buttons/category-button.scss";
-  @import "partials/buttons/play-button.scss";
-  @import "partials/buttons/logout-button.scss";
-  @import "partials/buttons/quit-button.scss";
-  @import "partials/buttons/to-profile-button.scss";
-  @import "partials/buttons/answer-button.scss";
-  @import "partials/buttons/opponent-profile-button.scss";
-  @import "partials/buttons/challenge-button.scss";
-  @import "partials/buttons/login-form-away-buttons.scss";
-  @import "partials/buttons/login-form-forward-buttons.scss";
+  // @import "partials/buttons/category-button.scss";
+  // @import "partials/buttons/play-button.scss";
+  // @import "partials/buttons/logout-button.scss";
+  // @import "partials/buttons/quit-button.scss";
+  // @import "partials/buttons/to-profile-button.scss";
+  // @import "partials/buttons/answer-button.scss";
+  // @import "partials/buttons/opponent-profile-button.scss";
+  // @import "partials/buttons/challenge-button.scss";
+  // @import "partials/buttons/login-form-away-buttons.scss";
+  // @import "partials/buttons/login-form-forward-buttons.scss";
   
 
 // VENDOR

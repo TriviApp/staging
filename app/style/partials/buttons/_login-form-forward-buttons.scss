@@ -1,12 +1,3 @@
 .login {
-  .button {
-    @include button($text-color-light, $background-color-theme, $border-color-med, $main-font-regular, $font-size-regular, $background-color-theme, $text-color-light, uppercase);
-    width: 50%;
-    margin-top: 1em;
-    &:focus {
-      -webkit-box-shadow: 1px 1px 10px 6px $background-color-theme;
-      -moz-box-shadow: 1px 1px 10px 6px $background-color-theme;
-        box-shadow: 1px 1px 10px 6px $background-color-theme;
-    }
-  }
+  
 }

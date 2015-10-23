@@ -23,4 +23,12 @@ header {
     text-align: center;
     margin: 1em 0 1em 0;
   }
+  .icon-avatar-bw:before {
+    border: 1px solid $border-color-theme;
+    border-radius: 50%;
+    padding: 0.15em;
+    margin-top: 0;
+    margin-right: 0.1em;
+    font-size: 1.2em;
+  }
 }

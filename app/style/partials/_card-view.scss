@@ -1,0 +1,21 @@
+.card {
+  margin: 1em auto 0 auto;
+  border: 3px solid $border-color-theme;
+  border-radius: 0.5em;
+  padding: 0.75em 5%;
+  width: 96%;
+  background-color: $background-color-light;
+  h1 {
+    @include set-font($text-color-dark, $main-font-regular, $font-size-jumbo, "auto");
+    text-align: center;
+    margin-bottom: 0.5em;
+    text-transform: capitalize;
+  }
+  h2 {
+    @include set-font($text-color-dark, $main-font-regular, $font-size-large, "auto");
+    margin-bottom: 0.35em;
+    padding-bottom: 0.35em;
+    text-align: center;
+    line-height: 1.5; 
+  }
+}
