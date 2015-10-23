@@ -1,7 +1,7 @@
 <header>
   <figure><img src="{{user.avatar}}"><figcaption>{{user.username}}</figcaption></figure>
 </header>
-<section id="q-card" class="q-card" data-ng-class="{'right': isRight, 'wrong': isWrong}">
+<section id="q-card" class="card q-card" data-ng-class="{'right': isRight, 'wrong': isWrong}">
   <div data-question-header
        data-category-header="categoryName"
        data-question="question"
@@ -12,9 +12,9 @@
     <div class="mask" ng-if="!inBetweenQuestions"></div>
   </div>
   <div class="timer-space" ng-if="inBetweenQuestions"></div>
-  <div id="answers" class="answers">
-    <a data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="big-button" data-ng-class="{'chosen': isChosen, 'correct': isCorrect, 'incorrect': isIncorrect, 'animated':isAnimated, 'hinge': runHinge, 'rubberBand':runRubberBand}">{{answer}}</a>
-  </div>
+  <ul id="answers" class="answers">
+    <li data-ng-repeat="answer in answers" data-ng-click="checkAnswer(answer)" class="big-button" data-ng-class="{'chosen': isChosen, 'correct': isCorrect, 'incorrect': isIncorrect, 'animated':isAnimated, 'hinge': runHinge, 'rubberBand':runRubberBand}">{{answer}}</li>
+  </ul>
 </section>
 <div class="button-wrap last-content">
   <a class="small-button" href="#/signin">Quit</a>
