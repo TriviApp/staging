@@ -10,21 +10,19 @@
     <link rel="stylesheet" href="../build/style/main.css">
   </head>
   <body>
-    
     <section class="component">
       <h1 class="notes">Header:</h1>
       <header>
         <h1 class="icon-avatar-bw">TriviApp</h1>
-        <figure><img src="temp/avatar2.svg"><figcaption>username</figcaption></figure>
+        <figure><img src="imgs/avatar2.svg"><figcaption>username</figcaption></figure>
         <h3>Optional instructions:</h3>
       </header>
     </section>   
-
     <section class="component">
       <h1 class="notes">Login form:</h1>
       <form class="login" id="login">
         <fieldset class="slide-in-down">
-          <legend>Login</legend>
+          <h2>Login</h2>
           <input name="username" type="text" placeholder="username"/>
           <input name="password" type="text" placeholder="password"/>
           <input class="button" type="submit" value="Let's play"/>
@@ -32,49 +30,56 @@
       </form>
     </section>
     <section class="component">
+      <h1 class="notes">Signup form:</h1>
       <form class="login slide-in-up" id="login">
         <fieldset>
-          <legend>New User</legend>
+          <h2>New User</h2>
           <input name="username" type="text" placeholder="username"/>
           <input name="password" type="text" placeholder="password"/>
           <input name="password" type="text" placeholder="re-enter password"/>
           <fieldset class="user-avatar-selector">
-            <legend>Select your avatar</legend>
+            <h2>Select your avatar</h2>
             <ul>
               <li class="slide-in-right">
                 <input name="avatar" type="radio" value="red"/>
                 <label>
-                  <img src="temp/avatar1.svg">
+                  <img src="imgs/avatar1.svg">
                 </label>
               </li>
               <li class="slide-in-left">
                 <input name="avatar" type="radio" value="orange"/>
                 <label>
-                  <img src="temp/avatar2.svg">
+                  <img src="imgs/avatar2.svg">
                 </label>
               </li>
               <li class="slide-in-right">
                 <input name="avatar" type="radio" value="yellow"/>
                 <label>
-                  <img src="temp/avatar3.svg">
+                  <img src="imgs/avatar3.svg">
                 </label>
               </li>
               <li class="slide-in-left">
                 <input name="avatar" type="radio" value="green"/>
                 <label>
-                  <img src="temp/avatar4.svg">
+                  <img src="imgs/avatar4.svg">
+                </label>
+              </li>
+              <li class="slide-in-up">
+                <input name="avatar" type="radio" value="blue"/>
+                <label>
+                  <img src="imgs/avatar5.svg">
                 </label>
               </li>
               <li class="slide-in-right">
                 <input name="avatar" type="radio" value="purple"/>
                 <label>
-                  <img src="temp/avatar6.svg">
+                  <img src="imgs/avatar6.svg">
                 </label>
               </li>
               <li class="slide-in-left">
                 <input name="avatar" type="radio" value="pink"/>
                 <label>
-                  <img src="temp/avatar7.svg">
+                  <img src="imgs/avatar7.svg">
                 </label>
               </li>
             </ul>
@@ -83,205 +88,97 @@
         </fieldset>
       </form>
     </section>
-
-<article data-ng-controller="ProfileController">
-  <section class="component">
-    <h1 class="notes">User stat graphic (bottom):</h1>
-    <aside class="rating-indicator-container left">
-      <div class="rank-indicator category-sports slide-in-left">
-        <p>Sports</p>
-        <p>{{ rankings(category1) }}</p>
-      </div>
-<!--       <div class="rank-indicator category-2 slide-in-down">
-        <p></p>
-        <p></p>
-      </div> -->
-      <div class="rank-indicator category-entertainment slide-in-right">
-        <p>Entertainment</p>
-        <p>{{ rankings(category2) }}</p>
-      </div>
-    </aside>
-  </section>
-
-  <section class="component">
-    <h1 class="notes">User profile card:</h1>
-    <section class="player-profile">
-      <h1>TriviApp</h1>
-      <figure><img src="temp/avatar5.svg"><figcaption>{{user.username}}</figcaption></figure>      
-      <h3>{{"FIVE"}}</h3>
-      <h3>{{"TIMESTAMP"}}</h3>
+    <section class="component">
+      <h1 class="notes">User profile card:</h1>
+      <section class="card player-profile">
+        <figure><img src="imgs/avatar5.svg"><figcaption>username</figcaption></figure>
+        <ul>
+          <li>Stats</li>
+          <li>Stats</li>
+        </ul>
+      </section>
+      <a class="logout-button" href="/signin">Log Out</a>
+      <a class="play-button">Play Button</a>
     </section>
-    <a class="logout-button" href="/signin">Log Out</a>
-    <a class="play-button">Play Button</a>
-  </section>
-
-  <section class="component">
-    <h1 class="notes">User stat graphic (top):</h1>
-    <aside class="rating-indicator-container right">
-      <div class="rank-indicator category-history slide-in-left">
-        <p>History</p>
-        <p>{{ rankings(category3) }}</p>
-      </div>
-<!--       <div class="rank-indicator category-5 slide-in-up">
-        <p></p>
-        <p></p>
-      </div> -->
-      <div class="rank-indicator category-science slide-in-right">
-        <p>Science</p>
-        <p>{{ rankings(category4) }}</p>
-      </div>
-    </aside>
-  </section>
-</article>
-
     <section class="component">
       <h1 class="notes">Countdown timer:</h1>
-      <div class="countdown-timer l-countdown-timer"></div>
+      <div id="timer" class="timer" ng-if="!inBetweenQuestions">
+        <div class="pie spinner" ng-if="!inBetweenQuestions"></div>
+        <div class="pie filler" ng-if="!inBetweenQuestions"></div>
+        <div class="mask" ng-if="!inBetweenQuestions"></div>
+      </div>
     </section>
-
     <section class="component">
       <h1 class="notes">Category list:</h1>
       <section class="cat-card">
         <ul>
-          <li class="cat-button">History</li>
-          <li class="cat-button">Sports</li>
-          <li class="cat-button">Entertainment</li>
-          <li class="cat-button">Food</li>
-          <li class="cat-button">Science</li>
-          <li class="cat-button">Star Wars</li>
-          <li class="cat-button">Math</li>
+          <li class="big-button">Sports</li>
+          <li class="big-button">Entertainment</li>
+          <li class="big-button">History</li>
+          <li class="big-button">Science</li>
         </ul>
       </section>
     </section>    
-
     <section class="component">
       <h1 class="notes">Question Card:</h1>
-      <section class="q-card">
-        <h1>Mythology</h1>
+      <section class="card q-card">
+        <h1>History</h1>
         <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
-        <div class="answers">
-          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
-          <a class="answer-button"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
-          ><a class="answer-button"><span class="letter">B</span><span class="text">Birds</span></a
-          ><a class="answer-button"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
-          ><a class="answer-button"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
-          ><a class="answer-button"><span class="letter">E</span><span class="text">1945</span></a>
-        </div>
-      </section>
-    </section>
-
-    <section class="component">
-      <h1 class="notes">Answer Card (correct):</h1>
-      <section class="a-card correct">
-        <h1>Mythology</h1>
-        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
-        <div class="answers">
-          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
-          <a class="answer-button incorrect"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
-          ><a class="answer-button correct chosen animated rubberBand"><span class="letter">B</span><span class="text">Birds</span></a
-          ><a class="answer-button incorrect"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
-          ><a class="answer-button incorrect"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
-          ><a class="answer-button incorrect"><span class="letter">E</span><span class="text">1945</span></a>
-        </div>
-      </section>
-    </section>
-
-    <section class="component">
-      <h1 class="notes">Answer Card (wrong):</h1>
-      <section class="a-card wrong">
-        <h1>Mythology</h1>
-        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
-        <div class="answers">
-          <!-- The weird format of line breaks below is to prevent silly gaps between the <a> tags, since they are { display: inline-block }.  Looks weird, but just go with it! -->
-          <a class="answer-button incorrect"><span class="letter">A</span><span class="text">Marie Antoinette</span></a
-          ><a class="answer-button correct animated rubberBand"><span class="letter">B</span><span class="text">Birds</span></a
-          ><a class="answer-button incorrect chosen animated hinge"><span class="letter">C</span><span class="text">The Hundred-Years' War</span></a
-          ><a class="answer-button incorrect"><span class="letter">D</span><span class="text">San Francisco 49er's</span></a
-          ><a class="answer-button incorrect"><span class="letter">E</span><span class="text">1945</span></a>
-        </div>
-      </section>
-    </section>
-
-    <section class="component">
-      <h1 class="notes">Opponent list:</h1>
-      <section>
-        <ul class="opponents-card">
-          <li class="individual-opponent-console">
-            <h1>Jose</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>
-          <li class="individual-opponent-console">
-            <h1>Hepzebiah</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>
-          <li class="individual-opponent-console">
-            <h1>Donald</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>  
-          <li class="individual-opponent-console">
-            <h1>Groober</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>
-          <li class="individual-opponent-console">
-            <h1>Diggity</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>
-          <li class="individual-opponent-console">
-            <h1>Susan</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>
-          <li class="individual-opponent-console">
-            <h1>MadEliteTriviaSkillz</h1>
-            <div class="controls">
-              <a class="opponent-profile-button">Profile</a>
-              <a class="challenge-button">Challenge</a>
-            </div>
-          </li>
+        <ul class="answers">
+          <li class="big-button">Marie Antoinette</li>
+          <li class="big-button">Birds</li>
+          <li class="big-button">The Hundred-Years' War</li>
+          <li class="big-button">San Francisco 49er's</li>
         </ul>
       </section>
     </section>
-
+    <section class="component">
+      <h1 class="notes">Answer Card (correct):</h1>
+      <section class="card q-card right">
+        <h1>History</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <ul class="answers correct">
+          <li class="big-button incorrect">Marie Antoinette</li>
+          <li class="big-button correct chosen animated rubberBand">Birds</li>
+          <li class="big-button incorrect">The Hundred-Years' War</li>
+          <li class="big-button incorrect">San Francisco 49er's</li>
+          <li class="big-button incorrect">1945</li>
+        </ul>
+      </section>
+    </section>
+    <section class="component">
+      <h1 class="notes">Answer Card (incorrect):</h1>
+      <section class="card q-card wrong">
+        <h1>History</h1>
+        <h2>Pomegranates are a major feature in the myth of Persephone, wife of _______.</h2>
+        <ul class="answers wrong">
+          <li class="big-button incorrect">Marie Antoinette</li>
+          <li class="big-button incorrect">Birds</li>
+          <li class="big-button incorrect chosen animated hinge">The Hundred-Years' War</li>
+          <li class="big-button incorrect">San Francisco 49er's</li>
+        </ul>
+      </section>
+    </section>
     <section class="component">
       <h1 class="notes">Buttons:</h1>
-      <a class="cat-button">Category Button</a>
-      <a class="play-button">Play Button</a>
-      <a class="logout-button">Log Out</a>
-      <a class="quit-button">Quit</a>
-      <a class="to-profile-button">To Profile</a>
-      <a class="challenge-button">Challenge</a>
+      <a class="big-button">Category Button</a>
+      <a class="big-button">Play Button</a>
+      <a class="small-button">Log Out</a>
+      <a class="small-button">Quit</a>
+      <a class="small-button">To Profile</a>
     </section>
-
     <section class="component">
-      <h1 class="notes">Default Avatars:</h1>
-      <img src="temp/avatar1.svg">
-      <img src="temp/avatar2.svg">
-      <img src="temp/avatar3.svg">
-      <img src="temp/avatar4.svg">
-      <img src="temp/avatar5.svg">
-      <img src="temp/avatar6.svg">
-      <img src="temp/avatar7.svg">
+      <h1 class="notes">Avatars:</h1>
+      <img src="imgs/avatar1.svg">
+      <img src="imgs/avatar2.svg">
+      <img src="imgs/avatar3.svg">
+      <img src="imgs/avatar4.svg">
+      <img src="imgs/avatar5.svg">
+      <img src="imgs/avatar6.svg">
+      <img src="imgs/avatar7.svg">
     </section>
- 
     <section class="component">
-      <h1 class="notes">Footer:</h1>
+      <h1 class="notes last-content">Footer:</h1>
       <footer>
         <ul>
           <li><small>&copy; Copyright 2015. All Rights Reserved.</small></li>
@@ -289,106 +186,5 @@
         </ul>         
       </footer>
     </section>
-
-<article data-ng-controller="ProfileController">
-  <section class="component">
-    <h1 class="notes">User stat graphic (bottom):</h1>
-    <aside class="rating-indicator-container left">
-      <div class="rank-indicator category-1 slide-in-left">
-        <p>Sports</p>
-        <p class="rank">{{ rankings(category1) }}</p>
-      </div>
-<!--       <div class="rank-indicator category-5 slide-in-down">
-        <p></p>
-        <p></p>
-      </div> -->
-      <div class="rank-indicator category-2 slide-in-right">
-        <p>Entertainment</p>
-        <p class="rank">{{ rankings(category2) }}</p>
-      </div>
-    </aside>
-  </section>
-
-  <section class="component">
-    <h1 class="notes">User profile card:</h1>
-    <section class="player-profile">
-      <h1>TriviApp</h1>
-      <figure><img src="temp/avatar5.svg"><figcaption>{{user.username}}</figcaption></figure>      
-      <h3>{{"FIVE"}}</h3>
-      <h3>{{"TIMESTAMP"}}</h3>
-    </section>
-    <a class="logout-button" href="/signin">Log Out</a>
-    <a class="play-button">Play Button</a>
-  </section>
-
-  <section class="component">
-    <h1 class="notes">User stat graphic (top):</h1>
-    <aside class="rating-indicator-container right">
-      <div class="rank-indicator category-3 slide-in-left">
-        <p>History</p>
-        <p class="rank">{{ rankings(category3) }}</p>
-      </div>
-<!--       <div class="rank-indicator category-6 slide-in-up">
-        <p></p>
-        <p class="rank"></p>
-      </div> -->
-      <div class="rank-indicator category-4 slide-in-right">
-        <p>Science</p>
-        <p class="rank">{{ rankings(category4) }}</p>
-      </div>
-    </aside>
-  </section>
-</article>
-
-<article data-ng-controller="ProfileController">
-  <section class="component">
-    <!-- <h1 class="notes">User stat graphic (bottom):</h1> -->
-    <aside class="rating-indicator-container left">
-      <div class="rank-indicator category-sports slide-in-left">
-        <p>Sports</p>
-        <p>{{ rankings }}</p>
-      </div>
-<!--       <div class="rank-indicator category-2 slide-in-down">
-        <p></p>
-        <p></p>
-      </div> -->
-      <div class="rank-indicator category-entertainment slide-in-right">
-        <p>Entertainment</p>
-        <p>{{ rankings }}</p>
-      </div>
-    </aside>
-  </section>
-
-  <section class="component">
-    <!-- <h1 class="notes">User profile card:</h1> -->
-    <section class="player-profile">
-      <h1>TriviApp</h1>
-      <figure><img src="temp/avatar5.svg"><figcaption>{{user.username}}</figcaption></figure>      
-      <h3>{{"FIVE"}}</h3>
-      <h3>{{"TIMESTAMP"}}</h3>
-    </section>
-    <a class="play-button">Play Button</a>
-    <a class="logout-button" href="/signin">Log Out</a>
-  </section>
-
-  <section class="component">
-    <!-- <h1 class="notes">User stat graphic (top):</h1> -->
-    <aside class="rating-indicator-container right">
-      <div class="rank-indicator category-history slide-in-left">
-        <p>History</p>
-        <p>{{ rankings }}</p>
-      </div>
-<!--       <div class="rank-indicator category-5 slide-in-up">
-        <p></p>
-        <p></p>
-      </div> -->
-      <div class="rank-indicator category-science slide-in-right">
-        <p>Science</p>
-        <p>{{ rankings }}</p>
-      </div>
-    </aside>
-  </section>
-</article>
-
   </body>
 </html>

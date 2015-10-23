@@ -7,8 +7,30 @@
   header img {
     width: 8%;
   }
+  .big-button {
+    .wrong &.incorrect {
+      color: $text-color-med;
+      background-color: $background-color-wrong;
+      border-color: $border-color-med;
+    }
+    .right &.incorrect {
+      color: $text-color-med;
+      background-color: $background-color-correct;
+      border-color: $border-color-med;
+    }
+    &.chosen.incorrect {
+      color: $text-color-wrong;
+      background-color: $background-color-light;
+      border-color: $border-color-wrong;
+    }
+    &.chosen.correct {
+      color: $text-color-correct;
+      background-color: $background-color-light;
+      border-color: $border-color-correct;
+    }
+  }
   .notes {
-    background-color: $background-color-light;
+    @include set-font($text-color-light, $main-font-regular, $font-size-large, "auto");
     padding: 1em 0;
     margin-bottom: 1em;
     h1 {
