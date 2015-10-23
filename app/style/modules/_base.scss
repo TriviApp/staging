@@ -10,36 +10,3 @@ main {
   min-height: 100%;
   position: relative;
 }
-.last-content {
-  padding-bottom: 5em;
-}
-h1 {
-  font-size: 200%;
-}
-h2 {
-  font-size: 150%;
-}
-
-.component {
-  margin: 1em 0;
-  position: relative;
-  img {
-    width: 25%;
-  }
-  header img {
-    width: 8%;
-  }
-  .notes {
-    background-color: $background-color-light;
-    padding: 1em 0;
-    margin-bottom: 1em;
-    h1 {
-      @include flex-container(inline-flex,row,nowrap,center,center,center);
-    }
-    ul {
-      list-style-type: disc;
-      padding: 1em;
-      margin: 1em;
-    }
-  }
-}

@@ -1,23 +1,7 @@
 .score-card {
-  margin: 1em auto 0 auto;
-  border: 3px solid $border-color-theme;
-  border-radius: 0.5em;
-  padding: 0.75em 5%;
-  width: 96%;
-  background-color: $background-color-light;
-  h1 {
-    @include set-font($text-color-dark, $main-font-regular, $font-size-jumbo, "auto");
-    text-align: center;
-    margin-bottom: 0.5em;
-    text-transform: capitalize;
-  }
+  position: relative;
   h2 {
-    @include set-font($text-color-dark, $main-font-regular, $font-size-large, "auto");
-    margin-bottom: 0.35em;
-    border-bottom: 1px solid rgba($border-color-theme, 0.5);
-    padding-bottom: 0.35em;
-    text-align: center;
-    line-height: 1.5;   
+    border-bottom: 1px solid rgba($border-color-theme, 0.5);  
   }
   p {
     text-align: center;
@@ -56,23 +40,5 @@
     @include set-font($text-color-dark, $main-font-bold, $font-size-regular, uppercase);
     margin-top: -1.25em;
     padding-bottom: 1em;
-  }
-  .zero.star:before {
-    content: "\2606 \2606 \2606 \2606 \2606";
-  }
-  .one.star:before {
-    content: "\2605 \2606 \2606 \2606 \2606";
-  }
-  .two.star:before {
-    content: "\2605 \2605 \2606 \2606 \2606";
-  }
-  .three.star:before {
-    content: "\2605 \2605 \2605 \2606 \2606";
-  }
-  .four.star:before {
-    content: "\2605 \2605 \2605 \2605 \2606";
-  }
-  .five.star:before {
-    content: "\2605 \2605 \2605 \2605 \2605";
   }
 }

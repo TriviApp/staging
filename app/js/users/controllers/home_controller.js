@@ -11,7 +11,9 @@ module.exports = function(app) {
       $http.get('/api/categories/' + category)
       .then(function(res){
         // res will have the category data
-        $rootScope.gameData = res.data.msg;
+        $rootScope.gameData = res.data;
+        console.log('res', res.data.msg);
+        console.log('rootScope game data', $rootScope.gameData);
         $location.path('/newgame');
       }, function(res) {
         console.log(res);

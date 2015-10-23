@@ -1,0 +1,45 @@
+.component { 
+  margin: 1em 0;
+  position: relative;
+  img {
+    width: 25%;
+  }
+  header img {
+    width: 8%;
+  }
+  .big-button {
+    .wrong &.incorrect {
+      color: $text-color-med;
+      background-color: $background-color-wrong;
+      border-color: $border-color-med;
+    }
+    .right &.incorrect {
+      color: $text-color-med;
+      background-color: $background-color-correct;
+      border-color: $border-color-med;
+    }
+    &.chosen.incorrect {
+      color: $text-color-wrong;
+      background-color: $background-color-light;
+      border-color: $border-color-wrong;
+    }
+    &.chosen.correct {
+      color: $text-color-correct;
+      background-color: $background-color-light;
+      border-color: $border-color-correct;
+    }
+  }
+  .notes {
+    @include set-font($text-color-light, $main-font-regular, $font-size-large, "auto");
+    padding: 1em 0;
+    margin-bottom: 1em;
+    h1 {
+      @include flex-container(inline-flex,row,nowrap,center,center,center);
+    }
+    ul {
+      list-style-type: disc;
+      padding: 1em;
+      margin: 1em;
+    }
+  }
+}
