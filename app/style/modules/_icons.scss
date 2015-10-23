@@ -23,7 +23,7 @@
   color: $text-color-theme;
 }
 
-$icons: (starbar "\e001") (avatar-bw "\e000") (0stars "\e004") (1star "\e005") (2stars "\e006") (3stars "\e007") (4stars "\e008") (5stars "\e009");
+$icons: (starbar "\e002") (avatar-bw "\e000") (0stars "\e004") (1star "\e005") (2stars "\e006") (3stars "\e007") (4stars "\e008") (5stars "\e009");
 
 @each $icon in $icons {
   .icon-#{nth($icon, 1)}:before {
