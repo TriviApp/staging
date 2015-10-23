@@ -7,12 +7,12 @@ $color6: #FF0000; // red
 
 // avatar colors
 $avatar-color1: #FF0000; // red
-$avatar-color1: #FF5C0E; // orange
-$avatar-color1: #FFFF00; // yellow
-$avatar-color1: #78FF00; // green 
-$avatar-color1: #1CB2FF; // blue 
-$avatar-color1: #7B00FF; // purple 
-$avatar-color1: #F700FF; // pink
+$avatar-color2: #FF5C0E; // orange
+$avatar-color3: #FFFF00; // yellow
+$avatar-color4: #78FF00; // green 
+$avatar-color5: #1CB2FF; // blue 
+$avatar-color6: #7B00FF; // purple 
+$avatar-color7: #F700FF; // pink
 
 $text-color-dark: $color1;
 $text-color-med: $color2;
@@ -20,6 +20,10 @@ $text-color-light: $color3;
 $text-color-theme: $color4;
 $text-color-correct: darken($color5, 20%);
 $text-color-wrong: darken($color6, 20%);
+$text-color-category-sports: $avatar-color1;
+$text-color-category-entertainment: $avatar-color7;
+$text-color-category-history: $avatar-color6;
+$text-color-category-science: $avatar-color4;
 
 $background-color-dark: $color1;
 $background-color-med: $color2;

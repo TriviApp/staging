@@ -6,22 +6,55 @@
   border-radius: 0.5em;
   background-color: $background-color-light;
   margin: auto;
+  figure {
+  }
   img {
+    margin: 0 auto;
     width: 25%;
+    display: block;
   }
   figcaption {
-    margin-bottom: 0.5em;
+    @include set-font($text-color-theme, $main-font-bold, $font-size-large, "auto");
+    margin: 0.5em;
   }
   section {
-    @include flex-container(inline-flex, column, nowrap, stretch, stretch, center);
+    @include flex-container(inline-flex, row, nowrap, center, center, center);
     border: 3px solid $border-color-theme;
     background-color: $background-color-dark;
     border-radius: 0.5em;
     margin: 1%;
   }
+  .stats-list {
+    @include flex-container(flex, row, wrap, center, center, center);
+    background-color: $background-color-dark;
+    border-radius: 0.5em;
+    li {
+      margin: 1em;
+    }
+  }
+  .icon-starbar {
+    position: relative;
+  }
   .icon-starbar:before {
     color: $text-color-dark;
-    margin-top: 0;
+    margin-top: -32px;
+    position: absolute;
+    font-size: 520%;
+    z-index: 1;
+    width: 88px;
+    left: -9px;
+  }
+  .sports {
+    color: $text-color-category-sports;
+  }
+  .entertainment {
+    color: $text-color-category-entertainment;
+  }
+  .history {
+    color: $text-color-category-history;
+  }
+  .science {
+    color: $text-color-category-science;
   }
   .rating-indicator-container {
     @include flex-container(flex,row,wrap,space-around,center,center);
