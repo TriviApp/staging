@@ -33234,8 +33234,9 @@
 	    });
 
 	  it('should be able to sign up a user', function() {
-	  	$httpBackend.expectPOST('/api/signup', {'username':'dexter'}).respond(200, {'username':'dexter', 'token': 'tortilla'});
-	  	$scope.signup({'username':'dexter'});
+	  	$httpBackend.expectPOST('/api/signup', {'username':'dexter'}).respond(200, {'username':'dexter'});
+	  	console.log('scope', $rootScope);
+	    $scope.signup({'username':'dexter'});
 	  	console.log('before flush', $scope);
 	  	$httpBackend.flush();
 	  	console.log('after flush', $scope);
