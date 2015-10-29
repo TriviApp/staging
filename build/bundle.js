@@ -30500,6 +30500,7 @@
 	        $rootScope.gameData.questions = res.data.msg;
 	        $rootScope.gameData.category = res.data.category;
 	        $location.path('/newgame');
+	        console.log('gamedata', $rootScope.gameData);
 	      }, function(res) {
 	        console.log(res);
 	      });
