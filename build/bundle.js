@@ -30280,37 +30280,6 @@
 
 	    $scope.timer();
 
-	    // var gameData = {
-	    //   "category": "sports",
-	    //   "questions": [
-	    //     { "question":"Which NHL Team are nicknamed the 'Coyotes'?",
-	    //       "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"],
-	    //       "correctAnswer": "Arizona"
-	    //     },
-	    //     { "question":"Which U.S. golfer stands second in the all-time list of major winners with thirteen titles?",
-	    //       "answers": ["Tiger Woods", "Tony Jacklin", "Bobby Jones", "Arnold Palmer"],
-	    //       "correctAnswer": "Bobby Jones"
-	    //     },
-	    //     { "question":"Chukkas is the term given to periods played in what sport?",
-	    //       "answers": ["Polo", "Ice Hockey", "Hockey", "Curling"],
-	    //       "correctAnswer": "Polo"
-	    //     },
-	    //     { "question":"How many goose feathers does it take to make a shuttlecock?",
-	    //       "answers": ["16", "60", "21", "32"],
-	    //       "correctAnswer": "16"
-	    //     },
-	    //     { "question":"In Olympic Archery, how far is the competitor from the target?",
-	    //       "answers": ["50m", "120m", "70m", "100m"],
-	    //       "correctAnswer": "70m"
-	    //     }
-	    //   ]
-	    // };
-	    // $scope.categoryName = $rootScope.gameData.category;
-	    // $scope.questionsArr = $rootScope.gameData.questions;
-	    // $scope.question = $rootScope.gameData.questions[$scope.questionsArrIndex].question;
-	    // $scope.answers = $rootScope.gameData.questions[$scope.questionsArrIndex].answers;
-	    // $scope.correctAnswer = $rootScope.gameData.questions[$scope.questionsArrIndex].correctAnswer;
-
 	    $scope.questionsArrIndex = 0;
 	    $scope.categoryName = $rootScope.gameData.category;
 	    $scope.questionsArr = $rootScope.gameData.questions;
@@ -30349,16 +30318,16 @@
 	        $scope.inBetweenQuestions = true;
 	        clearTimeout(clock);
 	        $scope.chosen = answer;
-	        $scope.isIncorrect = true;  // adds "incorrect" class to all buttons
-	        $scope.isAnimated = true;   // adds "animated" class to all buttons
+	        $scope.isIncorrect = true;  
+	        $scope.isAnimated = true;   
 	        if (answer === $rootScope.gameData
 	                       .questions[$scope.questionsArrIndex]
 	                       .correctAnswer) {
 	          angular.element(document.getElementById("timer")).addClass("hidden");
-	          $scope.isRight = true;      // adds "right" class to entire view card
-	          this.isChosen = true;       // adds "chosen" class to selected button
-	          this.isCorrect = true;      // adds "correct" class to selected button
-	          this.runRubberBand = true;  // adds "rubberBand" class to selected button
+	          $scope.isRight = true;      
+	          this.isChosen = true;       
+	          this.isCorrect = true;      
+	          this.runRubberBand = true;  
 	          $rootScope.right += 1;
 	          $rootScope.scoreArr.push(true);
 	          console.log($rootScope.scoreArr);
@@ -30377,9 +30346,9 @@
 	          return true;
 	        } else {
 	          angular.element(document.getElementById("timer")).addClass("hidden");
-	          $scope.isWrong = true; // adds "wrong" class to entire view card
-	          this.isChosen = true;  // adds "chosen" class to selected button
-	          this.runHinge = true;  // adds "hinge" class to selected button
+	          $scope.isWrong = true; 
+	          this.isChosen = true;  
+	          this.runHinge = true;  
 	          $rootScope.wrong += 1;
 	          $rootScope.scoreArr.push(false);
 	          console.log($rootScope.scoreArr);
@@ -30523,14 +30492,11 @@
 	    if (!$rootScope.user) AuthService.verifySession();
 
 	    $scope.newGame = function(category) {
-	      //request category data
 	      console.log('category', category);
 
 	      $http.get('/api/categories/' + category)
 	      .then(function(res){
 	        $rootScope.gameData = {};
-	        // res will have the category data
-	        console.log('res', res.data.msg);
 	        $rootScope.gameData.questions = res.data.msg;
 	        $rootScope.gameData.category = res.data.category;
 	        $location.path('/newgame');
@@ -30616,7 +30582,6 @@
 	    $scope.showResults();
 	  }])
 	};
-
 
 /***/ },
 /* 16 */

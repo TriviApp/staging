@@ -33,8 +33,7 @@ describe('home and game controller', function () {
 
     it ('should be able to select a category', function() {
       $httpBackend.expectGET('/api/categories/sports')
-                  .respond(200, {"category": "sports",
-                                 "questions": [{
+                  .respond(200, {"category": "sports", 'msg': [{
                                  "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
                                  "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
                                  "correctAnswer": "Arizona"
@@ -42,6 +41,8 @@ describe('home and game controller', function () {
                                 });          
         $scope.newGame('sports');
         $httpBackend.flush();
+        console.log('scope.msg', $scope.gameData.questions);
+        console.log('scope.category', $scope.gameData.category);
         expect($scope.gameData.category).toBe('sports');
         expect($scope.gameData.questions[0].question).toBe("Which NHL Team are nicknamed the 'Coyotes'?");
         expect(Array.isArray($scope.gameData.questions[0].answers)).toBe(true);

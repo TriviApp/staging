@@ -33,6 +33,7 @@ describe('the categories resource', function () {
       .end(function(err, res) {
         // console.log(category);
         expect(err).to.eql(null);
+        expect(null).to.eql(null);
         console.log('res.body.category', res);
         // expect(res).to.have.status(200);
         expect(res.body.category).to.eql('sports');

@@ -5,14 +5,10 @@ module.exports = function(app) {
     if (!$rootScope.user) AuthService.verifySession();
 
     $scope.newGame = function(category) {
-      //request category data
-      console.log('category', category);
 
       $http.get('/api/categories/' + category)
       .then(function(res){
         $rootScope.gameData = {};
-        // res will have the category data
-        console.log('res', res.data.msg);
         $rootScope.gameData.questions = res.data.msg;
         $rootScope.gameData.category = res.data.category;
         $location.path('/newgame');
