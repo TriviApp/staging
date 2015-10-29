@@ -5,7 +5,6 @@ module.exports = function(app) {
     if (!$rootScope.user) AuthService.verifySession();
 
     $scope.newGame = function(category) {
-      console.log('category', category);
 
       $http.get('/api/categories/' + category)
       .then(function(res){
