@@ -41,8 +41,6 @@ describe('home and game controller', function () {
                                 });          
         $scope.newGame('sports');
         $httpBackend.flush();
-        console.log('scope.msg', $scope.gameData.questions);
-        console.log('scope.category', $scope.gameData.category);
         expect($scope.gameData.category).toBe('sports');
         expect($scope.gameData.questions[0].question).toBe("Which NHL Team are nicknamed the 'Coyotes'?");
         expect(Array.isArray($scope.gameData.questions[0].answers)).toBe(true);
