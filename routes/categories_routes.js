@@ -12,10 +12,9 @@ var categoryRouter = module.exports = exports = express.Router();
 categoryRouter.use(passport.initialize());
 
 categoryRouter.get('/categories/:category', bearerAuth.bearerAuthentication, function (req, res) {
+
   Category.findOne({category: req.params.category}, function (err, data) {
     if (err) return (err, res);
-    console.log('req.params', req.params);
-    console.log('data pre sample', data.questions);
     var questions = _.sample(data.questions, 5);
     console.log('questions', questions);
     res.json({msg: questions, category: req.params.category});

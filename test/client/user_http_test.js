@@ -10,18 +10,22 @@ describe('signup controller', function() {
   beforeEach(angular.mock.module('triviApp'));
 
 
-  beforeEach(angular.mock.inject(function (_$rootScope_, $controller) {
-    $rootScope.user = {};
-    $rootScope = _$rootScope_;
-    $scope = _$rootScope_.$new();
+  beforeEach(angular.mock.inject(function ($rootScope, $controller) {
+    $scope = $rootScope.$new();
     $ControllerConstructor = $controller;
   }));
+
+  it('should be able to sign up a new user', function() {
+    var controller = new $ControllerConstructor('SignupController', {$scope: $scope});
+    expect(typeof $scope).toBe('object');
+    expect(typeof controller).toBe('object');
+  });
   
   describe('REST request to generate user', function () {
     beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
       $httpBackend = _$httpBackend_;
       $scope = $rootScope.$new();
-      $ControllerConstructor('SignupController', {'$scope': $scope});
+      $ControllerConstructor('SignupController', {'$scope': '$scope'});
     }));
 
     afterEach(function () {
@@ -29,18 +33,13 @@ describe('signup controller', function() {
       $httpBackend.verifyNoOutstandingRequest();
     });
 
-  it('should be able to sign up a new user', function () {
-    var controller = new $ControllerConstructor('SignupController', {$scope: $scope});
-    expect(typeof $scope).toBe('object');
-    expect(typeof controller).toBe('object');
-  });
   it('should be able to sign up a user', function() {
-  	$httpBackend.expectPOST('/api/signup', {'username':'dexter'}).respond(200, {'username':'dexter', 'token': 'tortilla'});
-  	$scope.signup({'username':'dexter'});
-  	// var $rootScope.user = {token: 'tortilla'};
-  	console.log('before flush', $scope.username);
+  	$httpBackend.expectPOST('/api/signup', {'username':'dexter'}).respond(200, {'username':'dexter'});
+  	console.log('scope', $rootScope);
+    $scope.signup({'username':'dexter'});
+  	console.log('before flush', $scope);
   	$httpBackend.flush();
-  	console.log('after flush', $scope.user);
+  	console.log('after flush', $scope);
   	expect(null).toBe(null);
   });
 });  

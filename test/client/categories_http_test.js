@@ -33,8 +33,7 @@ describe('home and game controller', function () {
 
     it ('should be able to select a category', function() {
       $httpBackend.expectGET('/api/categories/sports')
-                  .respond(200, {"category": "sports",
-                                 "questions": [{
+                  .respond(200, {"category": "sports", 'msg': [{
                                  "question":"Which NHL Team are nicknamed the 'Coyotes'?", 
                                  "answers": ["Calgary", "Vancouver", "Ottawa", "Arizona"], 
                                  "correctAnswer": "Arizona"
