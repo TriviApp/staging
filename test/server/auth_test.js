@@ -3,9 +3,9 @@ var chaihttp = require('chai-http');
 chai.use(chaihttp);
 var expect = chai.expect;
 process.env.MONGO_URL = 'mongodb://localhost/notes_test';
-require(__dirname + '/../server');
+require(__dirname + '/../../server');
 var mongoose = require('mongoose');
-var User = require(__dirname + '/../models/user');
+var User = require(__dirname + '/../../models/user_model');
 
 describe('auth', function() {
   after(function(done){
