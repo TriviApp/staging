@@ -49,7 +49,7 @@ userSchema.methods.compareHash = function(pw, cb) {
 };
 
 userSchema.methods.generateToken = function(cb) {
-  eat.encode({ id: this._id }, process.env.APP_SECRET, cb);
+  eat.encode({ id: this._id, timeStamp: Date.now() }, process.env.APP_SECRET, cb);
 };
 
 module.exports = mongoose.model('User', userSchema);

@@ -29,20 +29,26 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
       newUser.token = token;
       newUser.save(function(err, data) {
         if (err) return handleError.err500(err, res);
-        data.password = '';
-        handleResponse.send201(res, data);
+        var user = data.toObject();
+        delete user.password;
+        console.log('signup route saved user: ', user);
+        handleResponse.send201(res, user);
       });
     });
   });
 });
 
 usersRouter.get('/signin', basicAuth.basicAuthentication, function(req, res) {
-  req.user.password = '';
-  handleResponse.send200(res, req.user);
+  var user = req.user.toObject();
+  delete user.password;
+  console.log('signin route toObject var: ', user);
+  handleResponse.send200(res, user);
 });
 
 usersRouter.get('/username', bearerAuth.bearerAuthentication, function(req, res) {
-  req.user.password = '';
+  var user = req.user.toObject();
+  delete user.password;
+  console.log('username route toObject var: ', user);
   handleResponse.send200(res, req.user)
 });
 
