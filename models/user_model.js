@@ -9,31 +9,32 @@ var userSchema = new Schema({
 	password: String,
   token: String,
   avatar: String,
-	category1: {
+	sports: {
 		correct: Number,
 		total: Number
 	},
-	category2: {
+	entertainment: {
 		correct: Number,
 		total: Number
 	},
-	category3: {
+	history: {
 		correct: Number,
 		total: Number
 	},
-	category4: {
+	science: {
 		correct: Number,
 		total: Number
 	}
 });
-//user stats
+
 userSchema.methods.userCategoryStats = function(category) {
-	if(err) return err;
-	this.category = category;
-	var correct = this.correct;
-	var total = this.total;
-	var average = correct/total;
-	return average;
+  console.log('this.category val: ', this[category]);
+  return this[category].correct / this[category].total;
+	// this.category = category;
+	// var correct = this.correct;
+	// var total = this.total;
+	// var average = correct/total;
+	// return average;
 };
 
 userSchema.methods.generateHash = function(pw, cb) {

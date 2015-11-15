@@ -9,6 +9,13 @@ module.exports = function(app) {
       $scope.user = $rootScope.user;
     }
 
+    $http.put('/savescore/', { right: $rootscope.right, category: $rootscope.gameData.category})
+      .then(function(res) {
+        $rootscope.user = res.data.msg;
+      }).then(function(res) {
+        console.log(res);
+      });
+
     var scoreArr = $rootScope.scoreArr;
     $scope.right = $rootScope.right;
     $scope.wrong = $rootScope.wrong;

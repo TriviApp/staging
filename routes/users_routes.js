@@ -18,10 +18,10 @@ usersRouter.post('/signup', jsonParser, function(req, res) {
     correct: 0,
     total: 0
   };
-  newUser.category1 = winLoss;
-  newUser.category2 = winLoss;
-  newUser.category3 = winLoss;
-  newUser.category4 = winLoss;
+  newUser.sports = winLoss;
+  newUser.entertainment = winLoss;
+  newUser.history = winLoss;
+  newUser.science = winLoss;
   newUser.generateHash(req.body.password, function(err, hash) {
     if (err) return handleError.err500(err, res);
     newUser.generateToken(function(err, token) {
@@ -50,6 +50,19 @@ usersRouter.get('/username', bearerAuth.bearerAuthentication, function(req, res)
   delete user.password;
   console.log('username route toObject var: ', user);
   handleResponse.send200(res, req.user)
+});
+
+usersRouter.put('/savescore/:results', bearerAuth.bearerAuthentication, function(req, res) {
+  var newScore = req.params.results;
+  req.user[newScore.category].correct += newScore.right;
+  req.user[newScore.category].total += 5;
+  console.log('/savescore updated category: ', req.user[newScore.category]);
+  User.findOneAndUpdate(req.user._id, { newScore.category: req.user[newScore.category] }, function(err, data) {
+    if (err) return handleError.err500(err, res);
+    var user = data.toObject();
+    delete user.password;
+    handleResponse.send200(res, user);
+  });
 });
 
 usersRouter.get('/errRoute', function(req, res) {
