@@ -9,10 +9,10 @@ module.exports = function(app) {
       $scope.user = $rootScope.user;
     }
 
-    $http.put('/savescore/', { right: $rootscope.right, category: $rootscope.gameData.category})
+    $http.put('/api/savescore', { correct: $rootScope.right, category: $rootScope.gameData.category })
       .then(function(res) {
-        $rootscope.user = res.data.msg;
-      }).then(function(res) {
+        $rootScope.user = res.data.msg;
+      }, function(res) {
         console.log(res);
       });
 

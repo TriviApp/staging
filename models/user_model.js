@@ -11,31 +11,25 @@ var userSchema = new Schema({
   avatar: String,
 	sports: {
 		correct: Number,
-		total: Number
+		total: Number,
+    rating: Number
 	},
 	entertainment: {
 		correct: Number,
-		total: Number
+		total: Number,
+    rating: Number
 	},
 	history: {
 		correct: Number,
-		total: Number
+		total: Number,
+    rating: Number
 	},
 	science: {
 		correct: Number,
-		total: Number
+		total: Number,
+    rating: Number
 	}
 });
-
-userSchema.methods.userCategoryStats = function(category) {
-  console.log('this.category val: ', this[category]);
-  return this[category].correct / this[category].total;
-	// this.category = category;
-	// var correct = this.correct;
-	// var total = this.total;
-	// var average = correct/total;
-	// return average;
-};
 
 userSchema.methods.generateHash = function(pw, cb) {
   bcrypt.hash(pw, 8, function(err, hash) {

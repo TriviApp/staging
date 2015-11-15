@@ -14,5 +14,5 @@ module.exports = function(app) {
         return correct/total;
       };
 
-  }])
-}
+  }]);
+};
