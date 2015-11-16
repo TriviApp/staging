@@ -10,19 +10,19 @@
     <ul class="stats-list">
       <li class="sports">
         <p>Sports</p>
-        <progress value="70" max="100" class="icon-starbar"></progress>
+        <progress value="{{user.sports.rating}}" max="100" class="icon-starbar"></progress>
       </li>
       <li class="entertainment">
         <p>Entertainment</p>
-        <progress value="10" max="100" class="icon-starbar"></progress>
+        <progress value="{{user.entertainment.rating}}" max="100" class="icon-starbar"></progress>
       </li>
       <li class="history">
         <p>History</p>
-        <progress value="45" max="100" class="icon-starbar"></progress>
+        <progress value="{{user.history.rating}}" max="100" class="icon-starbar"></progress>
       </li>
       <li class="science">
         <p>Science</p>
-        <progress value="85" max="100" class="icon-starbar"></progress>
+        <progress value="{{user.science.rating}}" max="100" class="icon-starbar"></progress>
       </li>
     </ul>
     <!-- <p>{{user.category1.correct}}</p> -->
